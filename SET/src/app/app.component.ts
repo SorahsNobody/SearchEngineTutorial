@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'SET';
+  playerName = 'Ben'; // Set player name for the game TODO: will need to change dynamically
 }
