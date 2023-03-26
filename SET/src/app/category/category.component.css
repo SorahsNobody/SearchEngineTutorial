@@ -14,12 +14,6 @@
   font-size: 30px;
 }
 
-#avatar{
-  width: 100px;
-  height: 100px;
-  animation: blink 1s infinite;
-}
-
 #categories {
   text-align: center;
 }

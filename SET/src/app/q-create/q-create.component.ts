@@ -10,7 +10,7 @@ import { chosenCat } from 'src/environments/environment';
 export class QCreateComponent implements OnInit {
 
   constructor(private route: ActivatedRoute) { }
-
+  @Input('currCat') currCat = chosenCat.key;
   ngOnInit(): void {
     console.log(chosenCat.key)
   }

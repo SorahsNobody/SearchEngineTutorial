@@ -1,0 +1,43 @@
+h1 {
+  font-size: 35pt;
+}
+
+#chooseCat {
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+  text-align: center;
+}
+
+#chooseCat p {
+  display: inline;
+  word-wrap: break-word;
+  font-size: 25px;
+}
+
+#queryBox {
+  text-align: center;
+  height: 2.5%;
+}
+
+#queryBox p {
+  text-decoration: underline;
+  font-size: 20px;
+}
+
+#queryBox input {
+  width: 60%;
+  height: 75%;
+  background-color: #f7c187;
+  border: 2px solid;
+  border-color: #f77f00;
+}
+
+#kwordBank {
+  margin-left: 15%;
+  margin-right: 15%;
+  width: 75%;
+  height: 30%;
+  background-color: #f7c187;
+  border: 2px solid;
+  border-color: #f77f00;
+}
