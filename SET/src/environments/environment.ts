@@ -11,7 +11,7 @@ export const chosenCat = {
 }
 
 export const playerName = {
-  key: 'default'
+  key: 'No Name'
 }
 
 /*
