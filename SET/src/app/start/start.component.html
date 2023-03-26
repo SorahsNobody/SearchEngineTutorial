@@ -4,7 +4,7 @@
     <img src="/assets/img1.gif" alt="Question Mark">
   </div>
   <h3>Can you help me in searching this query???</h3>
-  <input type="text" name="Name" placeholder="Enter Your Name" required="">
-  <button id="go-button" type="Go">Go!!!</button>
-  <button id="instructions-button" type="Instructions">How to play?</button>
+  <input id="name" type="text" name="Name" placeholder="Enter Your Name" required="">
+  <button id="go-button" type="submit" (click)="toCatSelect()">Go!!!</button>
+  <button id="instructions-button" type="Instructions" (click)="toInstruct()">How to play?</button>
 </div>
