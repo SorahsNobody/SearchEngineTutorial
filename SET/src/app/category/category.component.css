@@ -1,0 +1,56 @@
+#playerName {
+  font-size:35pt;
+}
+
+#chooseCat {
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
+
+#chooseCat p {
+  display: inline;
+  word-wrap: break-word;
+  margin-right: 5%;
+  font-size: 30px;
+}
+
+#avatar{
+  text-align: left;
+  margin-left: 15%;
+}
+
+#categories {
+  text-align: center;
+}
+
+#categories button {
+  border-radius: 4px;
+  background-color: lightgray;
+  width: 25%;
+  padding: 32px 16px;
+  font-size: 50px;
+}
+
+#categories button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+#Ani {
+  color: green;
+  margin-right: 10%;
+  margin-bottom: 5%;
+}
+
+#Sup {
+  color: red;
+  margin-bottom: 5%;
+}
+
+#Sci {
+  color: royalblue;
+  margin-right: 10%;
+}
+
+#Spo {
+  color: goldenrod;
+}
