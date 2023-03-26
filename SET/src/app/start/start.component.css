@@ -1,0 +1,70 @@
+h1, h3 {
+  text-align: center;
+  color: #f77f00; /* orange */
+  font-family: 'Comic Sans MS', cursive;
+}
+h1 {
+  font-size: 50px;
+  margin-bottom: 10px;
+}
+main {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+input {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 18px;
+  background-color: #e6f2f2; /* turquoise */
+}
+#go-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: 'Comic Sans MS', cursive;
+  font-weight: bold;
+  color: #fff;
+  background-color: #f77f00; /* orange */
+  cursor: pointer;
+  box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
+
+}
+#instructions-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 10px;
+  font-weight: bold;
+  font-family: 'Comic Sans MS', cursive;
+  color: #fff;
+  background-color: #f77f00; /* orange */
+  cursor: pointer;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+.question-mark {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.question-mark img {
+  width: 100px;
+  height: 100px;
+  animation: blink 1s infinite;
+}
