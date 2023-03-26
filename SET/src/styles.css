@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+footer {
+  text-align: right;
+  font-size: large;
+}
+
+html, body { height: 100%; }
+body { margin: 2.5%; font-family: Roboto, "Helvetica Neue", sans-serif; }
