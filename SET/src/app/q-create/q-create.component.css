@@ -16,7 +16,7 @@ h1 {
 
 #queryBox {
   width: 60%;
-  height: 2.5%;
+  height: 6%;
   background-color: #f7c187;
   border: 2px solid;
   border-color: #f77f00;
@@ -49,3 +49,7 @@ h1 {
   text-align: center;
 }
 
+#submit{
+  margin-left: 90%;
+  margin-top: 5%;
+}
