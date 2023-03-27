@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap} from '@angular/router';
-import { SciKeys, SciQues, chosenCat } from 'src/environments/environment';
+import { AniKeys, SciKeys, SciQues, SpoKeys, SupKeys, chosenCat } from 'src/environments/environment';
 import { EventManager } from '@angular/platform-browser';
 
 @Component({
@@ -28,13 +28,16 @@ export class QCreateComponent implements OnInit {
     let rt: string[] = [];
     switch(category){
       case 'Animal':
+        rt = AniKeys[qNum];
         break;
       case 'Superhero':
+        rt = SupKeys[qNum];
         break;
       case 'Science':
         rt = SciKeys[qNum];
         break;
       default:
+        rt = SpoKeys[qNum];
         break;
     }
     return rt;
