@@ -9,6 +9,8 @@ import { QCreateComponent } from './q-create/q-create.component';
 import { StartComponent } from './start/start.component';
 import { InstructionsComponent } from './instructions/instructions.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,7 +22,8 @@ import { InstructionsComponent } from './instructions/instructions.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

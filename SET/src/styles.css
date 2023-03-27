@@ -6,7 +6,27 @@ footer {
 
 html, body { height: 100%; }
 body { margin: 2.5%;   font-family: 'Comic Sans MS', cursive;}
-button {font-family: 'Comic Sans MS', cursive;}
+button {
+  font-family: 'Comic Sans MS', cursive;
+  cursor: pointer;
+  padding: 5px 10px;
+  margin: 1%;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #f77f00; /* orange */
+}
+
+button:hover {
+  box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
+}
+
+button:active{
+  color: #a0a0a0;
+  background-color: #a75600; /* orange */
+  box-shadow: none;
+}
 
 #avatar{
   width: 100px;
