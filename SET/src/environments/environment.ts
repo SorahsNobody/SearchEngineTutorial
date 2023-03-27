@@ -8,11 +8,24 @@ export const environment = {
 
 export const chosenCat = {
   key: 'default'
-}
+};
 
 export const playerName = {
   key: 'No Name'
-}
+};
+
+export const SciQues: string[] = [ //Science Questions
+  'What is the chemical symbol for gold?',
+  'Q2',
+  'Q3',
+  'Q4',
+  'Q5'];
+export const SciKeys: string[][] = [ //Science Keywords
+  ['chemical','chemistry','gold','element', 'what','who','where','is','symbol','metal','gas','liquid'],
+  ['t1'],
+  ['t2'],
+  ['t3'],
+  ['t4']];
 
 /*
  * For easier debugging in development mode, you can import the following file

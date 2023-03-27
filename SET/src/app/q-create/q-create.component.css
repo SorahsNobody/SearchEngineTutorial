@@ -15,21 +15,18 @@ h1 {
 }
 
 #queryBox {
-  text-align: center;
-  height: 2.5%;
-}
-
-#queryBox p {
-  text-decoration: underline;
-  font-size: 20px;
-}
-
-#queryBox input {
   width: 60%;
-  height: 75%;
+  height: 2.5%;
   background-color: #f7c187;
   border: 2px solid;
   border-color: #f77f00;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
+#instruct p {
+  margin-left: 15%;
+  font-size: 20px;
 }
 
 #kwordBank {
@@ -41,3 +38,14 @@ h1 {
   border: 2px solid;
   border-color: #f77f00;
 }
+
+#kwordBank p {
+  text-decoration: underline;
+  font-size: 20px;
+  text-align: center;
+}
+
+#kwords {
+  text-align: center;
+}
+
