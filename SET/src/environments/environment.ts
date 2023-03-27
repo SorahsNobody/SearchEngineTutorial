@@ -14,6 +14,10 @@ export const playerName = {
   key: 'No Name'
 };
 
+export const searchQuery = {
+  key: 'default'
+};
+
 export const AniQues: string[] =[
 
 ];
@@ -52,6 +56,15 @@ export const SciKeys: string[][] = [ //Science Keywords
   ['fruit','healthy','healthiest','what','eat','is','the','apples','oranges','potatoes'],
   ['planets', 'earth','solar','is','how','pluto','many','there','duck','water','sun','rocks']
 ];
+
+export class SearchClass {
+  //this is the url for the cast search
+  static readonly searchSelection: SearchClass[] =[
+      new SearchClass('google_legacy', 'https://cast.boisestate.edu/googleAPI/googleSearch.php')
+  ]
+
+  private constructor(private readonly name: string, public readonly url: string) {}
+};
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap} from '@angular/router';
-import { AniKeys, SciKeys, SciQues, SpoKeys, SupKeys, chosenCat } from 'src/environments/environment';
+import { Router } from '@angular/router';
+import { AniKeys, SciKeys, SciQues, SpoKeys, SupKeys, chosenCat, searchQuery } from 'src/environments/environment';
 import { EventManager } from '@angular/platform-browser';
 
 @Component({
@@ -9,7 +9,7 @@ import { EventManager } from '@angular/platform-browser';
   styleUrls: ['./q-create.component.css']
 })
 export class QCreateComponent implements OnInit {
-  constructor(private eventManager: EventManager) {}
+  constructor(private eventManager: EventManager, private route: Router) {}
   @Input('currCat') currCat = chosenCat.key;
   ngOnInit(): void {
     var bank = document.getElementById("kwords");
@@ -67,5 +67,20 @@ export class QCreateComponent implements OnInit {
     inpt?.removeChild(button);
     this.addEvent(new_button as HTMLButtonElement);
     bank?.appendChild(new_button);
+  }
+
+  onEnter(): void {
+    var inpt = document.getElementById("queryBox");
+    var query = "";
+    if(inpt?.hasChildNodes){
+      inpt.childNodes.forEach(element => {
+        var button = element as HTMLButtonElement;
+        query+=button.innerText;
+        query+=" ";
+      });
+      searchQuery.key = query;
+      console.log(searchQuery.key);
+      //this.route.navigateByUrl(""); //TODO: change to result page
+    }
   }
 }
