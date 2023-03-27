@@ -8,11 +8,50 @@ export const environment = {
 
 export const chosenCat = {
   key: 'default'
-}
+};
 
 export const playerName = {
-  key: 'default'
-}
+  key: 'No Name'
+};
+
+export const AniQues: string[] =[
+
+];
+
+export const AniKeys: string[][] =[
+  []
+];
+
+export const SupQues: string[] =[
+
+];
+
+export const SupKeys: string[][] =[
+  []
+];
+
+export const SpoQues: string[] =[
+
+];
+
+export const SpoKeys: string[][]=[
+  []
+];
+
+export const SciQues: string[] =[ //Science Questions
+  'What is the chemical symbol for gold?', //Answer: Au
+  'What is the boiling point of water?', //Answer: 212 F or 100 C
+  'Why is the Ocean salty?', //Answer: rocks from land
+  'What is the best fruit for you or me?', //Answer: Lemons
+  'How many planets are there in our solar system?' //Answer: Eight
+];
+export const SciKeys: string[][] = [ //Science Keywords
+  ['chemical','chemistry','gold','element', 'what','who','where','is','symbol','metal','gas','liquid','for'],
+  ['water', 'boiling', 'liquid', 'hot', 'cold', 'when', 'where', 'what', 'is', 'gas', 'duck', 'float'],
+  ['taste','who', 'salt','salty','when','water','is','ocean','beach', 'why','shark','moon'],
+  ['fruit','healthy','healthiest','what','eat','is','the','apples','oranges','potatoes'],
+  ['planets', 'earth','solar','is','how','pluto','many','there','duck','water','sun','rocks']
+];
 
 /*
  * For easier debugging in development mode, you can import the following file

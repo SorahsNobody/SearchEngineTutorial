@@ -7,3 +7,9 @@ footer {
 html, body { height: 100%; }
 body { margin: 2.5%;   font-family: 'Comic Sans MS', cursive;}
 button {font-family: 'Comic Sans MS', cursive;}
+
+#avatar{
+  width: 100px;
+  height: 100px;
+  animation: blink 1s infinite;
+}

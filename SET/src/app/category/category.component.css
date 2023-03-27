@@ -5,18 +5,13 @@
 #chooseCat {
   margin-top: 2.5%;
   margin-bottom: 2.5%;
+  text-align: center;
 }
 
 #chooseCat p {
   display: inline;
   word-wrap: break-word;
-  margin-right: 5%;
   font-size: 30px;
-}
-
-#avatar{
-  text-align: left;
-  margin-left: 15%;
 }
 
 #categories {
