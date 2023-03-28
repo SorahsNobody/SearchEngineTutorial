@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-results',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./results.component.css']
 })
 export class ResultsComponent {
+  constructor(private router: Router) { }
+
+  toCustom(): void {
+    this.router.navigateByUrl("/customize");
+  }
+
+  toCatSelect(): void {
+    this.router.navigateByUrl("/categories");
+  }
 
 }
