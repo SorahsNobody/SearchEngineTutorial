@@ -9,8 +9,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   constructor(private route: Router) { }
   ngOnInit(): void {
-    //this.route.navigateByUrl("/start");
+    this.route.navigateByUrl("/start");
   }
   title = 'SET';
-  //playerName = 'Ben'; // Set player name for the game TODO: will need to change dynamically
 }
