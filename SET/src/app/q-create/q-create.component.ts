@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { AniKeys, SciKeys, SciQues, SpoKeys, SupKeys, chosenCat, searchQuery, resultArray } from 'src/environments/environment';
+import { AniQues, AniKeys, SciKeys, SciQues, SpoQues, SupQues, SpoKeys, SupKeys, chosenCat, searchQuery, resultArray } from 'src/environments/environment';
 import { EventManager } from '@angular/platform-browser';
 import { SearchResultsService } from '../search-results.service';
 import { SearchResult } from 'src/models/search-result.model';
@@ -19,8 +19,9 @@ export class QCreateComponent implements OnInit {
 
   @Input('currCat') currCat = chosenCat.key;
   ngOnInit(): void {
+    this.currCat = chosenCat.key;
     var bank = document.getElementById("kwords");
-    let keys: string[] = this.getKeys(chosenCat.key);
+    let keys: string[] = this.getKeys(this.currCat);
     //FOR EACH key word string
     keys.forEach(element => {
       //Create and add a button to the Key Word Bank
@@ -40,7 +41,7 @@ export class QCreateComponent implements OnInit {
   getKeys(category:string) {
     //randomly choose 1-5
     var qNum = Math.floor(Math.random() *5);
-    this.setQuestion(qNum);
+    this.setQuestion(qNum, category);
     let rt: string[] = [];
     switch(category){
       case 'Animal':
@@ -63,9 +64,23 @@ export class QCreateComponent implements OnInit {
    *
    * @param qNum => The array index value corresponding to the current question.
    */
-  setQuestion(qNum: number): void{
+  setQuestion(qNum: number, category: string): void{
     var q = document.getElementById("question");
-    q!.innerText=SciQues[qNum];
+    switch(category){
+      case 'Animal':
+        q!.innerText=AniQues[qNum];
+        break;
+      case 'Superhero':
+        q!.innerText=SupQues[qNum];
+        break;
+      case 'Science':
+        q!.innerText=SciQues[qNum];
+        break;
+      default:
+        q!.innerText=SpoQues[qNum];
+        break;
+    }
+
   }
   /**
    * Will add an event listener to the given button.
