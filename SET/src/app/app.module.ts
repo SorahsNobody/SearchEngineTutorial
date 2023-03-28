@@ -8,8 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QCreateComponent } from './q-create/q-create.component';
 import { StartComponent } from './start/start.component';
 import { InstructionsComponent } from './instructions/instructions.component';
-
 import { HttpClientModule } from '@angular/common/http';
+import { CustomizeComponent } from './customize/customize.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     CategoryComponent,
     QCreateComponent,
     StartComponent,
-    InstructionsComponent
+    InstructionsComponent,
+    CustomizeComponent
   ],
   imports: [
     BrowserModule,
