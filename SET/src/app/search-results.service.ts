@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { SearchClass } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, lastValueFrom } from 'rxjs';
 import { ResultResponse } from 'src/models/search-result.model';
 
 @Injectable({
@@ -12,14 +12,14 @@ export class SearchResultsService {
 
   constructor(private http: HttpClient) { }
 
-  getSearchResults(queryString: string): Observable<ResultResponse>{
-    return this.http.get<ResultResponse>(
+  async getSearchResults(queryString: string): Promise<ResultResponse>{//Observable<ResultResponse>{
+    return await lastValueFrom(this.http.get<ResultResponse>(
       this.searchResultUrl,
       {
         params: {
           "keyword" : queryString
         }
       }
-    );
+    ));
   }
 }

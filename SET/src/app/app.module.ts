@@ -8,9 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { QCreateComponent } from './q-create/q-create.component';
 import { StartComponent } from './start/start.component';
 import { InstructionsComponent } from './instructions/instructions.component';
-
 import { HttpClientModule } from '@angular/common/http';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { CustomizeComponent } from './customize/customize.component';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,8 @@ import { SearchResultsComponent } from './search-results/search-results.componen
     StartComponent,
     InstructionsComponent,
     SearchResultsComponent
+    CustomizeComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,

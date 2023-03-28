@@ -2,6 +2,8 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { SearchResult } from "src/models/search-result.model";
+
 export const environment = {
   production: false
 };
@@ -73,6 +75,11 @@ export class SearchClass {
 
   private constructor(private readonly name: string, public readonly url: string) {}
 };
+
+var rA: Array<SearchResult> = [];
+export const resultArray = {
+  key: rA
+}
 
 /*
  * For easier debugging in development mode, you can import the following file
