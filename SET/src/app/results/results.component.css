@@ -71,6 +71,20 @@ h1, h2,p{
     right: 100px;
   }
 
+  #cust-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    color: #fffefe;
+    background-color: #0fbe9b;
+    cursor: pointer;
+    position: absolute;
+    bottom: 100px;
+  }
+
   .img2 {
     height: 160px;
     width: 160px;

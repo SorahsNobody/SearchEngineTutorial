@@ -25,12 +25,12 @@ h1, h2,p{
   .table {
     width:800px!important;
     margin-left: 22%;
-    position:absolute
+    color: aliceblue;
   }
 
   .img {
-    height: 160px;
-    width: 160px;
+    height: 80px;
+    width: 150px;
   }
 
   .instructions {
