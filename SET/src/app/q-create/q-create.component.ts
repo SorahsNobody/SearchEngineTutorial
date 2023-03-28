@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { AniQues, AniKeys, SciKeys, SciQues, SpoQues, SupQues, SpoKeys, SupKeys, chosenCat, searchQuery, resultArray } from 'src/environments/environment';
+import { AniQues, AniKeys, SciKeys, SciQues, SpoQues, SupQues, SpoKeys, SupKeys, chosenCat, searchQuery, resultArray, currQuestion, questionNumber } from 'src/environments/environment';
 import { EventManager } from '@angular/platform-browser';
 import { SearchResultsService } from '../search-results.service';
 import { SearchResult } from 'src/models/search-result.model';
@@ -41,6 +41,7 @@ export class QCreateComponent implements OnInit {
   getKeys(category:string) {
     //randomly choose 1-5
     var qNum = Math.floor(Math.random() *5);
+    questionNumber.key = qNum;
     this.setQuestion(qNum, category);
     let rt: string[] = [];
     switch(category){
@@ -69,15 +70,19 @@ export class QCreateComponent implements OnInit {
     switch(category){
       case 'Animal':
         q!.innerText=AniQues[qNum];
+        currQuestion.key=AniQues[qNum];
         break;
       case 'Superhero':
         q!.innerText=SupQues[qNum];
+        currQuestion.key=SupQues[qNum];
         break;
       case 'Science':
         q!.innerText=SciQues[qNum];
+        currQuestion.key=SciQues[qNum];
         break;
       default:
         q!.innerText=SpoQues[qNum];
+        currQuestion.key=SpoQues[qNum];
         break;
     }
 

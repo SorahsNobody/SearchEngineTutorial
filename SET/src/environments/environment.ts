@@ -20,6 +20,26 @@ export const searchQuery = {
   key: 'default'
 };
 
+export const currQuestion = {
+  key: 'default'
+};
+
+export const questionNumber = {
+  key: 10
+};
+
+export const score = {
+  key: 0
+};
+
+export const AniAnswers: string [][] = [
+  ['hummingbird'],
+  ['shrimp', 'algea'],
+  ['imortal jellyfish'],
+  ['howler monkey'],
+  ['otters']
+];
+
 export const AniQues: string[] =[
   'What bird can fly backwards?', //Hummingbird
   'Why are flamingos pink?', //shrimp, and algea they eat
@@ -36,8 +56,16 @@ export const AniKeys: string[][] =[
   ['animal', 'hands', 'stay', 'together', 'mammal', 'latch', 'keep']
 ];
 
+export const SupAnswers: string[][] = [
+  ['green'],
+  ['vibranium'],
+  ['peter', 'parker'],
+  ['charles xavier', 'professor x'],
+  ['lasso', '']
+];
+
 export const SupQues: string[] =[//Superhero Questions
-  "What color is Hulk when he is not angry?",
+  "What color is Hulk when he is angry?",
   "What is Captain America's shield made of?",
   "What is spiderman's real name?",
   "Who is the leader of X-Men?",
@@ -52,12 +80,20 @@ export const SupKeys: string[][] =[
   ['Truth', 'Wonder Woman', 'Marvel','DC comics', 'Paradise', 'weapon', 'name', 'called']
 ];
 
-export const SpoQues: string[] =[ // Sports Questions 
-'How long is a marathon?', // A: 26.2 miles 
+export const SpoAnswers: string[][] =[
+  ['26.2', '26 mi'],
+  ['5','6','five','six'],
+  ['9','nine'],
+  ['golf'],
+  ['women\'s gymnastics', 'gymnastics']
+];
+
+export const SpoQues: string[] =[ // Sports Questions
+'How long is a marathon?', // A: 26.2 miles
 'How many colors make up the Olympic rings?', // A: five
-'How many players are on a baseball team?', // A: 9 
+'How many players are on a baseball team?', // A: 9
 'What is the only sport to be played on the moon?', // A: Golf
-'What sport is Bela Karolyi known for coaching?', // A: Women’s gymnastics 
+'What sport is Bela Karolyi known for coaching?', // A: Women’s gymnastics
 ];
 
 export const SpoKeys: string[][]=[
@@ -68,11 +104,19 @@ export const SpoKeys: string[][]=[
   ['name', 'in', 'game', 'how', 'gym',  'which', 'Bela', 'going', 'coach', 'woman', 'into',  'Bela Karolyi', 'famous', 'know']
 ];
 
+export const SciAnswers: string[][] = [
+  ['au'],
+  ['212', '100' , 'two-hundred and twelve', 'one-hundred'],
+  ['rocks', 'runoff'],
+  ['bill nye', 'bill'],
+  ['8', 'eight', '9', 'nine']
+];
+
 export const SciQues: string[] =[ //Science Questions
   'What is the chemical symbol for gold?', //Answer: Au
   'What is the boiling point of water?', //Answer: 212 F or 100 C
   'Why is the Ocean salty?', //Answer: rocks from land
-  'What is the best fruit for you or me?', //Answer: Lemons
+  'Who is the Science Guy?', //Answer: Bill Nye
   'How many planets are there in our solar system?' //Answer: Eight
 ];
 export const SciKeys: string[][] = [ //Science Keywords
