@@ -21,10 +21,18 @@ export const searchQuery = {
 };
 
 export const AniQues: string[] =[
-
+  'What bird can fly backwards?', //Hummingbird
+  'Why are flamingos pink?', //shrimp that they eat
+  'What is the longest living animal?', //imortal jellyfish
+  'What is the loudest land animal?', //howler monkey
+  'What animals are know to hold hands?' //otters
 ];
 
 export const AniKeys: string[][] =[
+  [],
+  [],
+  [],
+  [],
   []
 ];
 
