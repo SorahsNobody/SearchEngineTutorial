@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customize',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./customize.component.css']
 })
 export class CustomizeComponent {
+  constructor(private router: Router) { }
 
+  toResult(): void {
+    this.router.navigateByUrl("/results");
+  }
 }
