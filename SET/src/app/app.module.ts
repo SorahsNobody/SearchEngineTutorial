@@ -10,6 +10,7 @@ import { StartComponent } from './start/start.component';
 import { InstructionsComponent } from './instructions/instructions.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CustomizeComponent } from './customize/customize.component';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CustomizeComponent } from './customize/customize.component';
     QCreateComponent,
     StartComponent,
     InstructionsComponent,
-    CustomizeComponent
+    CustomizeComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,
