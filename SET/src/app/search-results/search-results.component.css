@@ -1,0 +1,125 @@
+
+/* Styles for mobile devices */
+@media screen and (max-width: 480px) {
+    /* CSS rules for small screens */
+  }
+  
+  /* Styles for tablets */
+  @media screen and (min-width: 481px) and (max-width: 768px) {
+    /* CSS rules for medium screens */
+  }
+  
+  /* Styles for desktops */
+  @media screen and (min-width: 769px) {
+    /* CSS rules for large screens */
+  }
+  
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 650px;
+    height: 100px;
+    background-color: white;
+    margin-bottom: 4px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-left: 50px;
+
+}
+
+.card img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.card h2 {
+    font-size: 24px;
+    color: #3385ff;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+.card h2, .card p, .card_results_display, .title{
+    font-family: 'Comic Sans MS', cursive;
+}
+
+
+
+
+.card_results_display {
+    background-color: #f77f00;
+    color: white;
+    width: 500px;
+    height: 300px;
+    position: absolute;
+    top: 50%;
+    right: 100px;
+    transform: translateY(-50%);
+    border-radius: 10px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card_results_display h1 {
+    font-size: 30px;
+    margin-top: 0;
+}
+
+.cacard_results_displayrd p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.card_results_display button {
+    background-color: rgb(3, 181, 66);
+    color: rgb(247, 245, 242);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 50px;
+
+}
+
+.card_results_display button:hover {
+    background-color: #fff5eb;
+    color: #ff8c00;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.card_results_display img {
+    width: 120px;
+    height: 120px;
+    margin-right: 20px;
+    margin-left: 30px;
+    object-fit: cover;
+    
+    margin-top: 50px;
+}
+
+.title{
+    text-align: center;
+    margin-top: 30px;
+    font-size: 50px;
+}
+
+  

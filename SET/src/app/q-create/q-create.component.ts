@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { AniKeys, SciKeys, SciQues, SpoKeys, SupKeys, chosenCat, searchQuery } from 'src/environments/environment';
+import { AniKeys, SciKeys, SciQues, SpoKeys, SupKeys, chosenCat, searchQuery, resultArray } from 'src/environments/environment';
 import { EventManager } from '@angular/platform-browser';
 import { SearchResultsService } from '../search-results.service';
-import { ResultResponse, SearchResult } from 'src/models/search-result.model';
-import { Subscription, timeout } from "rxjs";
+import { SearchResult } from 'src/models/search-result.model';
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-q-create',
@@ -16,7 +16,6 @@ export class QCreateComponent implements OnInit {
     private eventManager: EventManager,
     private route: Router,
     private searchResultService: SearchResultsService) {}
-    i = 0;
 
   @Input('currCat') currCat = chosenCat.key;
   ngOnInit(): void {
@@ -138,22 +137,14 @@ export class QCreateComponent implements OnInit {
       searchQuery.key = query;
       console.log(searchQuery.key);
       await this.exampleGetResults(query);
-      //this.route.navigateByUrl("results"); //TODO: change to result page
+      this.route.navigateByUrl("searchResults");
     }
-    console.log(this.results);
+    console.log(resultArray.key[0].title+"\n"+resultArray.key[0].snippet);
   }
 
   async exampleGetResults(query: string){
-    //this.searchResultSubscription = this.searchResultService.getSearchResults(
-    //  query
-    //).subscribe(
-      //(resultResponse: ResultResponse) => {
-      //  this.results = resultResponse.items;
-      //  this.isLoadingResults = false;
-      //}
-    //);
     var test = await this.searchResultService.getSearchResults(query);
-    this.results = test.items;
+    resultArray.key = test.items;
     return;
   }
 }

@@ -2,6 +2,8 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { SearchResult } from "src/models/search-result.model";
+
 export const environment = {
   production: false
 };
@@ -19,10 +21,18 @@ export const searchQuery = {
 };
 
 export const AniQues: string[] =[
-
+  'What bird can fly backwards?', //Hummingbird
+  'Why are flamingos pink?', //shrimp that they eat
+  'What is the longest living animal?', //imortal jellyfish
+  'What is the loudest land animal?', //howler monkey
+  'What animals are know to hold hands?' //otters
 ];
 
 export const AniKeys: string[][] =[
+  [],
+  [],
+  [],
+  [],
   []
 ];
 
@@ -42,12 +52,20 @@ export const SupKeys: string[][] =[
   ['Truth', 'Wonder Woman', 'Marvel','DC comics', 'Paradise', 'weapon', 'name', 'called']
 ];
 
-export const SpoQues: string[] =[
-
+export const SpoQues: string[] =[ // Sports Questions 
+'How long is a marathon?', // A: 26.2 miles 
+'How many colors make up the Olympic rings?', // A: five
+'How many players are on a baseball team?', // A: 9 
+'What is the only sport to be played on the moon?', // A: Golf
+'What sport is Bela Karolyi known for coaching?', // A: Women’s gymnastics 
 ];
 
 export const SpoKeys: string[][]=[
-  []
+  ['Run', 'race', 'go', 'what', 'marathon', 'ring', 'fast', 'including', 'is', 'many', 'for',  'miles', '1000'],
+  ['Olympic', 'Japan',  'find', 'binary', 'twenty', 'source', 'how', 'match', 'colors', 'program', 'in', 'different', 'ring'],
+  ['Paint', 'play', 'what', 'playing', 'number', 'that', 'count', 'baseball', 'quick', 'friends', 'team', 'system', 'in'],
+  ['plenty', 'sports', 'for', 'can', 'on', 'played', 'report', 'many', 'kind', 'single', 'moon', 'gravitation'],
+  ['name', 'in', 'game', 'how', 'gym',  'which', 'Bela', 'going', 'coach', 'woman', 'into',  'Bela Karolyi', 'famous', 'know']
 ];
 
 export const SciQues: string[] =[ //Science Questions
@@ -73,6 +91,11 @@ export class SearchClass {
 
   private constructor(private readonly name: string, public readonly url: string) {}
 };
+
+var rA: Array<SearchResult> = [];
+export const resultArray = {
+  key: rA
+}
 
 /*
  * For easier debugging in development mode, you can import the following file
