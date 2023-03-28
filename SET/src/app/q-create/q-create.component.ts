@@ -137,7 +137,7 @@ export class QCreateComponent implements OnInit {
       searchQuery.key = query;
       console.log(searchQuery.key);
       await this.exampleGetResults(query);
-      //this.route.navigateByUrl("results"); //TODO: change to result page
+      this.route.navigateByUrl("searchResults");
     }
     console.log(resultArray.key[0].title+"\n"+resultArray.key[0].snippet);
   }
