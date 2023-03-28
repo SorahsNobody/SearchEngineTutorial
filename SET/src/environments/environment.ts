@@ -26,12 +26,20 @@ export const AniKeys: string[][] =[
   []
 ];
 
-export const SupQues: string[] =[
-
+export const SupQues: string[] =[//Superhero Questions
+  "What color is Hulk when he is not angry?",
+  "What is Captain America's shield made of?",
+  "What is spiderman's real name?",
+  "Who is the leader of X-Men?",
+  "What is Wonder Woman's weapon called?"
 ];
 
 export const SupKeys: string[][] =[
-  []
+  ['superhero', 'green', 'trees', 'color', 'not angry', 'comic book', 'scientist', 'marvel', 'Hulk', 'happy'],
+  ['strong','shield','metal','substance','blue','Captain America','Avenger','made of','name','material','make'],
+  ['name', 'spider', 'own', 'real', 'spiderman', 'DC', 'Tony', 'Marvel'],
+  ['leader', 'team', 'character', 'boss', 'X-Men', 'in charge','Ironman', 'Professor'],
+  ['Truth', 'Wonder Woman', 'Marvel','DC comics', 'Paradise', 'weapon', 'name', 'called']
 ];
 
 export const SpoQues: string[] =[
