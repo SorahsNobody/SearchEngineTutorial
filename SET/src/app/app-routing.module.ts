@@ -13,7 +13,7 @@ const routes: Routes = [
   {path: 'queryCreate', component: QCreateComponent},
   {path: 'start', component: StartComponent},
   {path: 'instructions', component: InstructionsComponent},
-  {path: 'searchResults', component: SearchResultsComponent}
+  {path: 'searchResults', component: SearchResultsComponent},
   {path: 'customize', component: CustomizeComponent},
   {path: 'results', component: ResultsComponent}
 ];

@@ -20,7 +20,7 @@ import { ResultsComponent } from './results/results.component';
     QCreateComponent,
     StartComponent,
     InstructionsComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
     CustomizeComponent,
     ResultsComponent
   ],
