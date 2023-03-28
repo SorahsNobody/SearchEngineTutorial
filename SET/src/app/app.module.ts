@@ -10,6 +10,7 @@ import { StartComponent } from './start/start.component';
 import { InstructionsComponent } from './instructions/instructions.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { SearchResultsComponent } from './search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     CategoryComponent,
     QCreateComponent,
     StartComponent,
-    InstructionsComponent
+    InstructionsComponent,
+    SearchResultsComponent
   ],
   imports: [
     BrowserModule,
