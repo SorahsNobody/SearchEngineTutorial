@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AniAnswers, chosenCat, currQuestion, questionNumber, resultArray, SciAnswers, score, searchQuery, SpoAnswers, SupAnswers } from 'src/environments/environment';
 import { SearchResult } from 'src/models/search-result.model';
 
@@ -9,7 +10,7 @@ import { SearchResult } from 'src/models/search-result.model';
 })
 export class SearchResultsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
     document.getElementById("ReQuestion")!.innerText = currQuestion.key;
@@ -71,4 +72,7 @@ getFormattedImageUrl(imgUrl: string, resultObj: SearchResult): string {
     return imgUrl;
   }
 
+  goToCustomize(){
+    this.route.navigateByUrl('/customize');
+  }
 }
