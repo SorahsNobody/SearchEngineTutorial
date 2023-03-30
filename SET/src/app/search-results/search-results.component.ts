@@ -75,4 +75,8 @@ getFormattedImageUrl(imgUrl: string, resultObj: SearchResult): string {
   goToCustomize(){
     this.route.navigateByUrl('/customize');
   }
+
+  toCatSelect(): void {
+    this.route.navigateByUrl("/categories");
+  }
 }

@@ -3,30 +3,35 @@
       <h1>Customize your Avatar!</h1>
       <section>
         <p>Use you points to unlock any of the accessories below</p>
-        <img class="img2" src="/assets/img1.gif" alt="Question Mark">
+        <h2 id="point-count">Score: 900</h2>
+        <img class="img2" [src]="image" alt="Question Mark">
         <table class="table">
             <tr>
+              <th> </th>
               <th>Hat</th>
               <th>Glasses</th>
               <th>Nose</th>
             </tr>
             <tr>
-              <td><button id="cutom-button1"><img class="img" src="/assets/customize/hat1.png" alt="Question Mark"></button></td>
-              <td><button id="cutom-button1"><img class="img" src="/assets/customize/sunglasses2.png" alt="Question Mark"></button></td>
-              <td><button id="cutom-button1"><img class="img" src="/assets/customize/nose2.png" alt="Question Mark"></button></td>
+              <td>500 Points</td>
+              <td><button id="cutom-button1"><img class="img" src="/assets/customize/hat1.png" alt="Question Mark" (click)="onBuyh1()"></button></td>
+              <td><button id="cutom-button1"><img class="img" src="/assets/customize/sunglasses2.png" alt="Question Mark" (click)="onBuys1()"></button></td>
+              <td><button id="cutom-button1"><img class="img" src="/assets/customize/nose2.png" alt="Question Mark" (click)="onBuyn1()"></button></td>
             </tr>
             <tr>
-              <td><button id="cutom-button1"><img class="img" src="/assets/customize/hat2.png" alt="Question Mark"></button></td>
-              <td><button id="cutom-button1"><img class="img" src="/assets/customize/sunglasses3.png" alt="Question Mark"></button></td>
-              <td><button id="cutom-button1"><img class="img" src="/assets/customize/nose1.png" alt="Question Mark"></button></td>
+              <td>1000 Points</td>
+              <td><button id="cutom-button1"><img class="img" src="/assets/customize/hat2.png" alt="Question Mark" (click)="onBuyh2()"></button></td>
+              <td><button id="cutom-button1"><img class="img" src="/assets/customize/sunglasses3.png" alt="Question Mark" (click)="onBuys2()"></button></td>
+              <td><button id="cutom-button1"><img class="img" src="/assets/customize/nose1.png" alt="Question Mark" (click)="onBuyn2()"></button></td>
             </tr>
             <tr>
-                <td><button id="cutom-button1"><img class="img" src="/assets/customize/hat3.png" alt="Question Mark"></button></td>
-                <td><button id="cutom-button1"><img class="img" src="/assets/customize/sunglasses.png" alt="Question Mark"></button></td>
-                <td><button id="cutom-button1"><img class="img" src="/assets/customize/nose3.png" alt="Question Mark"></button></td>
+                <td>1500 Points</td>
+                <td><button id="cutom-button1"><img class="img" src="/assets/customize/hat3.png" alt="Question Mark" (click)="onBuyh3()"></button></td>
+                <td><button id="cutom-button1"><img class="img" src="/assets/customize/sunglasses.png" alt="Question Mark" (click)="onBuys3()"></button></td>
+                <td><button id="cutom-button1"><img class="img" src="/assets/customize/nose3.png" alt="Question Mark" (click)="onBuyn3()"></button></td>
               </tr>
           </table>
-        <button id="goback-button" type="Go Back" (click)="toResult()">Back to Results</button>
+        <button id="goback-button" type="Go Back" (click)="onEnter()">Back to Results</button>
       </section>
     </main>
   </div>
