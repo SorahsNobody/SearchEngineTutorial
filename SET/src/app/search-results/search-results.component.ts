@@ -14,7 +14,7 @@ export class SearchResultsComponent implements OnInit {
 
   ngOnInit(): void {
     document.getElementById("ReQuestion")!.innerText = currQuestion.key;
-    document.getElementById("queryString")!.innerText = searchQuery.key;
+    document.getElementById("queryString")!.innerText = 'You searched: ' + searchQuery.key;
     var ansArr: string[] = [];
     switch(chosenCat.key){
       case 'Animal':
@@ -31,13 +31,14 @@ export class SearchResultsComponent implements OnInit {
         break;
     }
     var correct = 0;
+    var ansS: string = 'Answer(s): | ';
     ansArr.forEach(ans =>{
+      ansS = ansS + ans + ' | ';
       resultArray.key.forEach(entry => {
         if((entry.snippet.toLowerCase().includes(ans) || entry.title.toLowerCase().includes(ans)) && entry.htmlSnippet !='found'){
           score.key+=100;
           correct+=1;
           entry.htmlSnippet='found';
-          console.log(entry);
           return;
         }
       });
@@ -61,6 +62,7 @@ export class SearchResultsComponent implements OnInit {
       snip.innerText=resultArray.key[i].snippet;
       r1?.appendChild(snip);
     }
+    document.getElementById("answers")!.innerText = ansS;
     document.getElementById("score")!.innerText = "Score: " + score.key.toString();
     document.getElementById("total")!.innerText = "In the results you got "+correct+" correct!";
   }
