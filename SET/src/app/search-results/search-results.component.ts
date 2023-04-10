@@ -17,7 +17,7 @@ export class SearchResultsComponent implements OnInit {
     document.getElementById("queryString")!.innerText = searchQuery.key;
     for(let i = 0; i < resultArray.key.length; i++){
       var tag = "r"+i;
-      console.log(tag);
+    //  console.log(tag);
       var r1 = document.getElementById(tag);
     //(document.getElementById("r1pic")as HTMLImageElement).src = this.getpic(resultArray.key[0]);
       var head = document.createElement("h2");
@@ -45,7 +45,7 @@ export class SearchResultsComponent implements OnInit {
     var correct = 0;
     ansArr.forEach(ans =>{
       resultArray.key.forEach(entry => {
-        if(entry.snippet.includes(ans) || entry.title.includes(ans)){
+        if(entry.snippet.toLowerCase().includes(ans) || entry.title.toLowerCase().includes(ans)){
           score.key+=100;
           correct+=1;
         }
