@@ -61,7 +61,7 @@ export const SupAnswers: string[][] = [
   ['vibranium'],
   ['peter', 'parker'],
   ['charles xavier', 'professor x'],
-  ['lasso', '']
+  ['lasso', 'lasso of truth']
 ];
 
 export const SupQues: string[] =[//Superhero Questions

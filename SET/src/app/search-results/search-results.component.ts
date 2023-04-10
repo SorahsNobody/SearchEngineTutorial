@@ -15,18 +15,6 @@ export class SearchResultsComponent implements OnInit {
   ngOnInit(): void {
     document.getElementById("ReQuestion")!.innerText = currQuestion.key;
     document.getElementById("queryString")!.innerText = 'You searched: ' + searchQuery.key;
-    for(let i = 0; i < resultArray.key.length; i++){
-      var tag = "r"+i;
-    //  console.log(tag);
-      var r1 = document.getElementById(tag);
-    //(document.getElementById("r1pic")as HTMLImageElement).src = this.getpic(resultArray.key[0]);
-      var head = document.createElement("h2");
-      head.innerText=resultArray.key[i].title;
-      r1?.appendChild(head);
-      var snip = document.createElement("p");
-      snip.innerText=resultArray.key[i].snippet;
-      r1?.appendChild(snip);
-    }
     var ansArr: string[] = [];
     switch(chosenCat.key){
       case 'Animal':
@@ -47,12 +35,33 @@ export class SearchResultsComponent implements OnInit {
     ansArr.forEach(ans =>{
       ansS = ansS + ans + ' | ';
       resultArray.key.forEach(entry => {
-        if(entry.snippet.toLowerCase().includes(ans) || entry.title.toLowerCase().includes(ans)){
+        if((entry.snippet.toLowerCase().includes(ans) || entry.title.toLowerCase().includes(ans)) && entry.htmlSnippet !='found'){
           score.key+=100;
           correct+=1;
+          entry.htmlSnippet='found';
+          return;
         }
       });
     });
+    for(let i = 0; i < resultArray.key.length; i++){
+      var tag = "r"+i;
+      var r1 = document.getElementById(tag);
+    //(document.getElementById("r1pic")as HTMLImageElement).src = this.getpic(resultArray.key[0]);
+      var head = document.createElement("h2");
+      if(resultArray.key[i].htmlSnippet=='found'){
+        head.innerText=resultArray.key[i].title;
+        head.style.color = 'rgb(3, 181, 66)';
+        r1?.appendChild(head);
+      }
+      else{
+        head.innerText=resultArray.key[i].title;
+        head.style.color= 'red';
+        r1?.appendChild(head);
+      }
+      var snip = document.createElement("p");
+      snip.innerText=resultArray.key[i].snippet;
+      r1?.appendChild(snip);
+    }
     document.getElementById("answers")!.innerText = ansS;
     document.getElementById("score")!.innerText = "Score: " + score.key.toString();
     document.getElementById("total")!.innerText = "In the results you got "+correct+" correct!";
