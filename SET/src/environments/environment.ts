@@ -123,7 +123,7 @@ export const SciKeys: string[][] = [ //Science Keywords
   ['chemical','chemistry','gold','element', 'what','who','where','is','symbol','metal','gas','liquid','for'],
   ['water', 'boiling', 'liquid', 'hot', 'cold', 'when', 'where', 'what', 'is', 'gas', 'duck', 'float'],
   ['taste','who', 'salt','salty','when','water','is','ocean','beach', 'why','shark','moon'],
-  ['fruit','healthy','healthiest','what','eat','is','the','apples','oranges','potatoes'],
+  ['science', 'guy', 'rules', 'experiment', 'moon', 'cold', 'who', 'shark', 'float', 'is'],
   ['planets', 'earth','solar','is','how','pluto','many','there','duck','water','sun','rocks']
 ];
 
