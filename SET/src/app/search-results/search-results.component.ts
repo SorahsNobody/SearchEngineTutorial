@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AniAnswers, chosenCat, currQuestion, questionNumber, resultArray, SciAnswers, score, searchQuery, SpoAnswers, SupAnswers } from 'src/environments/environment';
+import { AniAnswers, chosenCat, currQuestion, questionNumber, resultArray, SciAnswers, score, searchQuery, SpoAnswers, SupAnswers, avatar } from 'src/environments/environment';
 import { SearchResult } from 'src/models/search-result.model';
 
 @Component({
@@ -66,6 +66,8 @@ export class SearchResultsComponent implements OnInit {
     document.getElementById("score")!.innerText = "Score: " + score.key.toString();
     document.getElementById("total")!.innerText = "In the results you got "+correct+" correct!";
   }
+
+  image: any = avatar.key;
 
   getpic(resultObj: SearchResult): string{
     var imageUrl = resultObj.pagemap?.cse_image?.[0].src || resultObj.pagemap?.metatags?.[0]['og:image'];

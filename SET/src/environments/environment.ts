@@ -32,6 +32,10 @@ export const score = {
   key: 0
 };
 
+export const avatar = {
+  key: "/assets/customize/avatar-base.png"
+};
+
 export const AniAnswers: string [][] = [
   ['hummingbird'],
   ['shrimp', 'algea'],

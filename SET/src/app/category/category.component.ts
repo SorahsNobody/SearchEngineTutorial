@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { chosenCat, playerName } from 'src/environments/environment';
+import { chosenCat, playerName, avatar} from 'src/environments/environment';
 
 @Component({
   selector: 'app-category',
@@ -15,6 +15,8 @@ export class CategoryComponent implements OnInit {
   @Input('pName') pName = playerName.key; //Declares that this component has a variable named pName that can be called in the html with playerName
   ngOnInit(): void {
   }
+
+  image: any = avatar.key;
 
   changeCat(cat: string): void {
     switch(cat){
