@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { playerName, avatar} from 'src/environments/environment';
+import { playerName, avatar, AniQA, SpoQA, SciQA, SupQA} from 'src/environments/environment';
 
 @Component({
   selector: 'app-start',
@@ -13,6 +13,10 @@ export class StartComponent implements OnInit{
   image: any = avatar.key;
 
   ngOnInit(): void {
+    AniQA.key = [0,0,0,0,0];
+    SpoQA.key = [0,0,0,0,0];
+    SciQA.key = [0,0,0,0,0];
+    SupQA.key = [0,0,0,0,0];
   }
 
   toInstruct(): void {

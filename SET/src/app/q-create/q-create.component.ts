@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { AniQues, AniKeys, SciKeys, SciQues, SpoQues, SupQues, SpoKeys, SupKeys, chosenCat, searchQuery, resultArray, currQuestion, questionNumber, avatar} from 'src/environments/environment';
+import { AniQues, AniKeys, SciKeys, SciQues, SpoQues, SupQues, SpoKeys, SupKeys, chosenCat, searchQuery, resultArray, currQuestion, questionNumber, avatar, AniQA, SupQA, SciQA, SpoQA} from 'src/environments/environment';
 import { EventManager } from '@angular/platform-browser';
 import { SearchResultsService } from '../search-results.service';
 import { SearchResult } from 'src/models/search-result.model';
-import { Subscription } from "rxjs";
+import { Subscription, elementAt } from "rxjs";
 
 @Component({
   selector: 'app-q-create',
@@ -40,27 +40,46 @@ export class QCreateComponent implements OnInit {
    * @returns Array of strings
    */
   getKeys(category:string) {
-    //randomly choose 1-5
-    var qNum = Math.floor(Math.random() *5);
-    questionNumber.key = qNum;
-    this.setQuestion(qNum, category);
     let rt: string[] = [];
     switch(category){
+      // For each case, get a random index from the remaining questions in that category
       case 'Animal':
-        rt = AniKeys[qNum];
+        this.chooseRandQuestion(AniQA.key);
+        rt = AniKeys[questionNumber.key];
         break;
       case 'Superhero':
-        rt = SupKeys[qNum];
+        this.chooseRandQuestion(SupQA.key);
+        rt = SupKeys[questionNumber.key];
         break;
       case 'Science':
-        rt = SciKeys[qNum];
+        this.chooseRandQuestion(SciQA.key);
+        rt = SciKeys[questionNumber.key];
         break;
       default:
-        rt = SpoKeys[qNum];
+        this.chooseRandQuestion(SpoQA.key);
+        rt = SpoKeys[questionNumber.key];
         break;
     }
+    // Then set the question and return the key list
+    this.setQuestion(questionNumber.key, category);
     return rt;
   }
+
+  chooseRandQuestion(arr: number[]){
+    var chosen = false;
+    var qleft = arr.find(element => element == 0) == 0;
+    while(!chosen && qleft){
+      var qNum = Math.floor(Math.random() * 5);
+      if(arr[qNum] != 1){
+        arr[qNum] = 1;
+        chosen = true;
+        questionNumber.key = qNum;
+      }
+    }
+    if(!qleft)
+      this.toCatSelect();
+  }
+
   /**
    * Updates the HTML question text to reflect which question was chosen.
    *
@@ -160,7 +179,7 @@ export class QCreateComponent implements OnInit {
       await this.exampleGetResults(query);
       this.route.navigateByUrl("searchResults");
     }
-    console.log(resultArray.key[0].title+"\n"+resultArray.key[0].snippet);
+    //console.log(resultArray.key[0].title+"\n"+resultArray.key[0].snippet);
   }
 
   async exampleGetResults(query: string){
