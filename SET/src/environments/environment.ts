@@ -25,7 +25,7 @@ export const currQuestion = {
 };
 
 export const questionNumber = {
-  key: 10
+  key: -1
 };
 
 export const score = {
@@ -130,6 +130,19 @@ export const SciKeys: string[][] = [ //Science Keywords
   ['science', 'guy', 'rules', 'experiment', 'moon', 'cold', 'who', 'shark', 'float', 'is'],
   ['planets', 'earth','solar','is','how','pluto','many','there','duck','water','sun','rocks']
 ];
+
+export const SpoQA = {
+  key: [0,0,0,0,0]
+}
+export const SciQA = {
+  key: [0,0,0,0,0]
+}
+export const SupQA = {
+  key: [0,0,0,0,0]
+}
+export const AniQA = {
+  key: [0,0,0,0,0]
+}
 
 export class SearchClass {
   //this is the url for the cast search
