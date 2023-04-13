@@ -155,4 +155,8 @@ export class CustomizeComponent {
       avatar.key = "/assets/customize/avatar-h1-n2.png"
     }
   }
+
+  toCatSelect(): void {
+    this.router.navigateByUrl("/categories");
+  }
 }

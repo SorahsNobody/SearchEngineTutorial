@@ -93,4 +93,8 @@ getFormattedImageUrl(imgUrl: string, resultObj: SearchResult): string {
   toCatSelect(): void {
     this.route.navigateByUrl("/categories");
   }
+
+  goToqCreate(): void {
+    this.route.navigateByUrl("/q-create");
+  }
 }
