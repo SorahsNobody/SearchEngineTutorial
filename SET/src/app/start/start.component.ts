@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { playerName } from 'src/environments/environment';
+import { playerName, avatar} from 'src/environments/environment';
 
 @Component({
   selector: 'app-start',
@@ -9,6 +9,8 @@ import { playerName } from 'src/environments/environment';
 })
 export class StartComponent implements OnInit{
   constructor(private router: Router) { }
+
+  image: any = avatar.key;
 
   ngOnInit(): void {
   }

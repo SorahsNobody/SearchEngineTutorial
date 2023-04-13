@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { AniQues, AniKeys, SciKeys, SciQues, SpoQues, SupQues, SpoKeys, SupKeys, chosenCat, searchQuery, resultArray, currQuestion, questionNumber } from 'src/environments/environment';
+import { AniQues, AniKeys, SciKeys, SciQues, SpoQues, SupQues, SpoKeys, SupKeys, chosenCat, searchQuery, resultArray, currQuestion, questionNumber, avatar} from 'src/environments/environment';
 import { EventManager } from '@angular/platform-browser';
 import { SearchResultsService } from '../search-results.service';
 import { SearchResult } from 'src/models/search-result.model';
@@ -31,6 +31,7 @@ export class QCreateComponent implements OnInit {
       this.addEvent(keyButton);
     });
   }
+  image: any = avatar.key;
   /**
    * Will return the array of key words for the given category.
    * Key word array is chosen randomly.
