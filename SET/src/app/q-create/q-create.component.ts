@@ -167,4 +167,8 @@ export class QCreateComponent implements OnInit {
     resultArray.key = test.items;
     return;
   }
+
+  toCatSelect(): void {
+    this.route.navigateByUrl("/categories");
+  }
 }

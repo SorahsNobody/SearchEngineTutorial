@@ -51,4 +51,8 @@ export class CustomizeComponent {
   onBuyn3() {
     this.image = "/assets/customize/avatar-n3.png";
   }
+
+  toCatSelect(): void {
+    this.router.navigateByUrl("/categories");
+  }
 }
