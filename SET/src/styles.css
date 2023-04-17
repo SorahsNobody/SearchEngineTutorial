@@ -86,3 +86,7 @@ button:active{
   margin-left: 120px;
 }
 
+button.over {
+  opacity: 0.4;
+  background-color:lightsalmon;
+}

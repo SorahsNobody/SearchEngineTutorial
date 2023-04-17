@@ -4,7 +4,46 @@ import { AniQues, AniKeys, SciKeys, SciQues, SpoQues, SupQues, SpoKeys, SupKeys,
 import { EventManager } from '@angular/platform-browser';
 import { SearchResultsService } from '../search-results.service';
 import { SearchResult } from 'src/models/search-result.model';
-import { Subscription, elementAt } from "rxjs";
+import { Subscription } from "rxjs";
+
+
+  var dragSrc: HTMLButtonElement;
+  function handleDragStart(this: HTMLButtonElement, e: DragEvent){
+    dragSrc = this;
+    e.dataTransfer!.effectAllowed = 'move';
+    e.dataTransfer!.setData('text/html', this.innerHTML);
+  }
+
+  function handleDragEnd(this: HTMLButtonElement){
+    let items = document.querySelectorAll('button');
+    items.forEach(function(item){
+      item.classList.remove('over');
+    });
+  }
+
+  function handleDrop(this: HTMLButtonElement, e: DragEvent){
+    e.stopPropagation();
+    if(dragSrc !== this){
+      dragSrc.innerHTML = this.innerHTML;
+      this.innerHTML = e.dataTransfer!.getData('text/html');
+    }
+
+    return false;
+  }
+
+  function handleDragOver(e: DragEvent){
+    e.preventDefault();
+    return false;
+  }
+
+  function handleDragEnter(this: HTMLButtonElement){
+    this.classList.add('over');
+  }
+
+  function handleDragLeave(this: HTMLButtonElement){
+    this.classList.remove('over');
+  }
+
 
 @Component({
   selector: 'app-q-create',
@@ -18,12 +57,13 @@ export class QCreateComponent implements OnInit {
     private searchResultService: SearchResultsService) {}
 
   @Input('currCat') currCat = chosenCat.key;
+  public keys: string[] = [];
   ngOnInit(): void {
     this.currCat = chosenCat.key;
+    this.keys = this.getKeys(this.currCat);
     var bank = document.getElementById("kwords");
-    let keys: string[] = this.getKeys(this.currCat);
     //FOR EACH key word string
-    keys.forEach(element => {
+    this.keys.forEach(element => {
       //Create and add a button to the Key Word Bank
       var keyButton = document.createElement("button");
       keyButton.innerHTML = element;
@@ -129,8 +169,16 @@ export class QCreateComponent implements OnInit {
     var bank = document.getElementById("kwords");
     var new_button = button.cloneNode(true); //need to clone to remove add event listener
     bank?.removeChild(button);
-    this.removeEvent(new_button as HTMLButtonElement);
-    inpt?.appendChild(new_button);
+    var nb = new_button as HTMLButtonElement;
+    nb.draggable = true;
+    nb.addEventListener('dragenter', handleDragEnter);
+    nb.addEventListener('dragleave', handleDragLeave);
+    nb.addEventListener('dragover', handleDragOver);
+    nb.addEventListener('dragend', handleDragEnd);
+    nb.addEventListener('dragstart', handleDragStart);
+    nb.addEventListener('drop', handleDrop);
+    this.removeEvent(nb);
+    inpt?.appendChild(nb);
   }
   /**
    * Will add an event listener to the given button.

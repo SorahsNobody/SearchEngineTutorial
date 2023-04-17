@@ -57,12 +57,12 @@ h1 {
 #changeQuestionButton{
   transform: translateX(400%);
   padding: 10px 20px;
-  position: absolute; 
+  position: absolute;
   background-color: #08892f;
 }
 
 #BackButton{
   padding: 10px 20px;
-  position: absolute; 
+  position: absolute;
   background-color: #08892f;
 }
