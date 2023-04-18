@@ -33,7 +33,7 @@ export const score = {
 };
 
 export const avatar = {
-  key: "/assets/customize/avatar-base.png"
+  key: "/assets/customize/avatar-x-x-x-.png"
 };
 
 export const AniAnswers: string [][] = [
