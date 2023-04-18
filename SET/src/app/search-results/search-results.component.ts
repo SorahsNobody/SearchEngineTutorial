@@ -36,7 +36,8 @@ export class SearchResultsComponent implements OnInit {
       ansS = ansS + ans + ' | ';
       resultArray.key.forEach(entry => {
         if((entry.snippet.toLowerCase().includes(ans) || entry.title.toLowerCase().includes(ans)) && entry.htmlSnippet !='found'){
-          score.key+=100;
+          var diff = 10 - (resultArray.key.indexOf(entry));
+          score.key+=(10*diff);
           correct+=1;
           entry.htmlSnippet='found';
           return;

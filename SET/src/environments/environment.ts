@@ -81,7 +81,7 @@ export const SupQues: string[] =[//Superhero Questions
 ];
 
 export const SupKeys: string[][] =[
-  ['superhero', 'green', 'trees', 'color', 'not angry', 'comic book', 'scientist', 'marvel', 'Hulk', 'happy'],
+  ['superhero', 'trees', 'color', 'angry', 'comic book', 'scientist', 'marvel', 'Hulk', 'not happy'],
   ['strong','shield','metal','substance','blue','Captain America','Avenger','made of','name','material','make'],
   ['name', 'spider', 'own', 'real', 'spiderman', 'DC', 'Tony', 'Marvel'],
   ['leader', 'team', 'character', 'boss', 'X-Men', 'in charge','Ironman', 'Professor'],
@@ -115,7 +115,7 @@ export const SpoKeys: string[][]=[
 export const SciAnswers: string[][] = [
   ['au'],
   ['212', '100' , 'two-hundred and twelve', 'one-hundred'],
-  ['rocks', 'runoff'],
+  ['rocks', 'runoff', 'mineral'],
   ['bill nye', 'bill'],
   ['8', 'eight', '9', 'nine']
 ];
