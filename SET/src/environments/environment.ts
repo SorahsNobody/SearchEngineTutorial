@@ -36,6 +36,10 @@ export const avatar = {
   key: "/assets/customize/avatar-x-x-x-.png"
 };
 
+export const unlocks = {
+  key: " "
+};
+
 export const AniAnswers: string [][] = [
   ['hummingbird'],
   ['shrimp', 'algea'],
