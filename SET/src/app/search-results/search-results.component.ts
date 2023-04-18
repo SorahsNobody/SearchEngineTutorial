@@ -65,6 +65,15 @@ export class SearchResultsComponent implements OnInit {
     document.getElementById("answers")!.innerText = ansS;
     document.getElementById("score")!.innerText = "Score: " + score.key.toString();
     document.getElementById("total")!.innerText = "In the results you got "+correct+" correct!";
+
+    // var currentScore = score.key
+
+    // if(currentScore>=500){
+    //   custom = true;
+    // }
+    // else{
+    //   custom = false
+    // }
   }
 
   image: any = avatar.key;
@@ -95,6 +104,10 @@ getFormattedImageUrl(imgUrl: string, resultObj: SearchResult): string {
   }
 
   goToqCreate(): void {
-    this.route.navigateByUrl("/q-create");
+    this.route.navigateByUrl("/queryCreate");
   }
+
+  scoreValue = score.key
+  show = 5
+
 }
