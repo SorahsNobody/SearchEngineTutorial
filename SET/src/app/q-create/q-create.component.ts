@@ -171,4 +171,8 @@ export class QCreateComponent implements OnInit {
   toCatSelect(): void {
     this.route.navigateByUrl("/categories");
   }
+
+  goToqCreate(): void {
+    this.route.navigateByUrl("/queryCreate");
+  }
 }
