@@ -53,15 +53,15 @@ export const AniQues: string[] =[
   'Why are flamingos pink?', //shrimp, and algea they eat
   'What is the longest living animal?', //imortal jellyfish
   'What is the loudest land animal?', //howler monkey
-  'What animals are know to hold hands?' //otters
+  'What animals hold each others hands?' //otters
 ];
 
 export const AniKeys: string[][] =[
   ['backward', 'move', 'fly', 'animal', 'wings', 'mammal'],
-  ['bird', 'eat', 'pink', 'feathers', 'why'],
-  ['animal', 'longest', 'lifespan', 'can', 'mammal', 'with', 'eat'],
-  ['noise', 'animal', 'make', 'most', 'land', 'mammal', 'loud'],
-  ['animal', 'hands', 'stay', 'together', 'mammal', 'latch', 'keep']
+  ['birds', 'eat', 'pink', 'feathers', 'why', 'that', 'is', 'what', 'do', 'have', 'with'],
+  ['animal', 'longest', 'lifespan', 'can', 'mammal', 'with', 'eat', 'organism', 'creature', 'thing'],
+  ['noise', 'animal', 'makes', 'most', 'land', 'mammal', 'loud', 'that', 'is', ],
+  ['animals', 'hands', 'stay', 'together', 'mammals', 'latch', 'keep', 'hold']
 ];
 
 export const SupAnswers: string[][] = [

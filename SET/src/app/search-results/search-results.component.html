@@ -60,9 +60,28 @@
         <p></p>
         <img [src]="image" alt="Placeholder Image">
         <button id="score" (click)="goToCustomize()">Score: 900 >> </button>
-        <button (click)="toCatSelect()">Play again</button>
-        <!-- <button (click)="goToqCreate()">Play again</button> -->
-        <button (click)="goToCustomize()">Customize</button>
+        <br>
+        <button (click)="goToqCreate()">Try again</button> <!--Same question, same category-->
+        <button (click)="toCatSelect()">Change a category</button> <!--Bact to select category--> 
+        
+        <h3 *ngIf="scoreValue >= 500; then isStat else elseStat"></h3>
+        <ng-template #isStat>
+            <button (click)="goToCustomize()">Customize your character</button>
+            <button (click)="goToqCreate()">Continue</button> <!--Same category, different question-->
+        </ng-template>
+        <ng-template #elseStat>
+            <!-- <h4>Get 500 points to customise you character!! </h4> -->
+        </ng-template>
+        <!--<button (click)="goToCustomize()">You can customize your character now, click to customize</button>-->
+        <!-- <button (click)="goToCustomize()">Customize your character</button> -->
     </div>
-
 </div>
+
+<!-- <h3 *ngIf="show >= 4; then ifs else elses"></h3>
+<ng-template #ifs>
+    <h1>I'm 4 or greater</h1>
+</ng-template>
+<ng-template #elses>
+    <h4>Sorry, you put < 4 </h4>
+</ng-template> -->
+
