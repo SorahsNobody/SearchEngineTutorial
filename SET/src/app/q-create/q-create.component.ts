@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { AniQues, AniKeys, SciKeys, SciQues, SpoQues, SupQues, SpoKeys, SupKeys, chosenCat, searchQuery, resultArray, currQuestion, questionNumber, avatar, AniQA, SupQA, SciQA, SpoQA} from 'src/environments/environment';
+import { AniQues, AniKeys, SciKeys, SciQues, SpoQues, SupQues, SpoKeys, SupKeys, chosenCat, searchQuery, resultArray, currQuestion, questionNumber, avatar, AniQA, SupQA, SciQA, SpoQA, HisQA, HisKeys, MusQA, MusKeys, HisQues, MusQues} from 'src/environments/environment';
 import { EventManager } from '@angular/platform-browser';
 import { SearchResultsService } from '../search-results.service';
 import { SearchResult } from 'src/models/search-result.model';
@@ -95,6 +95,14 @@ export class QCreateComponent implements OnInit {
         this.chooseRandQuestion(SciQA.key);
         rt = SciKeys[questionNumber.key];
         break;
+      case 'History':
+        this.chooseRandQuestion(HisQA.key);
+        rt = HisKeys[questionNumber.key];
+        break;
+      case 'Music':
+        this.chooseRandQuestion(MusQA.key);
+        rt = MusKeys[questionNumber.key];
+        break;
       default:
         this.chooseRandQuestion(SpoQA.key);
         rt = SpoKeys[questionNumber.key];
@@ -139,6 +147,14 @@ export class QCreateComponent implements OnInit {
       case 'Science':
         q!.innerText=SciQues[qNum];
         currQuestion.key=SciQues[qNum];
+        break;
+      case 'History':
+        q!.innerText=HisQues[qNum];
+        currQuestion.key=HisQues[qNum];
+        break;
+      case 'Music':
+        q!.innerText=MusQues[qNum];
+        currQuestion.key=MusQues[qNum];
         break;
       default:
         q!.innerText=SpoQues[qNum];
@@ -227,7 +243,6 @@ export class QCreateComponent implements OnInit {
       await this.exampleGetResults(query);
       this.route.navigateByUrl("searchResults");
     }
-    //console.log(resultArray.key[0].title+"\n"+resultArray.key[0].snippet);
   }
 
   async exampleGetResults(query: string){

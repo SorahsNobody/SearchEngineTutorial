@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AniAnswers, chosenCat, currQuestion, questionNumber, resultArray, SciAnswers, score, searchQuery, SpoAnswers, SupAnswers, avatar } from 'src/environments/environment';
+import { AniAnswers, chosenCat, currQuestion, questionNumber, resultArray, SciAnswers, score, searchQuery, SpoAnswers, SupAnswers, avatar, HisAnswers, MusAnswers } from 'src/environments/environment';
 import { SearchResult } from 'src/models/search-result.model';
 
 @Component({
@@ -26,6 +26,12 @@ export class SearchResultsComponent implements OnInit {
       case 'Science':
         ansArr = SciAnswers[questionNumber.key];
         break;
+      case 'History':
+        ansArr = HisAnswers[questionNumber.key];
+        break;
+      case 'Music':
+        ansArr = MusAnswers[questionNumber.key];
+        break;
       default:
         ansArr = SpoAnswers[questionNumber.key];
         break;
@@ -33,6 +39,7 @@ export class SearchResultsComponent implements OnInit {
     var correct = 0;
     var ansS: string = 'Answer(s): | ';
     ansArr.forEach(ans =>{
+      ans = ans.toLowerCase();
       ansS = ansS + ans + ' | ';
       resultArray.key.forEach(entry => {
         if((entry.snippet.toLowerCase().includes(ans) || entry.title.toLowerCase().includes(ans)) && entry.htmlSnippet !='found'){
@@ -47,7 +54,6 @@ export class SearchResultsComponent implements OnInit {
     for(let i = 0; i < resultArray.key.length; i++){
       var tag = "r"+i;
       var r1 = document.getElementById(tag);
-    //(document.getElementById("r1pic")as HTMLImageElement).src = this.getpic(resultArray.key[0]);
       var head = document.createElement("h2");
       if(resultArray.key[i].htmlSnippet=='found'){
         head.innerText=resultArray.key[i].title;
@@ -66,15 +72,6 @@ export class SearchResultsComponent implements OnInit {
     document.getElementById("answers")!.innerText = ansS;
     document.getElementById("score")!.innerText = "Score: " + score.key.toString();
     document.getElementById("total")!.innerText = "In the results you got "+correct+" correct!";
-
-    // var currentScore = score.key
-
-    // if(currentScore>=500){
-    //   custom = true;
-    // }
-    // else{
-    //   custom = false
-    // }
   }
 
   image: any = avatar.key;

@@ -29,6 +29,12 @@ export class CategoryComponent implements OnInit {
       case 'Science':
         chosenCat.key = 'Science'
         break;
+      case 'History':
+        chosenCat.key = 'History'
+        break;
+      case 'Music':
+        chosenCat.key = 'Music'
+        break;
       default:
         chosenCat.key = 'Sports'
         break;

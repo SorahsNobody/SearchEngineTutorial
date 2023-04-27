@@ -7,9 +7,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private route: Router) { }
+  constructor(private router: Router) { }
   ngOnInit(): void {
-    this.route.navigateByUrl("/start");
+    this.router.navigateByUrl("/start");
   }
   title = 'SET';
 }

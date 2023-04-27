@@ -135,6 +135,66 @@ export const SciKeys: string[][] = [ //Science Keywords
   ['planets', 'earth','solar','is','how','pluto','many','there','duck','water','sun','rocks']
 ];
 
+export const HisQues: string[] = [ //History Questions
+  'Who was the first president of the United States?',
+  'Who invented the telephone?',
+  'Who wrote the Harry Potter books?',
+  'What is the largest continent in the world?',
+  'Who was the first person to walk on the moon?',
+  'Who was the first Emperor of Rome?'
+];
+
+export const HisKeys: string[][] = [
+  ['America', 'president', 'is','first', 'old','United States', 'US', 'leader', 'who', 'Britain','UK','colonies','wooden','teeth','for','where','why'],
+  ['invention','telephone','is','where','what','phone','mobile','power','line','harry','person','who','careful','hear','invented'],
+  ['Harry','who','is','where','what','you\'re','a','wizard','potter','Voldemort','name','author','magic','red','herring','written by'],
+  ['who','is','where','small','what','largest','globe','area','place','moon','earth','big','biggest','the','continent','ocean'],
+  ['walk','who','where','why','is','phone','history','rocks','first','name','the','man','woman','person','walked','on','space','moon'],
+  ['king','is','who','where','why','is','red','herring','all','roads','lead','to','Rome','leader','the','first','walked','was']
+];
+
+export const HisAnswers: string[][] = [
+  ['george washington','washington'],
+  ['alexander graham bell','graham bell'],
+  ['j.k. rowling','rowling'],
+  ['asia'],
+  ['neil armstrong','armstrong'],
+  ['augustus ceaser','augustus']
+];
+
+export const MusQues: string[] = [
+  'Who is the \'King of Pop\'?',
+  'What is the name of the group that sang \'Baby Shark\'?',
+  'What is the name of the instrument that has black and white keys?',
+  'Who is the leader of the popular band BTS?',
+  'What is the biggest music award ceremony that happens every year?',
+  'What is the name of the popular band that is made up of animated characters?'
+];
+
+export const MusKeys: string[][] = [
+  ['King','the','where','of','music','singer','name','popular','pop','artist','what','is','who','the','Shrek'],
+  ['band','that','where','music','singer','name','song','baby','shark','who','what','is','the','group','artist','wrote','performed'],
+  ['music','name','instrument','sounds','keys','black','and','white','horizontal','board','strings','what','the','is','Shrek'],
+  ['girl','BTS','boy','artist','lead','the','who','leader','red','rap','Korean','popular','is','Shrek','Zorro','Romeo'],
+  ['biggest','music','King','instrument','sounds','the','red','leader','biggs','wedge','event','annual','every year','name', 'biggest','ceremony'],
+  ['name','music','pop','keys','the','who','where','band','animated','of','characters','animals','made','red','up','is','baby','shark','of']
+];
+
+export const MusAnswers: string[][]=[
+  ['michael jackson','jackson'],
+  ['pinkfong'],
+  ['piano','keyboard'],
+  ['RM','Rap Monster','Namjoon','Kin Nam-joon'],
+  ['Grammys','grammy','The Grammy Awards'],
+  ['Gorillaz']
+];
+
+export const MusQA = {
+  key: [0,0,0,0,0,0]
+}
+export const HisQA = {
+  key: [0,0,0,0,0,0]
+}
 export const SpoQA = {
   key: [0,0,0,0,0]
 }

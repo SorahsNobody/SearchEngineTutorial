@@ -20,6 +20,7 @@
 
 #categories button {
   background-color: #f77f00; /* orange */;
+  /*color: gainsboro;*/
   width: 25%;
   padding: 32px 16px;
   font-size: 50px;
@@ -34,23 +35,21 @@
 }
 
 #Ani {
-  color: gainsboro;
   margin-right: 10%;
   margin-bottom: 5%;
 }
 
 #Sup {
-  color: gainsboro;
   margin-bottom: 5%;
 }
 
 #Sci {
-  color: gainsboro;
   margin-right: 10%;
+  margin-bottom: 5%;
 }
 
-#Spo {
-  color: gainsboro;
+#His {
+  margin-right: 10%;
 }
 
 .buttonContainer {

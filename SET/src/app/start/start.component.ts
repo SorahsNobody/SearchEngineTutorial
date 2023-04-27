@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { playerName, avatar, AniQA, SpoQA, SciQA, SupQA} from 'src/environments/environment';
+import { playerName, avatar, AniQA, SpoQA, SciQA, SupQA, HisQA, MusQA} from 'src/environments/environment';
 
 @Component({
   selector: 'app-start',
@@ -17,18 +17,15 @@ export class StartComponent implements OnInit{
     SpoQA.key = [0,0,0,0,0];
     SciQA.key = [0,0,0,0,0];
     SupQA.key = [0,0,0,0,0];
+    MusQA.key = [0,0,0,0,0,0];
+    HisQA.key = [0,0,0,0,0,0];
   }
-
-  toInstruct(): void {
-    this.router.navigateByUrl("/instructions");
-  }
-
   toCatSelect(): void {
     var pName = (<HTMLInputElement>document.getElementById('name')).value
     //IF the player has given some kind of name
     if(pName){
       playerName.key = pName;
-      this.router.navigateByUrl("/categories");
+      this.router.navigateByUrl("/instructions");
     }
   }
 }
