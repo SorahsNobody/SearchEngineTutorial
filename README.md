@@ -1,6 +1,8 @@
 # Search Engine Tutorial (SET)
 ## Authors
 - Benjamin Bettencourt
+
+## Previous Contributors
 - Assoumer Redempta Manzi Muneza
 - Michael Wendell
 - Akshharaa Tharigonda
