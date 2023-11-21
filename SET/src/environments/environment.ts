@@ -5,7 +5,11 @@
 import { SearchResult } from "src/models/search-result.model";
 
 export const environment = {
-  production: false
+  production: false,
+  difficulty: 0,
+  showHints: true,
+  spellCheck: true,
+  expansions: true
 };
 
 export const chosenCat = {
@@ -29,8 +33,17 @@ export const questionNumber = {
 };
 
 export const score = {
-  key: 0
+  key: 0,
+  stopWords: false,
+  misspellings: false
 };
+
+export const player = {
+  name: playerName.key,
+  exp: 0,
+  level: 1,
+  numberOfQuestions: 0
+}
 
 export const avatar = {
   key: "/assets/customize/avatar-x-x-x-.png"

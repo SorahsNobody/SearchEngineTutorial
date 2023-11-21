@@ -25,7 +25,7 @@ export class StartComponent implements OnInit{
     //IF the player has given some kind of name
     if(pName){
       playerName.key = pName;
-      this.router.navigateByUrl("/instructions");
+      this.router.navigateByUrl("/gameMenu");
     }
   }
 }

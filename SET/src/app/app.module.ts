@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { CustomizeComponent } from './customize/customize.component';
 import { ResultsComponent } from './results/results.component';
+import { GameMenuComponent } from './game-menu/game-menu.component';
+import { NewQueryCreateComponent } from './new-query-create/new-query-create.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ResultsComponent } from './results/results.component';
     InstructionsComponent,
     SearchResultsComponent,
     CustomizeComponent,
-    ResultsComponent
+    ResultsComponent,
+    GameMenuComponent,
+    NewQueryCreateComponent
   ],
   imports: [
     BrowserModule,

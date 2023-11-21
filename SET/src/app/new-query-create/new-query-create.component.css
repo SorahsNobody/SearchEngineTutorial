@@ -1,0 +1,95 @@
+h1 {
+    font-size: 35pt;
+  }
+  
+  #chooseCat {
+    margin: 2.5%;
+    width: 90%;
+    height: 90%;
+    text-align: center;
+  }
+  
+  #chooseCat p {
+    display: inline;
+    word-wrap: break-word;
+    font-size: 25px;
+  }
+  
+  #queryBox {
+    width: 60%;
+    height: auto;
+    background-color: #f7c187;
+    border: 2px solid;
+    border-color: #f77f00;
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+  
+  #instruct p {
+    margin-left: 15%;
+    font-size: 20px;
+  }
+  
+  #kwordBank {
+    margin-left: 15%;
+    margin-right: 15%;
+    width: 75%;
+    height: 30%;
+    background-color: #f7c187;
+    border: 2px solid;
+    border-color: #f77f00;
+  }
+  
+  #kwordBank p {
+    text-decoration: underline;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  #kwords {
+    text-align: center;
+  }
+  
+  #submit{
+    margin-left: 90%;
+    margin-top: 5%;
+  }
+  
+  #submit2{
+    transform: translateX(1000%);
+    padding: 10px 20px;
+    position: absolute; 
+    background-color: #08892f;
+  }
+  
+  #changeQuestionButton{
+    transform: translateX(300%);
+    padding: 10px 20px;
+    position: absolute;
+    background-color: #08892f;
+  }
+  
+  #BackButton{
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    color: #fff;
+    background-color: #f77f00; /* orange */
+    cursor: pointer;
+    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
+  }
+
+  #input{
+    display: block;
+    margin: 2.5%;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 18px;
+    background-color: #e6f2f2; /* turquoise */
+    width:90%;
+  }
+  

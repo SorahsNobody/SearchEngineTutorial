@@ -222,6 +222,6 @@ export class CustomizeComponent {
   }
 
   toCatSelect(): void {
-    this.router.navigateByUrl("/categories");
+    this.router.navigateByUrl("/gameMenu");
   }
 }
