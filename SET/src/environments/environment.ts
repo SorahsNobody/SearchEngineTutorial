@@ -235,6 +235,13 @@ export const resultArray = {
   key: rA
 }
 
+export const phrases = {
+  content: ["Did you mean one of these?", "How about these?",
+  "Maybe one of these?", "Do one of these sound right?",
+  "Is this what you meant?","Try one of these"],
+  cue: ["okay", "oh!", "um", "hmm", "hmm?"]
+}
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

@@ -1,0 +1,74 @@
+<div class="suggestion-popup" *ngIf="showSuggestions && spellSuggestion?.suggestions?.length">
+  <div class="d-flex">
+      <div class="w-100" id="sugs">
+          <!--This is the very first spell suggestion-->
+          <div class="content-button">
+              <div class="mis-button">
+                  <div class="misspelled-word " index="0" spelling="namm"
+                  (click)="hideSuggestions()">
+                      {{ spellSuggestion.original }}
+                  </div>
+                  <fa-icon
+                      [icon]="faVolumeUp"
+                      [ngClass]="'suggestion-speaker-button'"
+                      (click)="speak(spellSuggestion.original)"
+                  ></fa-icon>
+              </div>
+          </div>
+          <!--This is the constructor for the rest of the spell suggestions-->
+          <div
+              class="content-button"
+              *ngFor="let suggestedWord of spellSuggestion.suggestions;"
+          >
+              <div class="suggest-button" [ngClass]="getSelectedWord(suggestedWord) ? 'button_glow':''" (mouseleave)="onMouseLeave(suggestedWord)" (mouseenter)="onMouseEnter(suggestedWord)">
+                  <div class="spelling-suggestion" index="0"
+                  (click)="useThisSuggestion(suggestedWord)">
+                  [actualWord]="word"
+                  [suggestedWord]="suggestedWord"
+                  <ng-container *ngFor="let substr of diff;">
+                    <ng-container *ngIf="substr[0] == 0">{{ substr[1] }}</ng-container>
+                    <span class="cast-highlight-background" *ngIf="substr[0] == 1">{{ substr[1] }}</span>
+                  </ng-container>
+                      <!-- <app-search-query-suggested-word
+                          [actualWord]="word"
+                          [suggestedWord]="suggestedWord"
+                      ></app-search-query-suggested-word> -->
+                  </div>
+                  <fa-icon
+                      [icon]="faVolumeUp"
+                      [ngClass]="'suggestion-speaker-button'"
+                      (click)="speak(suggestedWord)"
+                  ></fa-icon>
+              </div>
+              <div class="img-window" [ngStyle]="{display: getSelectedWord(suggestedWord) ? 'inline' : 'none'}" >
+                  <div *ngIf="getImage(suggestedWord) === ''; else elseBlock ">
+                      <div class="d-flex justify-content-center">
+                          <div class="spinner-border" role="status">
+                              <span class="sr-only">Loading...</span>
+                          </div>
+                      </div>
+                  </div>
+                  <ng-template #elseBlock>
+                      <img
+                      class="img-expand"
+                      src="{{getImage(suggestedWord)}}"
+                      alt="{{suggestedWord}}"
+                      >
+                  </ng-template>
+              </div>
+          </div>
+          <!--This is the close button-->
+          <div class="content-button" (click)="hideSuggestions()">
+              <div class="mis-button">
+                  <div index="0" spelling="namm" class="cls-btn-wrapper">
+                      <fa-icon
+                          [icon]="faTimes"
+                          [ngClass]="'close-button text-danger'"
+                      ></fa-icon>
+                      Closed
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { avatar, environment } from 'src/environments/environment';
 import { SearchResultsService } from '../search-results.service';
 import { score } from 'src/environments/environment';
@@ -10,9 +10,11 @@ import { stopWords } from 'src/assets/stop-words';
   styleUrls: ['./new-query-create.component.css']
 })
 export class NewQueryCreateComponent implements OnInit {
-
+  @Input() showSuggestions: boolean=true;
   constructor(private srs: SearchResultsService) { }
   image: any = avatar.key;
+  splitWords: Array<string> = [];
+  dictionary: any;
 
   ngOnInit(): void {
     score.key+=500;

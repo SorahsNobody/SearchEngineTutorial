@@ -14,6 +14,8 @@ import { CustomizeComponent } from './customize/customize.component';
 import { ResultsComponent } from './results/results.component';
 import { GameMenuComponent } from './game-menu/game-menu.component';
 import { NewQueryCreateComponent } from './new-query-create/new-query-create.component';
+import { SearchQuerySuggestionComponent } from './search-query-suggestion/search-query-suggestion.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -26,13 +28,15 @@ import { NewQueryCreateComponent } from './new-query-create/new-query-create.com
     CustomizeComponent,
     ResultsComponent,
     GameMenuComponent,
-    NewQueryCreateComponent
+    NewQueryCreateComponent,
+    SearchQuerySuggestionComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

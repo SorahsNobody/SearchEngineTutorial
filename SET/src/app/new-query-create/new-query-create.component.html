@@ -1,7 +1,26 @@
 <div id="chooseCat">
     <img id="avatar" [src]="image" alt="Question Mark">
     <div id="queryBox">
-        <input id="input" type="text" placeholder="Enter Search Query Here">
+        <input
+        id="input"
+        type="text"
+        placeholder="Enter Search Query Here"
+        autocapitalize="off"
+        autocomplete="off"
+        autocorrect="off"
+        autofocus="true"
+        >
         <input type="button" id="BackButton" (click)="submit()" value="Submit">
+        <!--Spell Checker Overlay-->
+        <div class="underneath-div">
+          <app-search-query-suggestion
+          *ngFor="let word of splitWords; let i=index;"
+          [word]="word"
+          [dictionary]="dictionary"
+          [showSuggestions]="showSuggestions"
+          [position]="i"
+          [currentSize]="splitWords.length"
+          ></app-search-query-suggestion>
+        </div>
     </div>
 </div>
