@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { OverlayModule } from "@angular/cdk/overlay";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,7 @@ import { GameMenuComponent } from './game-menu/game-menu.component';
 import { NewQueryCreateComponent } from './new-query-create/new-query-create.component';
 import { SearchQuerySuggestionComponent } from './search-query-suggestion/search-query-suggestion.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { QueryWordComponent } from './query-word/query-word.component';
 
 @NgModule({
   declarations: [
@@ -29,14 +31,16 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ResultsComponent,
     GameMenuComponent,
     NewQueryCreateComponent,
-    SearchQuerySuggestionComponent
+    SearchQuerySuggestionComponent,
+    QueryWordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    OverlayModule
   ],
   providers: [],
   bootstrap: [AppComponent]

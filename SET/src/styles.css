@@ -90,3 +90,6 @@ button.over {
   opacity: 0.4;
   background-color:lightsalmon;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

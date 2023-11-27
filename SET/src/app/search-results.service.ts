@@ -118,8 +118,8 @@ export class SearchResultsService {
     ));
   }
 
-  getSpellSuggestionSentence(word:string): Observable<any>{
-    return this.http.get('https://cast.boisestate.edu/test/splchk.php',{params:{sentence: word}, responseType:'text'});
+  getSpellSuggestionSentence(word:string, sugs:boolean): Observable<any>{
+    return this.http.get('https://cast.boisestate.edu/test/splchk.php',{params:{sentence: word, sugs:sugs}, responseType:'text'});
   }
 
   getSpellSuggestionWord(word:string): Observable<any>{
@@ -137,4 +137,8 @@ export class SearchResultsService {
 
   replaceWithSuggestionEventEmitter: EventEmitter<SuggestionReplacer> = new EventEmitter();
   resetSearchInputEventEmitter: EventEmitter<void> = new EventEmitter();
+
+  getSynonyms(word: string): Observable<any>{
+    return this.http.get('http://thesaurus.altervista.org/thesaurus/v1',{params:{key:'JeO9BFG3t84IqjBorCVh',word:word,language:'en_US',output:'json'}});
+  }
 }

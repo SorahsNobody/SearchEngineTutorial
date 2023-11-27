@@ -1,0 +1,22 @@
+<span
+    cdkOverlayOrigin
+    #trigger="cdkOverlayOrigin"
+    [ngClass]="classes"
+    [innerHTML]="innerText"
+    style="pointer-events: auto; cursor:pointer;"
+    (click)="onClick()"
+>
+</span>
+
+<ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="trigger"
+    [cdkConnectedOverlayOpen]="misspelled && showSuggestions"
+    [cdkConnectedOverlayOffsetY]="10"
+>
+    <app-search-query-suggestion
+        [word]="word"
+        [position]="position"
+        [showSuggestions]="isEnabled"
+    ></app-search-query-suggestion>
+</ng-template>

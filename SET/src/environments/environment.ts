@@ -202,6 +202,13 @@ export const MusAnswers: string[][]=[
   ['Gorillaz']
 ];
 
+export const Hints: string[] = [
+  'Sometimes using words that are similar to the subject you\'re looking for can help.',
+  'Try to spell as best as you can! Watch for any sign that a word you\'re using is misspelled before submitting.',
+  'Your search query should be as short as possible without losing the search meaning!',
+  'A search engine is not a person, so talking to it like a person isn\'t always the best approach.',
+  ];
+
 export const MusQA = {
   key: [0,0,0,0,0,0]
 }
@@ -233,6 +240,18 @@ export class SearchClass {
 var rA: Array<SearchResult> = [];
 export const resultArray = {
   key: rA
+}
+
+export const AcceptableSWs = {
+  key: ["who","what","where","when","why","how"]
+}
+var mW: Array<string>=[];
+export var misspelledWords = {
+  content: mW
+}
+var sW: Array<string>=[];
+export var stopWordsUsed = {
+  content:sW
 }
 
 export const phrases = {

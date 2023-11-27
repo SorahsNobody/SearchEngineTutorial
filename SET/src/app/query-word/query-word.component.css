@@ -1,0 +1,31 @@
+.wrapWord {
+	color: red;
+	padding-left: 7px;
+	padding-right: 7px;
+	margin-left: -7px;
+	margin-right: -7px;
+	border: solid 0;
+	border-radius: 50%;
+	box-shadow: 0 0 0 0 red;
+}
+
+.wrapWordBorder {
+	box-shadow: 0 0 0 3px red;
+}
+
+.wrapWord:hover {
+	cursor: pointer;
+}
+
+.stopWord {
+	color: #c1c1c1;
+}
+span:empty::before {
+  content: attr(placeholder);
+  display: block;
+  color: #c1c1c1;
+}
+
+
+
+

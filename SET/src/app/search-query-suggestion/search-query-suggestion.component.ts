@@ -4,8 +4,9 @@ import { SearchResultsService } from '../search-results.service';
 import {faVolumeUp, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { SpellSuggestionWord, SuggestionResourceRelation } from 'src/models/search-result.model';
 import { phrases } from 'src/environments/environment';
+import * as dmp from 'diff-match-patch';
 
-declare var diff_match_patch:any;
+declare var diff_match_patch:dmp;
 
 @Component({
   selector: 'app-search-query-suggestion',
@@ -35,10 +36,10 @@ export class SearchQuerySuggestionComponent implements OnInit, OnChanges, OnDest
   private interruptHover:boolean = false;
 
   constructor(private srs: SearchResultsService) {
-    this.dmp = new diff_match_patch();
+    this.dmp = new dmp();
   }
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    //throw new Error('Method not implemented.');
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.srs.stopAll();
@@ -68,7 +69,8 @@ export class SearchQuerySuggestionComponent implements OnInit, OnChanges, OnDest
      */
     private getResources(words: Array<string>): void{
       this.currentImageList = []; // Reset the array
-
+      if(words == undefined || words.length<=0)
+        return;
       from(words).pipe(concatMap((value) => {
           return forkJoin({ // Find the image and audio URL in parallel
               word: of({value}),
@@ -165,7 +167,7 @@ export class SearchQuerySuggestionComponent implements OnInit, OnChanges, OnDest
      * Plays the suggestions when everything is loaded and the content phrase is finished
      */
       playSuggestions(){
-        if(this.spellSuggestion.suggestions.length == 0){
+        if(this.spellSuggestion.suggestions== undefined || this.spellSuggestion.suggestions.length == 0){
             return;
         }
         this.isLoaded$.pipe(delay(500), takeUntil(this.srs.publicStopAll$)).subscribe((e) => { // Do not continue waiting for the isLoaded if the current box has been terminated
