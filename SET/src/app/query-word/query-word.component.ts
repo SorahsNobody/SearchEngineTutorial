@@ -66,7 +66,7 @@ export class QueryWordComponent implements OnInit, OnChanges, AfterViewInit {
       this.srs.getSpellSuggestionSentence(word,false).subscribe((e) => {
         var jiq = this.srs.fixPHPResponse(e.toString());
         //console.log(jiq.errors[0]);
-        if(jiq.errors.length > 0 && jiq.errors[0].toLowerCase()!="woman's"){
+        if(jiq.errors.length > 0 && jiq.errors[0].toLowerCase()!="woman's" && jiq.errors[0].toLowerCase()!="spiderman" && jiq.errors[0].toLowerCase()!="spiderman's"){
               this.classes = ['wrapWord', 'wrapWordBorder'];
               this.misspelled = true;
           }

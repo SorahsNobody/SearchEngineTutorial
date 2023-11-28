@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { avatar, player, playerName, score } from 'src/environments/environment';
+import { AniQA, HisQA, MusQA, SciQA, SpoQA, SupQA, avatar, player, playerName, score } from 'src/environments/environment';
 
 @Component({
   selector: 'app-player-stats',
@@ -16,7 +16,9 @@ export class PlayerStatsComponent implements OnInit {
     (<HTMLHeadingElement>document.getElementById('playerName')).innerText+=" "+playerName.key;
     (<HTMLHeadingElement>document.getElementById('pl')).innerText+=" "+player.level;
     (<HTMLProgressElement>document.getElementById("plProgress")).value=((player.exp/1000)*100);
-    (<HTMLHeadingElement>document.getElementById('tp')).innerText+=" "+score.key.toString();
+    (<HTMLHeadingElement>document.getElementById('tp')).innerText+=" "+player.totalPoints.toString();
+    var totalQs= MusQA.key.length+HisQA.key.length+SpoQA.key.length+SupQA.key.length+SciQA.key.length+AniQA.key.length;
+    (<HTMLProgressElement>document.getElementById("qaProgress")).value=((player.numberOfQuestions/totalQs)*100);
   }
 
   back(){

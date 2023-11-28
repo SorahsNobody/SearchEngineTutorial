@@ -223,6 +223,7 @@ export class NewQueryCreateComponent implements OnInit {
   }
 
   submit(){
+    (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="";
     if(this.inputText.length<=0){
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Please formulate a query to continue.";
       return;
@@ -232,17 +233,49 @@ export class NewQueryCreateComponent implements OnInit {
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Looks like you're trying to use the question as a search query. Although this might work, keyword queries are shorter. Please try again.";
       return;
     }
+    var numWords = this.inputText.split(" ").length;
+    if(numWords<=1){
+      score.key-=100;
+      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText=
+      "Your query is pretty short, sometimes adding more words can help!";
+    }
+    else if(numWords>=6){
+      score.key-=50;
+      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText=
+      "Your query is pretty long, sometimes using fewer words can help!";
+    }
     //update score based on misspellings and stopwords
-    score.key-=(misspelledWords.content.length*10);
-    score.key-=(stopWordsUsed.content.length*5);
+
+    (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
+    "\nYou have "+misspelledWords.content.length+" misspelled words. ";
+    if(misspelledWords.content.length==0)
+      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
+      " Good Job!";
+    (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
+    "\nYou used "+stopWordsUsed.content.length+" stop words. ";
+    if(stopWordsUsed.content.length==0)
+      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
+      " Good Job!";
+    else
+      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
+      " These words are usually not needed in a search query.";
+
+    score.key-=((misspelledWords.content.length*100)/numWords);
+    score.key-=((stopWordsUsed.content.length*50)/numWords);
 
     player.exp+=score.key;
+    player.totalPoints+=score.key;
+    (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
+    "\nPoints earned for query: "+score.key;
 
+    player.numberOfQuestions++;
     while(player.exp/1000>=1){
       player.exp-=1000;
       player.level+=1;
-      console.log("PLAYER LEVELED UP!")
+      alert("You've leveled up! Congratulations!")
+      //console.log("PLAYER LEVELED UP!")
     }
+    this.clear();
     if(this.qLeft())
       this.initQuestion();
     else

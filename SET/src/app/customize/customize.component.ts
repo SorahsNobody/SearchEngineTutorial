@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import {score, avatar, unlocks} from 'src/environments/environment';
+import {score, avatar, unlocks, player} from 'src/environments/environment';
 
 @Component({
   selector: 'app-customize',
@@ -13,8 +13,8 @@ export class CustomizeComponent {
   handleKeyboardEvent(event: KeyboardEvent){
     console.log(event.key);
     if(event.key=='+')
-      score.key+=500;
-    document.getElementById("point-count")!.innerText = "Score: " + score.key.toString();
+      player.totalPoints+=500;
+    document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
   }
   toResult(): void {
     this.router.navigateByUrl("/results");
@@ -25,7 +25,7 @@ export class CustomizeComponent {
   }
 
   ngOnInit(): void {
-    document.getElementById("point-count")!.innerText = "Score: " + score.key.toString();
+    document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
   }
 
   image: any = avatar.key;
@@ -40,8 +40,8 @@ export class CustomizeComponent {
       this.image = avatar.key
       this.ngOnInit();
     }
-    else if(score.key >= 500) {
-      score.key -= 500
+    else if(player.totalPoints >= 500) {
+      player.totalPoints -= 500
       var str = avatar.key;
       var split = str.split("-", );
       split[1] = "h1";
@@ -62,8 +62,8 @@ export class CustomizeComponent {
       this.image = avatar.key
       this.ngOnInit();
     }
-    else if(score.key >= 1000) {
-      score.key -= 1000
+    else if(player.totalPoints >= 1000) {
+      player.totalPoints -= 1000
       unlocks.key = unlocks.key + "h2"
       var str = avatar.key;
       var split = str.split("-", );
@@ -84,8 +84,8 @@ export class CustomizeComponent {
       this.image = avatar.key
       this.ngOnInit();
     }
-    else if(score.key >= 1500) {
-      score.key -= 1500
+    else if(player.totalPoints >= 1500) {
+      player.totalPoints -= 1500
       unlocks.key = unlocks.key + "h3"
       var str = avatar.key;
       var split = str.split("-", );
@@ -108,8 +108,8 @@ export class CustomizeComponent {
       this.image = avatar.key
       this.ngOnInit();
     }
-    else if(score.key >= 500) {
-      score.key -= 500
+    else if(player.totalPoints >= 500) {
+      player.totalPoints -= 500
       unlocks.key = unlocks.key + "s1"
       this.ngOnInit();
     }
@@ -124,8 +124,8 @@ export class CustomizeComponent {
       this.image = avatar.key
       this.ngOnInit();
     }
-    else if(score.key >= 1000) {
-      score.key -= 1000
+    else if(player.totalPoints >= 1000) {
+      player.totalPoints -= 1000
       unlocks.key = unlocks.key + "s2"
       var str = avatar.key;
       var split = str.split("-", );
@@ -147,8 +147,8 @@ export class CustomizeComponent {
       this.image = avatar.key
       this.ngOnInit();
     }
-    else if(score.key >= 1500) {
-      score.key -= 1500
+    else if(player.totalPoints >= 1500) {
+      player.totalPoints -= 1500
       unlocks.key = unlocks.key + "s3"
       var str = avatar.key;
       var split = str.split("-", );
@@ -170,8 +170,8 @@ export class CustomizeComponent {
       this.image = avatar.key
       this.ngOnInit();
     }
-    else if(score.key >= 500) {
-      score.key -= 500
+    else if(player.totalPoints >= 500) {
+      player.totalPoints -= 500
       unlocks.key = unlocks.key + "n1"
       var str = avatar.key;
       var split = str.split("-", );
@@ -192,8 +192,8 @@ export class CustomizeComponent {
       this.image = avatar.key
       this.ngOnInit();
     }
-    else if(score.key >= 1000) {
-      score.key -= 1000
+    else if(player.totalPoints >= 1000) {
+      player.totalPoints -= 1000
       unlocks.key = unlocks.key + "n2"
       var str = avatar.key;
       var split = str.split("-", );
@@ -214,8 +214,8 @@ export class CustomizeComponent {
       this.image = avatar.key
       this.ngOnInit();
     }
-    else if(score.key >= 1500) {
-      score.key -= 1500
+    else if(player.totalPoints >= 1500) {
+      player.totalPoints -= 1500
       unlocks.key = unlocks.key + "n3"
       var str = avatar.key;
       var split = str.split("-", );
