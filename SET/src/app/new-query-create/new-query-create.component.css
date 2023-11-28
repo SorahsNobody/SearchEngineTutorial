@@ -156,3 +156,30 @@ h1 {
     font-family: 'Comic Sans MS', cursive;
     color: #f77f00;
   }
+        /* Creating a box with a text
+           and some stylings  */
+  .speech {
+            width: 250px;
+            background: #f77f00;
+            padding: 30px;
+            text-align: center;
+            font-size: 25px;
+            border-radius: 35px;
+            color: white;
+            margin-left:20%;
+            position: relative;
+        }
+
+        /* Creates triangular tip on the
+           end, for our speech bubble
+           with some styling */
+  .speech:before {
+            content: "";
+            position: absolute;
+            border-left: 20px solid #f77f00;
+            border-right: 20px solid transparent;
+            border-top: 20px solid #f77f00;
+            border-bottom: 20px solid transparent;
+            right: -20px;
+            top: 5px;
+        }

@@ -1,0 +1,53 @@
+#chooseCat {
+  width: 90%;
+  height:50%;
+  text-align: center;
+}
+
+#chooseCat p {
+  display: inline;
+  word-wrap: break-word;
+  font-size: 25px;
+}
+
+#queryBox {
+  width: 80%;
+  height: 80%;
+  margin: 5%;
+  background-color: #f7c187;
+  border: 2px solid;
+  border-color: #f77f00;
+  position: relative;
+}
+
+progress{
+  accent-color: #f77f00;
+  width:80%;
+  height:20%;
+}
+h1, h3 {
+  padding: 1%;
+  text-align: center;
+  font-family: 'Comic Sans MS', cursive;
+}
+h3{
+  font-size: 35px;
+  color: white; /* orange */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+h1 {
+  color: #f77f00;
+  font-size: 50px;
+}
+.question-mark {
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.question-mark img {
+  width: 100px;
+  height: 100px;
+  animation: blink 1s infinite;
+}

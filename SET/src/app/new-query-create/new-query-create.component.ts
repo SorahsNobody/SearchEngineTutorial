@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { AniKeys, AniQA, AniQues, HisKeys, HisQA, HisQues, MusKeys, MusQA, MusQues, SciKeys, SciQA, SciQues, SpoKeys, SpoQA, SpoQues, SupKeys, SupQA, SupQues, avatar, currQuestion, environment, questionNumber } from 'src/environments/environment';
+import { AniKeys, AniQA, AniQues, DONE, HisKeys, HisQA, HisQues, MusKeys, MusQA, MusQues, SciKeys, SciQA, SciQues, SpoKeys, SpoQA, SpoQues, SupKeys, SupQA, SupQues, avatar, currQuestion, environment, questionNumber } from 'src/environments/environment';
 import { SearchResultsService } from '../search-results.service';
 import { score, misspelledWords, stopWordsUsed, player, Hints } from 'src/environments/environment';
 import { stopWords } from 'src/assets/stop-words';
@@ -33,7 +33,7 @@ export class NewQueryCreateComponent implements OnInit {
   ngOnInit(): void {
     score.key+=500;
     this.initQuestion();
-    (<HTMLParagraphElement>document.getElementById('score')).innerText= "Potential Score: " + score.key.toString();
+    //(<HTMLParagraphElement>document.getElementById('score')).innerText= "Potential Score: " + score.key.toString();
     if(player.level>5){
       (<HTMLButtonElement>document.getElementsByClassName('hint').item(0)).style.visibility="hidden";
       (<HTMLButtonElement>document.getElementsByClassName('check').item(0)).style.visibility="hidden";
@@ -48,6 +48,10 @@ export class NewQueryCreateComponent implements OnInit {
       (<HTMLButtonElement>document.getElementsByClassName('hint').item(0)).style.visibility="visible";
       (<HTMLButtonElement>document.getElementsByClassName('check').item(0)).style.visibility="visible";
     }
+  }
+
+  back(){
+    this.router.navigateByUrl("/gameMenu");
   }
 
   hint(){
@@ -97,46 +101,55 @@ export class NewQueryCreateComponent implements OnInit {
         });
       });
     }
+    else if(stopWordsUsed.content.length>0){
+      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="You don't always need words like: "+stopWordsUsed.content[0];
+
+    }
   }
 
 
   initQuestion(){
-    var randCat = Math.floor(Math.random()*5);
+    var randCat = Math.floor(Math.random()*6);
+    var found = false;
     let rt: string[] = [];
     let cat: string = "";
     switch(randCat){
       case 0:
-        this.chooseRandQuestion(AniQA.key);
+        found=this.chooseRandQuestion(AniQA.key);
         rt = AniKeys[questionNumber.key];
         cat="Animal";
         break;
       case 1:
-        this.chooseRandQuestion(SupQA.key);
+        found=this.chooseRandQuestion(SupQA.key);
         rt = SupKeys[questionNumber.key];
         cat="Superhero";
         break;
       case 2:
-        this.chooseRandQuestion(SciQA.key);
+        found=this.chooseRandQuestion(SciQA.key);
         rt = SciKeys[questionNumber.key];
         cat="Science";
         break;
       case 3:
-        this.chooseRandQuestion(HisQA.key);
+        found=this.chooseRandQuestion(HisQA.key);
         rt = HisKeys[questionNumber.key];
         cat="History";
         break;
       case 4:
-        this.chooseRandQuestion(MusQA.key);
+        found=this.chooseRandQuestion(MusQA.key);
         rt = MusKeys[questionNumber.key];
         cat="Music";
         break;
       default:
-        this.chooseRandQuestion(SpoQA.key);
+        found=this.chooseRandQuestion(SpoQA.key);
         rt = SpoKeys[questionNumber.key];
         cat="Sports";
         break;
     }
-    this.setQuestion(questionNumber.key, cat);
+    if(found){
+      this.setQuestion(questionNumber.key, cat);
+    }
+    else
+      this.initQuestion();
     return rt;
   }
   /**
@@ -174,27 +187,32 @@ export class NewQueryCreateComponent implements OnInit {
     }
   }
 
-  chooseRandQuestion(arr: number[]){
+  chooseRandQuestion(arr: number[]): boolean{
     var chosen = false;
     var qleft = arr.find(element => element == 0) == 0;
     while(!chosen && qleft){
-      var qNum = Math.floor(Math.random() * 5);
+      var qNum = Math.floor(Math.random() * arr.length);
       if(arr[qNum] != 1){
         arr[qNum] = 1;
         chosen = true;
         questionNumber.key = qNum;
+        return true;
       }
     }
     if(!qleft)
-      this.router.navigateByUrl('/gameMenu');
+      return false;
+    else
+      return true;
+      //this.router.navigateByUrl('/gameMenu');
   }
 
   checkForCopy(): boolean{
     var q = document.getElementById("que")!.innerText.toLowerCase();
-    var a = this.inputText.toLowerCase();//document.getElementById("input")!.innerText.toLowerCase();
-    console.log("Question: "+q+"\nAnswer: "+a);
-    if(a==q)
+    var a = this.inputText.toLowerCase();
+    if(a==q){
+      score.key-=50;
       return true;
+    }
     else
       return false;
   }
@@ -205,6 +223,10 @@ export class NewQueryCreateComponent implements OnInit {
   }
 
   submit(){
+    if(this.inputText.length<=0){
+      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Please formulate a query to continue.";
+      return;
+    }
     this.populateLists();
     if(this.checkForCopy()){
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Looks like you're trying to use the question as a search query. Although this might work, keyword queries are shorter. Please try again.";
@@ -221,9 +243,36 @@ export class NewQueryCreateComponent implements OnInit {
       player.level+=1;
       console.log("PLAYER LEVELED UP!")
     }
+    if(this.qLeft())
+      this.initQuestion();
+    else
+      this.router.navigateByUrl('/gameMenu');
 
     //TODO: Provide feedback, suggestions, synonyms
-
+  }
+  qLeft(): boolean{
+    var qArr = [];
+    qArr.push(MusQA);
+    qArr.push(HisQA);
+    qArr.push(SciQA);
+    qArr.push(SupQA);
+    qArr.push(AniQA);
+    qArr.push(SpoQA);
+    for(let i = 0; i<6;i++){
+      var qleft = qArr[i].key.find(element => element == 0) == 0;
+      if(!qleft)
+        DONE.key[i]=1;
+    }
+    player.numDone=0;
+    DONE.key.forEach(e=>{
+      player.numDone+=e;
+    });
+    console.log("NumDone: "+player.numDone);
+    if(player.numDone>=5){
+      alert("You've attempted all of the questions! Great Job!");
+      return false;
+    }
+    return true;
   }
 
     /**

@@ -18,6 +18,7 @@ import { NewQueryCreateComponent } from './new-query-create/new-query-create.com
 import { SearchQuerySuggestionComponent } from './search-query-suggestion/search-query-suggestion.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { QueryWordComponent } from './query-word/query-word.component';
+import { PlayerStatsComponent } from './player-stats/player-stats.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { QueryWordComponent } from './query-word/query-word.component';
     GameMenuComponent,
     NewQueryCreateComponent,
     SearchQuerySuggestionComponent,
-    QueryWordComponent
+    QueryWordComponent,
+    PlayerStatsComponent
   ],
   imports: [
     BrowserModule,

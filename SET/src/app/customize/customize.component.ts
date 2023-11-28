@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import {score, avatar, unlocks} from 'src/environments/environment';
 
@@ -9,7 +9,13 @@ import {score, avatar, unlocks} from 'src/environments/environment';
 })
 export class CustomizeComponent {
   constructor(private router: Router) { }
-
+  @HostListener('document:keydown',['$event'])
+  handleKeyboardEvent(event: KeyboardEvent){
+    console.log(event.key);
+    if(event.key=='+')
+      score.key+=500;
+    document.getElementById("point-count")!.innerText = "Score: " + score.key.toString();
+  }
   toResult(): void {
     this.router.navigateByUrl("/results");
   }
@@ -17,7 +23,7 @@ export class CustomizeComponent {
   async onEnter(){
     this.router.navigateByUrl("/searchResults");
   }
- 
+
   ngOnInit(): void {
     document.getElementById("point-count")!.innerText = "Score: " + score.key.toString();
   }

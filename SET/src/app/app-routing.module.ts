@@ -9,6 +9,7 @@ import { CustomizeComponent } from './customize/customize.component';
 import { ResultsComponent } from './results/results.component';
 import { GameMenuComponent } from './game-menu/game-menu.component';
 import { NewQueryCreateComponent } from './new-query-create/new-query-create.component';
+import { PlayerStatsComponent } from './player-stats/player-stats.component';
 
 const routes: Routes = [
   {path: 'categories', component: CategoryComponent},
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: 'customize', component: CustomizeComponent},
   {path: 'results', component: ResultsComponent},
   {path: 'gameMenu', component: GameMenuComponent},
-  {path: 'queryCraft', component: NewQueryCreateComponent}
+  {path: 'queryCraft', component: NewQueryCreateComponent},
+  {path: 'stats', component: PlayerStatsComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,22 @@
+<div id="chooseCat">
+  <h1 id="playerName">{{pName}}</h1>
+  <div class="question-mark">
+    <img [src]="image" alt="Question Mark">
+  </div>
+  <div id="queryBox">
+    <div id="playerLevel">
+      <h3 id="pl">Current Player Level: </h3>
+      <h3>Progress to next level: </h3>
+      <progress id="plProgress" value="0" min="0" max="100"></progress>
+    </div>
+    <div id="questionsAnswered">
+      <h3>Questions Answered:</h3>
+      <progress id="qaProgress" value="0" min="0" max="100"></progress>
+    </div>
+    <div id="points">
+      <h3 id="tp">Total Points:</h3>
+      <p id="tpPoints"></p>
+    </div>
+  </div>
+  <button id="BackButton" (click)="back()">Back to Menu</button>
+</div>

@@ -62,3 +62,8 @@ body {
   bottom: 100px;
   right: 100px;
 }
+
+li{
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 20px;
+}

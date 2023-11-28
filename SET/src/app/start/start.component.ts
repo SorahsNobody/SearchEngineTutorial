@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { playerName, avatar, AniQA, SpoQA, SciQA, SupQA, HisQA, MusQA} from 'src/environments/environment';
+import { playerName, avatar, AniQA, SpoQA, SciQA, SupQA, HisQA, MusQA, player} from 'src/environments/environment';
 
 @Component({
   selector: 'app-start',
@@ -24,8 +24,9 @@ export class StartComponent implements OnInit{
     var pName = (<HTMLInputElement>document.getElementById('name')).value
     //IF the player has given some kind of name
     if(pName){
+      //player.name=pName;
       playerName.key = pName;
-      this.router.navigateByUrl("/gameMenu");
+      this.router.navigateByUrl("/instructions");
     }
   }
 }

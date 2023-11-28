@@ -42,7 +42,9 @@ export const player = {
   name: playerName.key,
   exp: 0,
   level: 1,
-  numberOfQuestions: 0
+  numberOfQuestions: 0,
+  numDone:0,
+  totalPoints:0
 }
 
 export const avatar = {
@@ -207,7 +209,8 @@ export const Hints: string[] = [
   'Try to spell as best as you can! Watch for any sign that a word you\'re using is misspelled before submitting.',
   'Your search query should be as short as possible without losing the search meaning!',
   'A search engine is not a person, so talking to it like a person isn\'t always the best approach.',
-  ];
+  'Try not to copy the question word-for-word. Try to make it a better query instead!'
+];
 
 export const MusQA = {
   key: [0,0,0,0,0,0]
@@ -226,6 +229,10 @@ export const SupQA = {
 }
 export const AniQA = {
   key: [0,0,0,0,0]
+}
+
+export const DONE = {
+  key: [0,0,0,0,0,0]
 }
 
 export class SearchClass {

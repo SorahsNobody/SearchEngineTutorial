@@ -14,6 +14,7 @@ export class InstructionsComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigateByUrl('/categories');
+    //this.router.navigateByUrl('/categories');
+    this.router.navigateByUrl('/gameMenu');
   }
 }
