@@ -29,11 +29,11 @@ export class NewQueryCreateComponent implements OnInit {
   dictionary: any;
   innerText:string='';
   inputText: string ='';
+  tempScore: number = 0;
 
   ngOnInit(): void {
-    score.key+=500;
+    this.tempScore=500; //initialize score for current query
     this.initQuestion();
-    //(<HTMLParagraphElement>document.getElementById('score')).innerText= "Potential Score: " + score.key.toString();
     if(player.level>5){
       (<HTMLButtonElement>document.getElementsByClassName('hint').item(0)).style.visibility="hidden";
       (<HTMLButtonElement>document.getElementsByClassName('check').item(0)).style.visibility="hidden";
@@ -60,7 +60,7 @@ export class NewQueryCreateComponent implements OnInit {
       var rand = Math.floor(Math.random()*Hints.length);
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText=Hints[rand];
       if(player.level>3)
-        score.key-=50;
+        this.tempScore-=50;
     }
     else if((<HTMLInputElement>document.getElementById('input')).value.length<=0)
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="You'll want to use keywords to construct a search query.";
@@ -210,7 +210,7 @@ export class NewQueryCreateComponent implements OnInit {
     var q = document.getElementById("que")!.innerText.toLowerCase();
     var a = this.inputText.toLowerCase();
     if(a==q){
-      score.key-=50;
+      this.tempScore-=50;
       return true;
     }
     else
@@ -222,7 +222,12 @@ export class NewQueryCreateComponent implements OnInit {
     this.onInput();
   }
 
+  /**
+   * Called when the user sumbits their query
+   * @returns
+   */
   submit(){
+    this.tempScore=500;
     (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="";
     if(this.inputText.length<=0){
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Please formulate a query to continue.";
@@ -235,17 +240,16 @@ export class NewQueryCreateComponent implements OnInit {
     }
     var numWords = this.inputText.split(" ").length;
     if(numWords<=1){
-      score.key-=100;
+      this.tempScore-=100;
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText=
       "Your query is pretty short, sometimes adding more words can help!";
     }
     else if(numWords>=6){
-      score.key-=50;
+      this.tempScore-=50;
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText=
       "Your query is pretty long, sometimes using fewer words can help!";
     }
     //update score based on misspellings and stopwords
-
     (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
     "\nYou have "+misspelledWords.content.length+" misspelled words. ";
     if(misspelledWords.content.length==0)
@@ -260,21 +264,36 @@ export class NewQueryCreateComponent implements OnInit {
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
       " These words are usually not needed in a search query.";
 
-    score.key-=((misspelledWords.content.length*100)/numWords);
-    score.key-=((stopWordsUsed.content.length*50)/numWords);
+    this.tempScore-=Math.round((misspelledWords.content.length*100)/numWords);
+    this.tempScore-=Math.round((stopWordsUsed.content.length*50)/numWords);
 
-    player.exp+=score.key;
-    player.totalPoints+=score.key;
+    //update player experience and total points earned
+    player.exp+=this.tempScore;
+    player.totalPoints+=this.tempScore;
     (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
-    "\nPoints earned for query: "+score.key;
+    "\nPoints earned for query: "+this.tempScore;
+    (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
+    "\nTotal Points earned: "+player.totalPoints;
 
     player.numberOfQuestions++;
+    //Handle player leveling up
+    var levelUp = false;
+    var numLevel = 0;
     while(player.exp/1000>=1){
       player.exp-=1000;
       player.level+=1;
-      alert("You've leveled up! Congratulations!")
-      //console.log("PLAYER LEVELED UP!")
+      levelUp=true;
+      numLevel++;
     }
+    if(levelUp){
+      var luMessage = "You've leveled up"
+      if(numLevel==1)
+        luMessage+="! Congratulations!"
+      else
+        luMessage+=" "+numLevel+" times! Great query!";
+      alert(luMessage);
+    }
+    //Clear the screen and load another question if there are any left
     this.clear();
     if(this.qLeft())
       this.initQuestion();
