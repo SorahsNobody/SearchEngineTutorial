@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { AniKeys, AniQA, AniQues, DONE, HisKeys, HisQA, HisQues, MusKeys, MusQA, MusQues, SciKeys, SciQA, SciQues, SpoKeys, SpoQA, SpoQues, SupKeys, SupQA, SupQues, avatar, currQuestion, environment, questionNumber } from 'src/environments/environment';
 import { SearchResultsService } from '../search-results.service';
-import { score, misspelledWords, stopWordsUsed, player, Hints } from 'src/environments/environment';
+import { misspelledWords, stopWordsUsed, player, Hints } from 'src/environments/environment';
 import { stopWords } from 'src/assets/stop-words';
 import { Router } from '@angular/router';
-
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 const regex = /[  .,\/#!?$%\^&\*;:{}=\-_`~()]/;
 
@@ -23,7 +23,7 @@ export class NewQueryCreateComponent implements OnInit {
   @Input() word: string="";
   @Input() position: number=0;
 
-  constructor(private srs: SearchResultsService, private router: Router) { }
+  constructor(private srs: SearchResultsService, private router: Router, private snackBar: MatSnackBar) { }
   image: any = avatar.key;
   splitWords: Array<string> = [];
   dictionary: any;
@@ -291,7 +291,7 @@ export class NewQueryCreateComponent implements OnInit {
         luMessage+="! Congratulations!"
       else
         luMessage+=" "+numLevel+" times! Great query!";
-      alert(luMessage);
+      this.snackBar.open(luMessage, undefined, {duration:3000, panelClass:['SET-snackbar']});
     }
     //Clear the screen and load another question if there are any left
     this.clear();
@@ -321,7 +321,7 @@ export class NewQueryCreateComponent implements OnInit {
     });
     console.log("NumDone: "+player.numDone);
     if(player.numDone>=5){
-      alert("You've attempted all of the questions! Great Job!");
+      this.snackBar.open("You've attempted all of the questions! Great Job!", undefined, {duration:3000, panelClass:['SET-snackbar']});
       return false;
     }
     return true;

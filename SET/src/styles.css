@@ -18,6 +18,11 @@ button {
   background-color: #f77f00; /* orange */
 }
 
+.SET-snackbar{
+  background-color: #f77f00;
+  color: #fff;
+}
+
 button:hover {
   box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
 }
