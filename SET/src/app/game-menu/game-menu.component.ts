@@ -70,14 +70,15 @@ export class GameMenuComponent implements OnInit {
       return;
     }
 
-    switch(environment.difficulty){
-      case 1:
-        break;
-      case 2:
-        break;
-      default:
-        this.router.navigateByUrl('/queryCraft');
-        break;
-    }
+    this.router.navigateByUrl('/queryCraft');
+    // switch(environment.difficulty){
+    //   case 1:
+    //     break;
+    //   case 2:
+    //     break;
+    //   default:
+    //     this.router.navigateByUrl('/queryCraft');
+    //     break;
+    // }
   }
 }
