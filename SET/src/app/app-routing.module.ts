@@ -10,6 +10,7 @@ import { ResultsComponent } from './results/results.component';
 import { GameMenuComponent } from './game-menu/game-menu.component';
 import { NewQueryCreateComponent } from './new-query-create/new-query-create.component';
 import { PlayerStatsComponent } from './player-stats/player-stats.component';
+import { PlayerAvatarComponent } from './player-avatar/player-avatar.component';
 
 const routes: Routes = [
   {path: 'categories', component: CategoryComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path: 'results', component: ResultsComponent},
   {path: 'gameMenu', component: GameMenuComponent},
   {path: 'queryCraft', component: NewQueryCreateComponent},
-  {path: 'stats', component: PlayerStatsComponent}
+  {path: 'stats', component: PlayerStatsComponent},
+  {path: 'avatar', component: PlayerAvatarComponent}
 ];
 
 @NgModule({

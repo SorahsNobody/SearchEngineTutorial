@@ -48,7 +48,14 @@ export const player = {
 }
 
 export const avatar = {
-  key: "/assets/customize/avatar-x-x-x-.png"
+  key: "/assets/customize/avatar-x-x-x-.png",
+  hats: ["/assets/customize/hat1.png","/assets/customize/hat2.png","/assets/customize/hat3.png"],
+  noses: ["/assets/customize/nose1.png","/assets/customize/nose2.png", "/assets/customize/nose3.png"],
+  glasses: ["/assets/customize/sunglasses.png", "/assets/customize/sunglasses2.png", "/assets/customize/sunglasses3.png"],
+  hatIndex:0,
+  noseIndex:0,
+  glassesIndex:0,
+  init: true
 };
 
 export const unlocks = {
