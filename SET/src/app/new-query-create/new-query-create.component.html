@@ -1,5 +1,7 @@
 <div id="chooseCat">
-  <img id="avatar" [src]="image" alt="Question Mark">
+  <!-- <img id="avatar" [src]="image" alt="Question Mark"> -->
+  <app-player-avatar [parent]="'play'"></app-player-avatar>
+  <div class="playArea">
   <div class="speech">Can you help me find...</div>
   <div id="questionDiv">
     <p id="que">placeholder</p>
@@ -37,4 +39,5 @@
       <p id="feedbackText"></p>
     </div>
     <button id="BackButton" (click)="back()">Back to Menu</button>
+  </div>
 </div>

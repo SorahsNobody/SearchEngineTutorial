@@ -183,3 +183,9 @@ h1 {
             right: -20px;
             top: 5px;
         }
+
+  .playArea{
+    padding-top: 10%;
+    width: auto;
+    height: 80%;
+  }

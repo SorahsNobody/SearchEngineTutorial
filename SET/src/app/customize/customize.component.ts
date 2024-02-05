@@ -83,22 +83,22 @@ export class CustomizeComponent {
 
   onBuys1() {
     if (unlocks.key.includes("s1")) {
-      avatar.glassesIndex=0;
-      this.glassesIndex=0;
+      avatar.glassesIndex=1;
+      this.glassesIndex=1;
       this.ngOnInit();
     }
     else if(player.totalPoints >= 500) {
       player.totalPoints -= 500
-      avatar.glassesIndex=0;
-      this.glassesIndex=0;
+      avatar.glassesIndex=1;
+      this.glassesIndex=1;
       unlocks.key = unlocks.key + "s1"
       this.ngOnInit();
     }
   }
   onBuys2() {
     if (unlocks.key.includes("s2")) {
-      avatar.glassesIndex=1;
-      this.glassesIndex=1;
+      avatar.glassesIndex=2;
+      this.glassesIndex=2;
       this.ngOnInit();
     }
     else if(player.totalPoints >= 1000) {
@@ -110,8 +110,8 @@ export class CustomizeComponent {
       // str = split.join("-");
       // avatar.key = str;
       // this.image = avatar.key
-      avatar.glassesIndex=1;
-      this.glassesIndex=1;
+      avatar.glassesIndex=2;
+      this.glassesIndex=2;
       this.ngOnInit();
     }
 
@@ -124,8 +124,8 @@ export class CustomizeComponent {
       // str = split.join("-");
       // avatar.key = str;
       // this.image = avatar.key
-      avatar.glassesIndex=2;
-      this.glassesIndex=2;
+      avatar.glassesIndex=0;
+      this.glassesIndex=0;
       this.ngOnInit();
     }
     else if(player.totalPoints >= 1500) {
@@ -137,8 +137,8 @@ export class CustomizeComponent {
       // str = split.join("-");
       // avatar.key = str;
       // this.image = avatar.key
-      avatar.glassesIndex=2;
-      this.glassesIndex=2;
+      avatar.glassesIndex=0;
+      this.glassesIndex=0;
       this.ngOnInit();
     }
   }
@@ -151,63 +151,73 @@ export class CustomizeComponent {
       // str = split.join("-");
       // avatar.key = str;
       // this.image = avatar.key
-      avatar.noseIndex=0;
-      this.noseIndex=0;
+      avatar.noseIndex=1;
+      this.noseIndex=1;
       this.ngOnInit();
     }
     else if(player.totalPoints >= 500) {
       player.totalPoints -= 500
       unlocks.key = unlocks.key + "n1"
-      var str = avatar.key;
-      var split = str.split("-", );
-      split[3] = "n1";
-      str = split.join("-");
-      avatar.key = str;
-      this.image = avatar.key
+      // var str = avatar.key;
+      // var split = str.split("-", );
+      // split[3] = "n1";
+      // str = split.join("-");
+      // avatar.key = str;
+      avatar.noseIndex=1;
+      this.noseIndex=1;
+      // this.image = avatar.key
       this.ngOnInit();
     }
   }
   onBuyn2() {
     if (unlocks.key.includes("n2")) {
-      var str = avatar.key;
-      var split = str.split("-", );
-      split[3] = "n2";
-      str = split.join("-");
-      avatar.key = str;
-      this.image = avatar.key
+      // var str = avatar.key;
+      // var split = str.split("-", );
+      // split[3] = "n2";
+      // str = split.join("-");
+      // avatar.key = str;
+      // this.image = avatar.key
+      avatar.noseIndex=0;
+      this.noseIndex=0;
       this.ngOnInit();
     }
     else if(player.totalPoints >= 1000) {
       player.totalPoints -= 1000
       unlocks.key = unlocks.key + "n2"
-      var str = avatar.key;
-      var split = str.split("-", );
-      split[3] = "n2";
-      str = split.join("-");
-      avatar.key = str;
-      this.image = avatar.key
+      // var str = avatar.key;
+      // var split = str.split("-", );
+      // split[3] = "n2";
+      // str = split.join("-");
+      // avatar.key = str;
+      // this.image = avatar.key
+      avatar.noseIndex=0;
+      this.noseIndex=0;
       this.ngOnInit();
     }
   }
   onBuyn3() {
     if (unlocks.key.includes("n3")) {
-      var str = avatar.key;
-      var split = str.split("-", );
-      split[3] = "n3";
-      str = split.join("-");
-      avatar.key = str;
-      this.image = avatar.key
+      // var str = avatar.key;
+      // var split = str.split("-", );
+      // split[3] = "n3";
+      // str = split.join("-");
+      // avatar.key = str;
+      // this.image = avatar.key
+      avatar.noseIndex=2;
+      this.noseIndex=2;
       this.ngOnInit();
     }
     else if(player.totalPoints >= 1500) {
       player.totalPoints -= 1500
       unlocks.key = unlocks.key + "n3"
-      var str = avatar.key;
-      var split = str.split("-", );
-      split[3] = "n3";
-      str = split.join("-");
-      avatar.key = str;
-      this.image = avatar.key
+      // var str = avatar.key;
+      // var split = str.split("-", );
+      // split[3] = "n3";
+      // str = split.join("-");
+      // avatar.key = str;
+      // this.image = avatar.key
+      avatar.noseIndex=2;
+      this.noseIndex=2;
       this.ngOnInit();
     }
   }

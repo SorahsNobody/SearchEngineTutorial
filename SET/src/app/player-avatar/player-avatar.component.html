@@ -1,8 +1,33 @@
-<div class="avatar" id="avatar">
-  <img id="avatar-hat"  [class.avatar-hat-custom]="parent=='custom'" class="avatarPart" [src]="hatImage">
-  <img id="avatar-nose" [class.avatar-nose-custom]="parent=='custom'" class="avatarPart" [src]="noseImage">
-  <img id="avatar-glasses" [class.avatar-glasses-custom]="parent=='custom'" class="avatarPart" [src]="glassesImage">
-  <img id="avatar-body" [class.avatar-body-custom]="parent=='custom'" class="avatarPart" [src]="bodyImage">
+<div
+[class.menuAvatar]="parent=='menu'"
+[class.customAvatar]="parent=='custom'"
+[class.playAvatar]="parent=='play'" class="avatar" id="avatar">
+  <img id="avatar-body"
+  [class.avatar-body-custom]="parent=='custom'"
+  [class.avatar-body-menu]="parent=='menu'"
+  [class.avatar-body-play]="parent=='play'"
+  class="avatarPart aBody" [src]="bodyImage">
+  <div class="glasses">
+    <img id="avatar-glasses"
+    [class.avatar-glasses-custom]="parent=='custom'"
+    [class.avatar-glasses-menu]="parent=='menu'"
+    [class.avatar-glasses-play]="parent=='play'"
+    class="avatarPart aGlass" [src]="glassesImage">
+    <div class="nose">
+      <img id="avatar-nose"
+      [class.avatar-nose-custom]="parent=='custom'"
+      [class.avatar-nose-menu]="parent=='menu'"
+      [class.avatar-nose-play]="parent=='play'"
+      class="avatarPart aNose" [src]="noseImage">
+      <div class="hat">
+        <img id="avatar-hat"
+        [class.avatar-hat-custom]="parent=='custom'"
+        [class.avatar-hat-menu]="parent=='menu'"
+        [class.avatar-hat-play]="parent=='play'"
+        class="avatarPart aHat" [src]="hatImage">
+      </div>
+    </div>
+  </div>
 </div>
 <!--
 <button (click)="changeHat(-1)">Change Hat</button>

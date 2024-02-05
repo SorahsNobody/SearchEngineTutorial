@@ -1,4 +1,6 @@
 #chooseCat {
+  padding-top: 15%;
+  padding-left: 3.5%;
   width: 90%;
   height:50%;
   text-align: center;
@@ -11,9 +13,9 @@
 }
 
 #queryBox {
-  width: 80%;
-  height: 80%;
-  margin: 5%;
+  margin: auto;
+  width: 50%;
+  height: auto;
   background-color: #f7c187;
   border: 2px solid;
   border-color: #f77f00;
