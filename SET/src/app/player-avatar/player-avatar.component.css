@@ -1,0 +1,45 @@
+.avatar-body-custom{
+  transform: scale(.4);
+  /* bottom: 35%;
+  left: 4%; */
+  top:0px;
+  left:0px;
+  z-index: 0;
+  position:absolute;
+  background: transparent;
+  /*width: 100px;
+  height: 100px;*/
+  animation: blink 1s infinite;
+}
+.avatar-hat-custom{
+  transform: scale(.3);
+  /* width: 95%; */
+  height: 40%;
+  left: 32%;
+  /* bottom: 65%; */
+  top:4%;
+  z-index: 3;
+  position:absolute;
+  background: transparent;
+  animation: blink 1s infinite;
+}
+.avatar-nose-custom{
+  top: 50px;
+  left: 40px;
+  z-index: 2;
+  position: relative;
+  background: transparent;
+  /*width: 20px;
+  height: 20px;*/
+  animation: blink 1s infinite;
+}
+.avatar-glasses-custom{
+  left:20px;
+  top:20px;
+  z-index: 1;
+  position: relative;
+  background: transparent;
+  /*width: 60px;
+  height: 60px;*/
+  animation: blink 1s infinite;
+}

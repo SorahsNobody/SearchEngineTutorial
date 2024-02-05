@@ -2,9 +2,12 @@
     <main>
       <h1>Customize your Avatar!</h1>
       <section>
-        <p>Use you points to unlock any of the accessories below</p>
+        <p>Use your points to unlock any of the accessories below</p>
         <h2 id="point-count">Score: 900</h2>
-        <img class="img2" [src]="image" alt="Question Mark">
+        <!--<img class="img2" [src]="image" alt="Question Mark">-->
+        <div class="avatar-container">
+          <app-player-avatar id="pAvatar" [parent]="'custom'" [hat]="hatIndex" [nose]="noseIndex" [glasses]="glassesIndex"></app-player-avatar>
+        </div>
         <table class="table">
             <tr>
               <th> </th>

@@ -3,7 +3,8 @@
   </div>
   <div id="chooseCat">
     <!--<p id="avatar">avatar goes here</p>-->
-    <img id="avatar" [src]="image" alt="Question Mark">
+    <!-- <img id="avatar" [src]="image" alt="Question Mark"> -->
+    <app-player-avatar [parent]="'menu'"></app-player-avatar>
   </div>
   <div id="categories">
     <button (click)="playClick()">Play</button>

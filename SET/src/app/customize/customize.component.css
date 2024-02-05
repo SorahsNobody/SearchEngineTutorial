@@ -26,6 +26,7 @@ h1, h2,p{
     width:800px!important;
     margin-left: 22%;
     color: aliceblue;
+    z-index: 2;
   }
 
   .img {
@@ -43,24 +44,24 @@ h1, h2,p{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
   }
-  
+
   .instructions ol {
     padding-left: 30px;
     margin-bottom: 0;
     color:aliceblue;
     display: inline-block;
   }
-  
+
   .instructions ol li {
     margin-left: 30px;
     margin-bottom: 10px;
     text-align: left;
   }
-  
+
   .instructions p:first-child {
     margin-top: 0;
   }
-  
+
   #goback-button {
     padding: 10px 20px;
     border: none;
@@ -89,13 +90,18 @@ h1, h2,p{
     background-color: #ffffff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
     cursor: pointer;
+    z-index: 3;
   }
 
-  .img2 {
-    height: 160px;
-    width: 160px;
-    left: 22%;
+  .avatar-container{
+    height: 100%;
+    width: 20%;
+    left: 2.5%;
     position:absolute;
-    top: 50%;
-    
-}
+    z-index: 1;
+  }
+
+  #avatar{
+    width:auto;
+    height:1%;
+  }
