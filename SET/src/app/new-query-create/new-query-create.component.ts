@@ -276,6 +276,8 @@ export class NewQueryCreateComponent implements OnInit {
     "\nTotal Points earned: "+player.totalPoints;
 
     player.numberOfQuestions++;
+    sessionStorage.setItem("numQs", player.numberOfQuestions.toString());
+    sessionStorage.setItem("points", player.totalPoints.toString());
     //Handle player leveling up
     var levelUp = false;
     var numLevel = 0;
@@ -293,6 +295,8 @@ export class NewQueryCreateComponent implements OnInit {
         luMessage+=" "+numLevel+" times! Great query!";
       this.snackBar.open(luMessage, undefined, {duration:3000, panelClass:['SET-snackbar']});
     }
+    sessionStorage.setItem("exp", player.exp.toString());
+    sessionStorage.setItem("lvl", player.level.toString());
     //Clear the screen and load another question if there are any left
     this.clear();
     if(this.qLeft())

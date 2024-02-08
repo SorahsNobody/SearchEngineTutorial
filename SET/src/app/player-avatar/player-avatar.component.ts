@@ -64,6 +64,7 @@ export class PlayerAvatarComponent implements OnInit, OnChanges {
     var hat = document.getElementById("avatar-hat");
     if(hat!.style.visibility=="hidden")
       hat!.style.visibility="visible";
+    this.sessionStoreAvatar();
   }
   changeGlasses(index:number){
     var glasses = document.getElementById("avatar-glasses");
@@ -88,6 +89,7 @@ export class PlayerAvatarComponent implements OnInit, OnChanges {
       this.glassesImage=avatar.glasses[this.gI];
       glasses!.style.visibility="visible";
     }
+    this.sessionStoreAvatar();
   }
   changeNose(index:number){
     var nose = document.getElementById("avatar-nose");
@@ -116,5 +118,12 @@ export class PlayerAvatarComponent implements OnInit, OnChanges {
       this.noseImage=avatar.noses[this.nI];
       nose!.style.visibility="visible";
     }
+    this.sessionStoreAvatar();
+  }
+
+  sessionStoreAvatar(){
+    sessionStorage.setItem("nose", avatar.noseIndex.toString());
+    sessionStorage.setItem("hat", avatar.hatIndex.toString());
+    sessionStorage.setItem("glasses", avatar.glassesIndex.toString());
   }
 }

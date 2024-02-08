@@ -4,6 +4,7 @@
     background-color: #f77f00;
     color: #fff;
     padding: 2%;
+    display: flex;
   }
 
   #chooseCat {
@@ -73,4 +74,12 @@
       padding: 10px 20px;
       border: none;
       cursor: pointer;
+  }
+
+  .resetBtn{
+    padding-top: 1%;
+    top:0%;
+    right: 0%;
+    background-color: red;
+    position: absolute;
   }

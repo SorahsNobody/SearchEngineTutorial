@@ -81,4 +81,11 @@ export class GameMenuComponent implements OnInit {
     //     break;
     // }
   }
+  reset(){
+    //alert("THIS WILL ERASE ALL OF YOUR PROGRESS!!! Are you sure you want to reset?")
+    if(confirm("THIS WILL ERASE ALL OF YOUR PROGRESS!!! Are you sure you want to reset?")){
+      sessionStorage.clear();
+      window.location.reload();
+    }
+  }
 }

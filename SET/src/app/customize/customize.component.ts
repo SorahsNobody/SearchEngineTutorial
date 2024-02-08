@@ -29,6 +29,7 @@ export class CustomizeComponent {
     this.hatIndex=avatar.hatIndex;
     this.noseIndex=avatar.noseIndex;
     this.glassesIndex=avatar.glassesIndex;
+    this.pointsStorage();
   }
 
   image: any = avatar.key;
@@ -222,6 +223,9 @@ export class CustomizeComponent {
     }
   }
 
+  pointsStorage(){
+    sessionStorage.setItem("points", player.totalPoints.toString());
+  }
   toCatSelect(): void {
     this.router.navigateByUrl("/gameMenu");
   }

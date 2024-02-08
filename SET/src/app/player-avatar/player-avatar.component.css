@@ -45,7 +45,6 @@
   transform: scale(.5);
 }
 .avatar-hat-menu{
-  top:-1%;
   transform: scale(.5);
 }
 .avatar-nose-menu{
@@ -66,7 +65,7 @@
   transform: scale(.4);
 }
 .avatar-hat-play{
-  top:-1%;
+  top:-15%;
   transform: scale(.4);
 }
 .avatar-nose-play{

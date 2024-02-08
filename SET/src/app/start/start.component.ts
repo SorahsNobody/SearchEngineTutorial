@@ -24,6 +24,7 @@ export class StartComponent implements OnInit{
     var pName = (<HTMLInputElement>document.getElementById('name')).value
     //IF the player has given some kind of name
     if(pName){
+      sessionStorage.setItem("playerName", pName);
       //player.name=pName;
       playerName.key = pName;
       this.router.navigateByUrl("/instructions");
