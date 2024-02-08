@@ -9,13 +9,13 @@ import {score, avatar, unlocks, player} from 'src/environments/environment';
 })
 export class CustomizeComponent {
   constructor(private router: Router) { }
-  @HostListener('document:keydown',['$event'])
-  handleKeyboardEvent(event: KeyboardEvent){
-    console.log(event.key);
-    if(event.key=='+')
-      player.totalPoints+=500;
-    document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
-  }
+  // @HostListener('document:keydown',['$event'])
+  // handleKeyboardEvent(event: KeyboardEvent){
+  //   console.log(event.key);
+  //   if(event.key=='+')
+  //     player.totalPoints+=500;
+  //   document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
+  // }
   toResult(): void {
     this.router.navigateByUrl("/results");
   }
