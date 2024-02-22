@@ -9,7 +9,8 @@ export const environment = {
   difficulty: 0,
   showHints: true,
   spellCheck: true,
-  expansions: true
+  expansions: true,
+  tutorial: true,
 };
 
 export const chosenCat = {

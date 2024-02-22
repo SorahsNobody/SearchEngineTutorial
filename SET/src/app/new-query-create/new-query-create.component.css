@@ -189,3 +189,24 @@ h1 {
     width: auto;
     height: 80%;
   }
+
+  #clear {
+    z-index: 2;
+    color: #f77f00;
+    transform: scale(3);
+    position: absolute;
+    top:26%;
+    right:8%;
+  }
+  #clear:hover{
+    opacity: .8;
+  }
+
+  #submit{
+    z-index: 2;
+    color: #f77f00;
+    transform: scale(2);
+    position: absolute;
+    top:-10%;
+    right: 12%;
+  }

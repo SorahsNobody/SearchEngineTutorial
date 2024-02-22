@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AniKeys, AniQA, AniQues, DONE, HisKeys, HisQA, HisQues, MusKeys, MusQA, MusQues, SciKeys, SciQA, SciQues, SpoKeys, SpoQA, SpoQues, SupKeys, SupQA, SupQues, avatar, currQuestion, environment, questionNumber } from 'src/environments/environment';
 import { SearchResultsService } from '../search-results.service';
 import { misspelledWords, stopWordsUsed, player, Hints } from 'src/environments/environment';
-import { stopWords } from 'src/assets/stop-words';
 import { Router } from '@angular/router';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 const regex = /[  .,\/#!?$%\^&\*;:{}=\-_`~()]/;
 
@@ -32,21 +31,31 @@ export class NewQueryCreateComponent implements OnInit {
   tempScore: number = 0;
 
   ngOnInit(): void {
-    this.tempScore=500; //initialize score for current query
     this.initQuestion();
-    if(player.level>5){
-      (<HTMLButtonElement>document.getElementsByClassName('hint').item(0)).style.visibility="hidden";
-      (<HTMLButtonElement>document.getElementsByClassName('check').item(0)).style.visibility="hidden";
+    //IF the player has already gone through the tutorial
+    if(!environment.tutorial){
+      this.tempScore=500; //initialize score for current query
+      if(player.level>5){
+        (<HTMLButtonElement>document.getElementsByClassName('hint').item(0)).style.visibility="hidden";
+        //(<HTMLButtonElement>document.getElementsByClassName('check').item(0)).style.visibility="hidden";
+      }
+      else if(player.level>3){
+        (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Using HINTS cost 50 points!";
+        (<HTMLButtonElement>document.getElementsByClassName('hint').item(0)).style.visibility="visible";
+        //(<HTMLButtonElement>document.getElementsByClassName('check').item(0)).style.visibility="hidden";
+      }
+      else{
+        (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Using HINTS are free!";
+        (<HTMLButtonElement>document.getElementsByClassName('hint').item(0)).style.visibility="visible";
+        //(<HTMLButtonElement>document.getElementsByClassName('check').item(0)).style.visibility="visible";
+      }
     }
-    else if(player.level>3){
-      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Using HINTS cost 50 points!";
-      (<HTMLButtonElement>document.getElementsByClassName('hint').item(0)).style.visibility="visible";
-      (<HTMLButtonElement>document.getElementsByClassName('check').item(0)).style.visibility="hidden";
-    }
+    //ELSE the player needs to view the tutorial
     else{
-      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Using HINTS and CHECKING YOUR SEARCH QUERY are free!";
+      //Set up example query create
+      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Using HINTS are free!";
       (<HTMLButtonElement>document.getElementsByClassName('hint').item(0)).style.visibility="visible";
-      (<HTMLButtonElement>document.getElementsByClassName('check').item(0)).style.visibility="visible";
+      //(<HTMLButtonElement>document.getElementsByClassName('check').item(0)).style.visibility="visible";
     }
   }
 
@@ -103,54 +112,59 @@ export class NewQueryCreateComponent implements OnInit {
     }
     else if(stopWordsUsed.content.length>0){
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="You don't always need words like: "+stopWordsUsed.content[0];
-
     }
   }
 
 
-  initQuestion(){
-    var randCat = Math.floor(Math.random()*6);
-    var found = false;
-    let rt: string[] = [];
-    let cat: string = "";
-    switch(randCat){
-      case 0:
-        found=this.chooseRandQuestion(AniQA.key);
-        rt = AniKeys[questionNumber.key];
-        cat="Animal";
-        break;
-      case 1:
-        found=this.chooseRandQuestion(SupQA.key);
-        rt = SupKeys[questionNumber.key];
-        cat="Superhero";
-        break;
-      case 2:
-        found=this.chooseRandQuestion(SciQA.key);
-        rt = SciKeys[questionNumber.key];
-        cat="Science";
-        break;
-      case 3:
-        found=this.chooseRandQuestion(HisQA.key);
-        rt = HisKeys[questionNumber.key];
-        cat="History";
-        break;
-      case 4:
-        found=this.chooseRandQuestion(MusQA.key);
-        rt = MusKeys[questionNumber.key];
-        cat="Music";
-        break;
-      default:
-        found=this.chooseRandQuestion(SpoQA.key);
-        rt = SpoKeys[questionNumber.key];
-        cat="Sports";
-        break;
+  initQuestion(tutorial=environment.tutorial){
+    if(!tutorial){
+      var randCat = Math.floor(Math.random()*6);
+      var found = false;
+      let rt: string[] = [];
+      let cat: string = "";
+      switch(randCat){
+        case 0:
+          found=this.chooseRandQuestion(AniQA.key);
+          rt = AniKeys[questionNumber.key];
+          cat="Animal";
+          break;
+        case 1:
+          found=this.chooseRandQuestion(SupQA.key);
+          rt = SupKeys[questionNumber.key];
+          cat="Superhero";
+          break;
+        case 2:
+          found=this.chooseRandQuestion(SciQA.key);
+          rt = SciKeys[questionNumber.key];
+          cat="Science";
+          break;
+        case 3:
+          found=this.chooseRandQuestion(HisQA.key);
+          rt = HisKeys[questionNumber.key];
+          cat="History";
+          break;
+        case 4:
+          found=this.chooseRandQuestion(MusQA.key);
+          rt = MusKeys[questionNumber.key];
+          cat="Music";
+          break;
+        default:
+          found=this.chooseRandQuestion(SpoQA.key);
+          rt = SpoKeys[questionNumber.key];
+          cat="Sports";
+          break;
+      }
+      if(found){
+        this.setQuestion(questionNumber.key, cat);
+      }
+      else
+        this.initQuestion();
+      //return rt;
     }
-    if(found){
-      this.setQuestion(questionNumber.key, cat);
+    else{
+      var q = document.getElementById("que");
+      q!.innerText="What do frogs mainly eat?";
     }
-    else
-      this.initQuestion();
-    return rt;
   }
   /**
    * Updates the HTML question text to reflect which question was chosen.
@@ -227,84 +241,86 @@ export class NewQueryCreateComponent implements OnInit {
    * @returns
    */
   submit(){
-    this.tempScore=500;
-    (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="";
-    if(this.inputText.length<=0){
-      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Please formulate a query to continue.";
-      return;
-    }
-    this.populateLists();
-    if(this.checkForCopy()){
-      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Looks like you're trying to use the question as a search query. Although this might work, keyword queries are shorter. Please try again.";
-      return;
-    }
-    var numWords = this.inputText.split(" ").length;
-    if(numWords<=1){
-      this.tempScore-=100;
-      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText=
-      "Your query is pretty short, sometimes adding more words can help!";
-    }
-    else if(numWords>=6){
-      this.tempScore-=50;
-      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText=
-      "Your query is pretty long, sometimes using fewer words can help!";
-    }
-    //update score based on misspellings and stopwords
-    (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
-    "\nYou have "+misspelledWords.content.length+" misspelled words. ";
-    if(misspelledWords.content.length==0)
+    if(!environment.tutorial){
+      this.tempScore=500;
+      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="";
+      if(this.inputText.length<=0){
+        (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Please formulate a query to continue.";
+        return;
+      }
+      this.populateLists();
+      if(this.checkForCopy()){
+        (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Looks like you're trying to use the question as a search query. Although this might work, keyword queries are shorter. Please try again.";
+        return;
+      }
+      var numWords = this.inputText.split(" ").length;
+      if(numWords<=1){
+        this.tempScore-=100;
+        (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText=
+        "Your query is pretty short, sometimes adding more words can help!";
+      }
+      else if(numWords>=6){
+        this.tempScore-=50;
+        (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText=
+        "Your query is pretty long, sometimes using fewer words can help!";
+      }
+      //update score based on misspellings and stopwords
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
-      " Good Job!";
-    (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
-    "\nYou used "+stopWordsUsed.content.length+" stop words. ";
-    if(stopWordsUsed.content.length==0)
+      "\nYou have "+misspelledWords.content.length+" misspelled words. ";
+      if(misspelledWords.content.length==0)
+        (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
+        " Good Job!";
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
-      " Good Job!";
-    else
-      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
-      " These words are usually not needed in a search query.";
-
-    this.tempScore-=Math.round((misspelledWords.content.length*100)/numWords);
-    this.tempScore-=Math.round((stopWordsUsed.content.length*50)/numWords);
-
-    //update player experience and total points earned
-    player.exp+=this.tempScore;
-    player.totalPoints+=this.tempScore;
-    (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
-    "\nPoints earned for query: "+this.tempScore;
-    (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
-    "\nTotal Points earned: "+player.totalPoints;
-
-    player.numberOfQuestions++;
-    sessionStorage.setItem("numQs", player.numberOfQuestions.toString());
-    sessionStorage.setItem("points", player.totalPoints.toString());
-    //Handle player leveling up
-    var levelUp = false;
-    var numLevel = 0;
-    while(player.exp/1000>=1){
-      player.exp-=1000;
-      player.level+=1;
-      levelUp=true;
-      numLevel++;
-    }
-    if(levelUp){
-      var luMessage = "You've leveled up"
-      if(numLevel==1)
-        luMessage+="! Congratulations!"
+      "\nYou used "+stopWordsUsed.content.length+" stop words. ";
+      if(stopWordsUsed.content.length==0)
+        (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
+        " Good Job!";
       else
-        luMessage+=" "+numLevel+" times! Great query!";
-      this.snackBar.open(luMessage, undefined, {duration:3000, panelClass:['SET-snackbar']});
-    }
-    sessionStorage.setItem("exp", player.exp.toString());
-    sessionStorage.setItem("lvl", player.level.toString());
-    //Clear the screen and load another question if there are any left
-    this.clear();
-    if(this.qLeft())
-      this.initQuestion();
-    else
-      this.router.navigateByUrl('/gameMenu');
+        (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
+        " These words are usually not needed in a search query.";
 
-    //TODO: Provide feedback, suggestions, synonyms
+      this.tempScore-=Math.round((misspelledWords.content.length*100)/numWords);
+      this.tempScore-=Math.round((stopWordsUsed.content.length*50)/numWords);
+
+      //update player experience and total points earned
+      player.exp+=this.tempScore;
+      player.totalPoints+=this.tempScore;
+      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
+      "\nPoints earned for query: "+this.tempScore;
+      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText+=
+      "\nTotal Points earned: "+player.totalPoints;
+
+      player.numberOfQuestions++;
+      sessionStorage.setItem("numQs", player.numberOfQuestions.toString());
+      sessionStorage.setItem("points", player.totalPoints.toString());
+      //Handle player leveling up
+      var levelUp = false;
+      var numLevel = 0;
+      while(player.exp/1000>=1){
+        player.exp-=1000;
+        player.level+=1;
+        levelUp=true;
+        numLevel++;
+      }
+      if(levelUp){
+        var luMessage = "You've leveled up"
+        if(numLevel==1)
+          luMessage+="! Congratulations!"
+        else
+          luMessage+=" "+numLevel+" times! Great query!";
+        this.snackBar.open(luMessage, undefined, {duration:3000, panelClass:['SET-snackbar']});
+      }
+      sessionStorage.setItem("exp", player.exp.toString());
+      sessionStorage.setItem("lvl", player.level.toString());
+      //Clear the screen and load another question if there are any left
+      this.clear();
+      if(this.qLeft())
+        this.initQuestion();
+      else
+        this.router.navigateByUrl('/gameMenu');
+
+      //TODO: Provide feedback, suggestions, synonyms
+    }
   }
   qLeft(): boolean{
     var qArr = [];

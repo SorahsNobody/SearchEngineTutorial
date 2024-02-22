@@ -19,10 +19,12 @@
         #searchInput
         (input)="onInput()"
         >
-        <input type="button" id="BackButton" (click)="submit()" value="Submit">
+        <i id="submit" class="fa-solid fa-magnifying-glass" (click)="submit()"></i>
+        <i id="clear" class="fa-solid fa-square-xmark" (click)="clear()"></i>
+        <!-- <input type="button" id="BackButton" (click)="submit()" value="Submit"> -->
         <input type="button" class="hint" id="BackButton" (click)="hint()" value="Hint">
-        <input type="button" class="check" id="BackButton" (click)="check()" value="Check my Search">
-        <input type="button" class="clear" id="BackButton" (click)="clear()" value="Clear Input">
+        <!-- <input type="button" class="check" id="BackButton" (click)="check()" value="Check my Search"> -->
+        <!-- <input type="button" class="clear" id="BackButton" (click)="clear()" value="Clear Input"> -->
         <!--Spell Checker Overlay-->
         <div id="underneath-div" class="underneath-div">
           <app-query-word
