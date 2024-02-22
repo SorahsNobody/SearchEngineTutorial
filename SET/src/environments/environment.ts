@@ -13,6 +13,10 @@ export const environment = {
   tutorial: true,
 };
 
+export const tutorialParts = {
+  currPart: 0,
+}
+
 export const chosenCat = {
   key: 'default'
 };

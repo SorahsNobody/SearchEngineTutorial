@@ -27,7 +27,7 @@ export class StartComponent implements OnInit{
       sessionStorage.setItem("playerName", pName);
       //player.name=pName;
       playerName.key = pName;
-      this.router.navigateByUrl("/instructions");
+      this.router.navigateByUrl("/queryCraft");
     }
   }
 }

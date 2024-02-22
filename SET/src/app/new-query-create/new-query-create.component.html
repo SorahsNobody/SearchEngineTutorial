@@ -1,12 +1,8 @@
 <div id="chooseCat">
-  <!-- <img id="avatar" [src]="image" alt="Question Mark"> -->
-  <app-player-avatar [parent]="'play'"></app-player-avatar>
+  <app-player-avatar id="frogbert" [parent]="'play'"></app-player-avatar>
   <div class="playArea">
-  <div class="speech">Can you help me find...</div>
-  <div id="questionDiv">
-    <p id="que">placeholder</p>
-  </div>
-    <!-- <p id="score"></p> -->
+    <div class="speech">Can you help me find...</div>
+    <div id="questionDiv"><p id="que">placeholder</p></div>
     <div id="queryBox">
         <input
         id="input"
@@ -21,10 +17,7 @@
         >
         <i id="submit" class="fa-solid fa-magnifying-glass" (click)="submit()"></i>
         <i id="clear" class="fa-solid fa-square-xmark" (click)="clear()"></i>
-        <!-- <input type="button" id="BackButton" (click)="submit()" value="Submit"> -->
         <input type="button" class="hint" id="BackButton" (click)="hint()" value="Hint">
-        <!-- <input type="button" class="check" id="BackButton" (click)="check()" value="Check my Search"> -->
-        <!-- <input type="button" class="clear" id="BackButton" (click)="clear()" value="Clear Input"> -->
         <!--Spell Checker Overlay-->
         <div id="underneath-div" class="underneath-div">
           <app-query-word
@@ -37,9 +30,7 @@
           ></app-query-word>
         </div>
     </div>
-    <div id="feedback">
-      <p id="feedbackText"></p>
-    </div>
-    <button id="BackButton" (click)="back()">Back to Menu</button>
+    <div id="feedback"><p id="feedbackText"></p></div>
+    <button class="back" id="BackButton" (click)="back()">Back to Menu</button>
   </div>
 </div>

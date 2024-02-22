@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import {score, avatar, unlocks, player} from 'src/environments/environment';
+import {score, avatar, unlocks, player, tutorialParts} from 'src/environments/environment';
 
 @Component({
   selector: 'app-customize',
@@ -26,6 +26,11 @@ export class CustomizeComponent {
 
   ngOnInit(): void {
     document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
+    if(tutorialParts.currPart>=9){
+      tutorialParts.currPart=-1;
+      var audio = new Audio("assets/audio/10.m4a");
+      audio.play();
+    }
     this.hatIndex=avatar.hatIndex;
     this.noseIndex=avatar.noseIndex;
     this.glassesIndex=avatar.glassesIndex;
