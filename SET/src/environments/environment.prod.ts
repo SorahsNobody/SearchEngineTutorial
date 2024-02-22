@@ -5,12 +5,17 @@
 import { SearchResult } from "src/models/search-result.model";
 
 export const environment = {
-  production: true,
+  production: false,
   difficulty: 0,
   showHints: true,
   spellCheck: true,
-  expansions: true
+  expansions: true,
+  tutorial: true,
 };
+
+export const tutorialParts = {
+  currPart: 0,
+}
 
 export const chosenCat = {
   key: 'default'
