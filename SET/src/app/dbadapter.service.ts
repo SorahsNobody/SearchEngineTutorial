@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const httpOptions = {
+const httpOptions:any = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json'
   })
@@ -17,5 +17,10 @@ export class DbadapterService {
 
   getSessions(): Observable<any> {
     return this.http.get('https://cast.boisestate.edu:8080/searchTables/sessions/', httpOptions);
+  }
+  getUserFromName(name: string): Observable<any> {
+    httpOptions.params = {};
+    httpOptions.params.name = name;
+    return this.http.get('https://cast.boisestate.edu:8080/set/player/',httpOptions)
   }
 }

@@ -43,6 +43,24 @@ input {
   box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
 
 }
+
+#login {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-family: 'Comic Sans MS', cursive;
+  font-weight: bold;
+  color: #fff;
+  background-color: #f77f00; /* orange */
+  cursor: pointer;
+  box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
+
+}
+
+.buttons {
+  display: flex;
+}
 #instructions-button {
   padding: 10px 20px;
   border: none;
@@ -67,4 +85,8 @@ input {
   width: 100px;
   height: 100px;
   animation: blink 1s infinite;
+}
+
+#password{
+  visibility: hidden;
 }
