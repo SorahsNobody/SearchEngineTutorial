@@ -35,38 +35,38 @@ export class StartComponent implements OnInit{
     }
   }
 
-  loginClicked(): void {
-    var pwordInput = <HTMLInputElement>document.getElementById("password");
-    var pword = pwordInput.value;
-    var pName = (<HTMLInputElement>document.getElementById('name')).value
-    var check = false;
-    var userFound = false;
-    //IF the user wants to login
-    if(window.getComputedStyle(pwordInput).visibility==="hidden")
-      //THEN display the password field
-      document.getElementById("password")!.style.visibility="visible";
-    //ELSE the password field is already shown
-    else if(pName && window.getComputedStyle(pwordInput).visibility==="visible"){
-      //Retrieve user profile from name and check passwords against each other
-      this.dbmanage.getUserFromName(pName).subscribe(data =>{
-        //console.log(data);
-        for(let i =0; i<data.length; i++){
-          //console.log(data[i]);
-          if(data[i].name==pName){
-            userFound=true;
-            check = bcrypt.compareSync(data[i].pas, bcrypt.hashSync(pword));
-          }
-        }
-        //IF given password matches what's in the database
-        if(check){
-          //THEN load the user's data and continue to main menu
-        }
-        //IF the given user was not found in the database
-        if(!userFound){
-          //THEN alert the current user that we couldn't find the given profile
-          alert("Couldn't find user: " + pName);
-        }
-      })
-    }
-  }
+  // loginClicked(): void {
+  //   var pwordInput = <HTMLInputElement>document.getElementById("password");
+  //   var pword = pwordInput.value;
+  //   var pName = (<HTMLInputElement>document.getElementById('name')).value
+  //   var check = false;
+  //   var userFound = false;
+  //   //IF the user wants to login
+  //   if(window.getComputedStyle(pwordInput).visibility==="hidden")
+  //     //THEN display the password field
+  //     document.getElementById("password")!.style.visibility="visible";
+  //   //ELSE the password field is already shown
+  //   else if(pName && window.getComputedStyle(pwordInput).visibility==="visible"){
+  //     //Retrieve user profile from name and check passwords against each other
+  //     this.dbmanage.getUserFromName(pName).subscribe(data =>{
+  //       //console.log(data);
+  //       for(let i =0; i<data.length; i++){
+  //         //console.log(data[i]);
+  //         if(data[i].name==pName){
+  //           userFound=true;
+  //           check = bcrypt.compareSync(data[i].pas, bcrypt.hashSync(pword));
+  //         }
+  //       }
+  //       //IF given password matches what's in the database
+  //       if(check){
+  //         //THEN load the user's data and continue to main menu
+  //       }
+  //       //IF the given user was not found in the database
+  //       if(!userFound){
+  //         //THEN alert the current user that we couldn't find the given profile
+  //         alert("Couldn't find user: " + pName);
+  //       }
+  //     })
+  //   }
+  // }
 }
