@@ -21,6 +21,7 @@ export const chosenCat = {
   key: 'default'
 };
 
+//THIS NAME WILL BE USED ONLY FOR DISPLAY IN-GAME
 export const playerName = {
   key: 'No Name'
 };
@@ -44,7 +45,8 @@ export const score = {
 };
 
 export const player = {
-  name: playerName.key,
+  //THIS NAME WILL BE USED FOR DATABASE ACCESS
+  name: "",
   exp: 0,
   level: 1,
   numberOfQuestions: 0,

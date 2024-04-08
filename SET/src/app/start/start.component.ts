@@ -29,9 +29,13 @@ export class StartComponent implements OnInit{
     //IF the player has given some kind of name
     if(pName){
       sessionStorage.setItem("playerName", pName);
-      //player.name=pName;
       playerName.key = pName;
-      this.router.navigateByUrl("/queryCraft");
+      this.dbmanage.postPlayer().subscribe((data)=>{
+        console.log(data);
+        //Might need to update the player name depending on if there are multiple entries in the database with the same name
+        player.name=data['name']
+        this.router.navigateByUrl("/queryCraft");
+      });
     }
   }
 
