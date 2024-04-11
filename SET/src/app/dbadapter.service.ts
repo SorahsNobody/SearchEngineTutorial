@@ -27,9 +27,17 @@ export class DbadapterService {
     httpOptions.params.name = name;
     return this.http.get('https://cast.boisestate.edu:8080/set/player/',httpOptions)
   }
+  //Will only be called once to instatiate player in database
   postPlayer(): Observable<any> {
     httpOptions.params.name=playerName.key;
-    httpOptions.params.points=player.totalPoints;
     return this.http.post('https://cast.boisestate.edu:8080/set/player/',httpOptions);
+  }
+  //Will be called whenever a player's profile needs to be updated
+  putPlayer(): Observable<any>{
+    httpOptions.params.name=player.name;
+    httpOptions.params.points=player.totalPoints;
+    httpOptions.params.qsDone=player.numberOfQuestions;
+    httpOptions.params.level=player.level;
+    return this.http.put("https://cast.boisestate.edu:8080/set/player/",httpOptions);
   }
 }

@@ -4,6 +4,7 @@ import { SearchResultsService } from '../search-results.service';
 import { misspelledWords, stopWordsUsed, player, Hints } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { DbadapterService } from '../dbadapter.service';
 
 const regex = /[  .,\/#!?$%\^&\*;:{}=\-_`~()]/;
 
@@ -22,7 +23,7 @@ export class NewQueryCreateComponent implements OnInit {
   @Input() word: string="";
   @Input() position: number=0;
 
-  constructor(private srs: SearchResultsService, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(private srs: SearchResultsService, private router: Router, private snackBar: MatSnackBar, private dbManage: DbadapterService) { }
   image: any = avatar.key;
   splitWords: Array<string> = [];
   dictionary: any;
@@ -528,10 +529,13 @@ export class NewQueryCreateComponent implements OnInit {
       sessionStorage.setItem("lvl", player.level.toString());
       //Clear the screen and load another question if there are any left
       this.clear();
-      if(this.qLeft())
-        this.initQuestion();
-      else
-        this.router.navigateByUrl('/gameMenu');
+      this.dbManage.putPlayer().subscribe((data)=>{
+        console.log(data);
+        if(this.qLeft())
+          this.initQuestion();
+        else
+          this.router.navigateByUrl('/gameMenu');
+      })
     }
     //TODO: Provide feedback, suggestions, synonyms
   }
