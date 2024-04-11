@@ -3,12 +3,12 @@
     <button class="resetBtn" (click)="reset()" >Reset</button>
   </div>
   <div id="chooseCat">
-    <app-player-avatar [parent]="'menu'"></app-player-avatar>
+    <app-player-avatar class="avatar" [parent]="'menu'"></app-player-avatar>
   </div>
   <div id="categories">
-    <button (click)="playClick()">Play</button>
-    <button (click)="statsClick()">Player Stats</button>
-    <button (click)="storeClick()">Store</button>
+    <button class="play-button" (click)="playClick()">Play</button>
+    <button class="stats-button" (click)="statsClick()">Player Stats</button>
+    <button class="store-button" (click)="storeClick()">Store</button>
   </div>
   <!--
   <footer>2</footer>
