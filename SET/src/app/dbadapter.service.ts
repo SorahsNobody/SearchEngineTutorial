@@ -40,4 +40,14 @@ export class DbadapterService {
     httpOptions.params.level=player.level;
     return this.http.put("https://cast.boisestate.edu:8080/set/player/",httpOptions);
   }
+  postEvent(etid:number, event:string, eventData:string): Observable<any>{
+    var playerName = "";
+    if(player.name.length==0)
+      playerName="nonameyet";
+    else
+      playerName=player.name;
+    //httpOptions.params.name=playerName;
+    var post = "{\"pid\":\""+playerName+"\",\"etid\":"+etid+",\"event\":\""+event+"\",\"data\":\""+eventData+"\"}"
+    return this.http.post("https://cast.boisestate.edu:8080/set/event/",post, httpOptions);
+  }
 }

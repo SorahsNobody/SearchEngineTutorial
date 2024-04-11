@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { avatar, player, playerName } from 'src/environments/environment';
+import { DbadapterService } from './dbadapter.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,46 @@ import { avatar, player, playerName } from 'src/environments/environment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private router: Router) { }
+    lastSelected:String="";
+    //For General Page Clicks
+    @HostListener('document:click', ['$event'])
+    documentClick(event: MouseEvent){
+      console.log("Clicked!");
+      var ele = <HTMLElement>event.target;
+      //checking whether to log selection or general click
+      if(!ele.classList.contains("search") && window.getSelection()!=null){
+        var selected = window.getSelection();
+        var selRight = false;
+        if(selected!.focusNode!.compareDocumentPosition(<Node>selected!.anchorNode)==4)
+          selRight=false;
+        else if(selected!.focusNode!.compareDocumentPosition(<Node>selected!.anchorNode)==2)
+          selRight=true;
+        else if(selected!.focusNode!.compareDocumentPosition(<Node>selected!.anchorNode)==0)
+          selRight=selected!.anchorOffset<selected!.focusOffset;
+
+        if(selected!.toString().length>0&&selected!.toString()!=""){
+          this.lastSelected=selected!.toString();
+          var eData = "{\'selection\':\'"+this.lastSelected+"\' ; \'cursorPosition[X|Y]\':["+event.clientX+"|"+event.clientY+"] ; \'selRight\':"+selRight+"}";
+          this.dbManage.postEvent(5, 'selection',eData).subscribe(data=>{
+          });
+        }
+        else{
+          //Want to log what element was clicked and where
+          var eData = "{\'clicked\':\'"+ele.classList+"\';\'"+ele.nodeName+"\'; \'cursorPosition[X|Y]\':["+event.clientX+"|"+event.clientY+"]}";
+          this.dbManage.postEvent(1, 'click', eData).subscribe(data=>{
+          });
+        }
+      }
+      //might be redundant, but wanted to add it just in case
+      else{
+        //Want to log what element was clicked and where
+        var eData = "{\'clicked\':\'"+ele.classList+"\';\'"+ele.nodeName+"\'; \'cursorPosition[X|Y]\':["+event.clientX+"|"+event.clientY+"]}";
+        this.dbManage.postEvent(1, 'click', eData).subscribe(data=>{
+        });
+      }
+    }
+
+  constructor(private router: Router, private dbManage: DbadapterService) { }
   ngOnInit(): void {
     console.log(sessionStorage.getItem("playerName"));
     if(sessionStorage.getItem("playerName")===null)
