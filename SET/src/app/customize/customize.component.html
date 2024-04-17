@@ -17,21 +17,21 @@
             </tr>
             <tr>
               <td>500 Points</td>
-              <td><button class="baseball-hat" id="cutom-button1"><img class="img" src="/assets/customize/hat1.png" alt="Question Mark" (click)="onBuyh1()"></button></td>
-              <td><button class="3d-glasses" id="cutom-button1"><img class="img" src="/assets/customize/sunglasses2.png" alt="Question Mark" (click)="onBuys1()"></button></td>
-              <td><button class="pig-nose" id="cutom-button1"><img class="img" src="/assets/customize/nose2.png" alt="Question Mark" (click)="onBuyn1()"></button></td>
+              <td><button class="baseball-hat" id="cutom-button1"><img class="img" src="/assets/customize/hat1.png" alt="Question Mark" (click)="generalBuy('h',0,500)"></button></td>
+              <td><button class="3d-glasses" id="cutom-button1"><img class="img" src="/assets/customize/sunglasses2.png" alt="Question Mark" (click)="generalBuy('g',1,500)"></button></td>
+              <td><button class="pig-nose" id="cutom-button1"><img class="img" src="/assets/customize/nose2.png" alt="Question Mark" (click)="generalBuy('n',1,500)"></button></td>
             </tr>
             <tr>
               <td>1000 Points</td>
-              <td><button class="sun-hat" id="cutom-button1"><img class="img" src="/assets/customize/hat3.png" alt="Question Mark" (click)="onBuyh2()"></button></td>
-              <td><button class="heart-glasses" id="cutom-button1"><img class="img" src="/assets/customize/sunglasses3.png" alt="Question Mark" (click)="onBuys2()"></button></td>
-              <td><button class="clown-nose" id="cutom-button1"><img class="img" src="/assets/customize/nose1.png" alt="Question Mark" (click)="onBuyn2()"></button></td>
+              <td><button class="sun-hat" id="cutom-button1"><img class="img" src="/assets/customize/hat3.png" alt="Question Mark" (click)="generalBuy('h',2,1000)"></button></td>
+              <td><button class="heart-glasses" id="cutom-button1"><img class="img" src="/assets/customize/sunglasses3.png" alt="Question Mark" (click)="generalBuy('g',2,1000)"></button></td>
+              <td><button class="clown-nose" id="cutom-button1"><img class="img" src="/assets/customize/nose1.png" alt="Question Mark" (click)="generalBuy('n',0,1000)"></button></td>
             </tr>
             <tr>
                 <td>1500 Points</td>
-                <td><button class="cowboy-hat" id="cutom-button1"><img class="img" src="/assets/customize/hat2.png" alt="Question Mark" (click)="onBuyh3()"></button></td>
-                <td><button class="pixel-glasses" id="cutom-button1"><img class="img" src="/assets/customize/sunglasses.png" alt="Question Mark" (click)="onBuys3()"></button></td>
-                <td><button class="nose-glasses-mustache-combo" id="cutom-button1"><img class="img" src="/assets/customize/nose3.png" alt="Question Mark" (click)="onBuyn3()"></button></td>
+                <td><button class="cowboy-hat" id="cutom-button1"><img class="img" src="/assets/customize/hat2.png" alt="Question Mark" (click)="generalBuy('h',1,1500)"></button></td>
+                <td><button class="pixel-glasses" id="cutom-button1"><img class="img" src="/assets/customize/sunglasses.png" alt="Question Mark" (click)="generalBuy('g',0,1500)"></button></td>
+                <td><button class="nose-glasses-mustache-combo" id="cutom-button1"><img class="img" src="/assets/customize/nose3.png" alt="Question Mark" (click)="generalBuy('n',2,1500)"></button></td>
               </tr>
           </table>
         <button class="goback-button" id="goback-button" type="Go Back" (click)="toCatSelect()">Back to Menu</button>

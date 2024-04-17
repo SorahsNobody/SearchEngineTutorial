@@ -1,6 +1,7 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import {score, avatar, unlocks, player, tutorialParts} from 'src/environments/environment';
+import { DbadapterService } from '../dbadapter.service';
 
 @Component({
   selector: 'app-customize',
@@ -8,7 +9,7 @@ import {score, avatar, unlocks, player, tutorialParts} from 'src/environments/en
   styleUrls: ['./customize.component.css']
 })
 export class CustomizeComponent {
-  constructor(private router: Router) { }
+  constructor(private router: Router, private dbmanage: DbadapterService) { }
   // @HostListener('document:keydown',['$event'])
   // handleKeyboardEvent(event: KeyboardEvent){
   //   console.log(event.key);
@@ -22,6 +23,10 @@ export class CustomizeComponent {
 
   async onEnter(){
     this.router.navigateByUrl("/searchResults");
+  }
+
+  logItemUnlock(item: string): void {
+    this.dbmanage.postEvent(6,"unlocked item", item);
   }
 
   ngOnInit(): void {
@@ -42,192 +47,79 @@ export class CustomizeComponent {
   noseIndex: number = -1;
   glassesIndex: number = -1;
 
-
-  onBuyh1() {
-    if (unlocks.key.includes("h1")) {
-      avatar.hatIndex=0;
-      this.hatIndex=0;
-      this.ngOnInit();
+  generalBuy(hng: string, index: number, price: number){
+    var unlockedString="";
+    var valid=false;
+    var bought=false;
+    switch (hng) {
+      //IF trying to unlock a hat item
+      case "h":
+        unlockedString="h"+index;
+        if(unlocks.key.includes(unlockedString)){
+          this.generalSwitch(hng, index);
+          valid=true;
+        }
+        else if(player.totalPoints>=price){
+          bought=true;
+          this.generalSwitch(hng, index);
+          player.totalPoints-=price;
+          unlocks.key=unlocks.key+unlockedString;
+          valid=true;
+        }
+        break;
+      //IF trying to unlock a nose item
+      case "n":
+        unlockedString="n"+index;
+        if(unlocks.key.includes(unlockedString)){
+          this.generalSwitch(hng, index);
+          valid=true;
+        }
+        else if(player.totalPoints>=price){
+          bought=true;
+          this.generalSwitch(hng, index);
+          player.totalPoints-=price;
+          unlocks.key=unlocks.key+unlockedString;
+          valid=true;
+        }
+        break;
+      //IF trying to unlock a glasses item
+      case "g":
+        unlockedString="g"+index;
+        if(unlocks.key.includes(unlockedString)){
+          this.generalSwitch(hng, index);
+          valid=true;
+        }
+        else if(player.totalPoints>=price){
+          bought=true;
+          this.generalSwitch(hng, index);
+          player.totalPoints-=price;
+          unlocks.key=unlocks.key+unlockedString;
+          valid=true;
+        }
+        break;
     }
-    else if(player.totalPoints >= 500) {
-      player.totalPoints -= 500
-      avatar.hatIndex=0;
-      this.hatIndex=0;
-      unlocks.key = unlocks.key + "h1"
+    if(valid)
       this.ngOnInit();
-    }
-  }
-  onBuyh2() {
-    if (unlocks.key.includes("h2")) {
-      avatar.hatIndex=2;
-      this.hatIndex=2;
-      this.ngOnInit();
-    }
-    else if(player.totalPoints >= 1000) {
-      player.totalPoints -= 1000
-      avatar.hatIndex=2;
-      this.hatIndex=2;
-      unlocks.key = unlocks.key + "h2"
-      this.ngOnInit();
-    }
-  }
-  onBuyh3() {
-    if (unlocks.key.includes("h3")) {
-      avatar.hatIndex=1;
-      this.hatIndex=1;
-      this.ngOnInit();
-    }
-    else if(player.totalPoints >= 1500) {
-      player.totalPoints -= 1500
-      avatar.hatIndex=1;
-      this.hatIndex=1;
-      unlocks.key = unlocks.key + "h3"
-      this.ngOnInit();
-    }
-
-  }
-
-  onBuys1() {
-    if (unlocks.key.includes("s1")) {
-      avatar.glassesIndex=1;
-      this.glassesIndex=1;
-      this.ngOnInit();
-    }
-    else if(player.totalPoints >= 500) {
-      player.totalPoints -= 500
-      avatar.glassesIndex=1;
-      this.glassesIndex=1;
-      unlocks.key = unlocks.key + "s1"
-      this.ngOnInit();
-    }
-  }
-  onBuys2() {
-    if (unlocks.key.includes("s2")) {
-      avatar.glassesIndex=2;
-      this.glassesIndex=2;
-      this.ngOnInit();
-    }
-    else if(player.totalPoints >= 1000) {
-      player.totalPoints -= 1000
-      unlocks.key = unlocks.key + "s2"
-      // var str = avatar.key;
-      // var split = str.split("-", );
-      // split[2] = "s2";
-      // str = split.join("-");
-      // avatar.key = str;
-      // this.image = avatar.key
-      avatar.glassesIndex=2;
-      this.glassesIndex=2;
-      this.ngOnInit();
-    }
-
-  }
-  onBuys3() {
-    if (unlocks.key.includes("s3")) {
-      // var str = avatar.key;
-      // var split = str.split("-", );
-      // split[2] = "s3";
-      // str = split.join("-");
-      // avatar.key = str;
-      // this.image = avatar.key
-      avatar.glassesIndex=0;
-      this.glassesIndex=0;
-      this.ngOnInit();
-    }
-    else if(player.totalPoints >= 1500) {
-      player.totalPoints -= 1500
-      unlocks.key = unlocks.key + "s3"
-      // var str = avatar.key;
-      // var split = str.split("-", );
-      // split[2] = "s3";
-      // str = split.join("-");
-      // avatar.key = str;
-      // this.image = avatar.key
-      avatar.glassesIndex=0;
-      this.glassesIndex=0;
-      this.ngOnInit();
-    }
+    if(bought)
+      this.logItemUnlock(unlockedString);
   }
 
-  onBuyn1() {
-    if (unlocks.key.includes("n1")) {
-      // var str = avatar.key;
-      // var split = str.split("-", );
-      // split[3] = "n1";
-      // str = split.join("-");
-      // avatar.key = str;
-      // this.image = avatar.key
-      avatar.noseIndex=1;
-      this.noseIndex=1;
-      this.ngOnInit();
-    }
-    else if(player.totalPoints >= 500) {
-      player.totalPoints -= 500
-      unlocks.key = unlocks.key + "n1"
-      // var str = avatar.key;
-      // var split = str.split("-", );
-      // split[3] = "n1";
-      // str = split.join("-");
-      // avatar.key = str;
-      avatar.noseIndex=1;
-      this.noseIndex=1;
-      // this.image = avatar.key
-      this.ngOnInit();
+  generalSwitch(hng: string, index: number){
+    switch (hng) {
+      case "h":
+        avatar.hatIndex=index;
+        this.hatIndex=index;
+        break;
+      case "n":
+        avatar.noseIndex=index;
+        this.noseIndex=index;
+        break;
+      case "g":
+        avatar.glassesIndex=index;
+        this.glassesIndex=index;
+        break;
     }
   }
-  onBuyn2() {
-    if (unlocks.key.includes("n2")) {
-      // var str = avatar.key;
-      // var split = str.split("-", );
-      // split[3] = "n2";
-      // str = split.join("-");
-      // avatar.key = str;
-      // this.image = avatar.key
-      avatar.noseIndex=0;
-      this.noseIndex=0;
-      this.ngOnInit();
-    }
-    else if(player.totalPoints >= 1000) {
-      player.totalPoints -= 1000
-      unlocks.key = unlocks.key + "n2"
-      // var str = avatar.key;
-      // var split = str.split("-", );
-      // split[3] = "n2";
-      // str = split.join("-");
-      // avatar.key = str;
-      // this.image = avatar.key
-      avatar.noseIndex=0;
-      this.noseIndex=0;
-      this.ngOnInit();
-    }
-  }
-  onBuyn3() {
-    if (unlocks.key.includes("n3")) {
-      // var str = avatar.key;
-      // var split = str.split("-", );
-      // split[3] = "n3";
-      // str = split.join("-");
-      // avatar.key = str;
-      // this.image = avatar.key
-      avatar.noseIndex=2;
-      this.noseIndex=2;
-      this.ngOnInit();
-    }
-    else if(player.totalPoints >= 1500) {
-      player.totalPoints -= 1500
-      unlocks.key = unlocks.key + "n3"
-      // var str = avatar.key;
-      // var split = str.split("-", );
-      // split[3] = "n3";
-      // str = split.join("-");
-      // avatar.key = str;
-      // this.image = avatar.key
-      avatar.noseIndex=2;
-      this.noseIndex=2;
-      this.ngOnInit();
-    }
-  }
-
   pointsStorage(){
     sessionStorage.setItem("points", player.totalPoints.toString());
   }
