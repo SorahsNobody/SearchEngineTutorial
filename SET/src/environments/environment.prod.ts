@@ -21,6 +21,7 @@ export const chosenCat = {
   key: 'default'
 };
 
+//THIS NAME WILL BE USED ONLY FOR DISPLAY IN-GAME
 export const playerName = {
   key: 'No Name'
 };
@@ -44,7 +45,8 @@ export const score = {
 };
 
 export const player = {
-  name: playerName.key,
+  //THIS NAME WILL BE USED FOR DATABASE ACCESS
+  name: "",
   exp: 0,
   level: 1,
   numberOfQuestions: 0,
@@ -54,9 +56,14 @@ export const player = {
 
 export const avatar = {
   key: "/assets/customize/avatar-x-x-x-.png",
-  hats: ["/assets/customize/hat1.png","/assets/customize/hat2.png","/assets/customize/hat3.png"],
-  noses: ["/assets/customize/nose1.png","/assets/customize/nose2.png", "/assets/customize/nose3.png"],
-  glasses: ["/assets/customize/sunglasses.png", "/assets/customize/sunglasses2.png", "/assets/customize/sunglasses3.png"],
+  hats: ["/assets/customize/hat1.png","/assets/customize/hat2.png","/assets/customize/hat3.png",
+  "/assets/customize/hat4.png", "/assets/customize/hat5.png", "/assets/customize/hat6.png", "", "/assets/customize/crown.png"],
+  noses: ["/assets/customize/nose1.png","/assets/customize/nose2.png", "/assets/customize/nose3.png",
+  "/assets/customize/nose4.png", "/assets/customize/nose5.png", "/assets/customize/nose6.png",""
+  ],
+  glasses: ["/assets/customize/sunglasses.png", "/assets/customize/sunglasses2.png",
+  "/assets/customize/sunglasses3.png", "/assets/customize/sunglasses4.png",  "/assets/customize/sunglasses5.png",
+  "/assets/customize/sunglasses6.png",""],
   hatIndex:-1,
   noseIndex:-1,
   glassesIndex:-1,
@@ -80,7 +87,11 @@ export const AniQues: string[] =[
   'Why are flamingos pink?', //shrimp, and algea they eat
   'What is the longest living animal?', //imortal jellyfish
   'What is the loudest land animal?', //howler monkey
-  'What animals hold each others hands?' //otters
+  'What animals hold each others hands?', //otters
+  'What do frogs eat?',
+  'How long can a frogs tongue be?',
+  'What is the most common color of frog?',
+  'How far can frogs jump?'
 ];
 
 export const AniKeys: string[][] =[
@@ -240,7 +251,7 @@ export const SupQA = {
   key: [0,0,0,0,0]
 }
 export const AniQA = {
-  key: [0,0,0,0,0]
+  key: [0,0,0,0,0,0,0,0,0]
 }
 
 export const DONE = {
