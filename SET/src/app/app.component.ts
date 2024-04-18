@@ -48,6 +48,12 @@ export class AppComponent implements OnInit {
       }
     }
 
+    @HostListener('document:keydown',['$event'])
+    handleKeyboardEvent(event: KeyboardEvent){
+      this.dbManage.postEvent(8,"typing",event.key).subscribe((data)=>{
+      });
+    }
+
   constructor(private router: Router, private dbManage: DbadapterService) { }
   ngOnInit(): void {
     console.log(sessionStorage.getItem("playerName"));

@@ -36,7 +36,7 @@ h1, h2,p{
 
   .instructions {
     width: 70%;
-    height: 90%;
+    height: 95%;
     margin: auto;
     padding: 20px;
     text-align: center;
@@ -105,3 +105,23 @@ h1, h2,p{
     width:auto;
     height:1%;
   }
+
+  .overflow {
+    overflow-x: scroll;
+    width: 55%;
+  }
+
+#to-buttons{
+  position:absolute;
+  display:block;
+  right: 10%;
+  top: 30%;
+}
+
+#takeoff{
+  margin-right: 10%;
+  margin-left: 10%;
+  margin-bottom: 47%;
+  border: solid;
+  position: relative;
+}

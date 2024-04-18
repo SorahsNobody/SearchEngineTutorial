@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import {score, avatar, unlocks, player, tutorialParts} from 'src/environments/environment';
+import {AniQA, MusQA, SupQA, HisQA, avatar, unlocks, player, tutorialParts} from 'src/environments/environment';
 import { DbadapterService } from '../dbadapter.service';
 
 @Component({
@@ -55,6 +55,13 @@ export class CustomizeComponent {
       //IF trying to unlock a hat item
       case "h":
         unlockedString="h"+index;
+        //trying to unlock the crown
+        if(index==7){
+          //find will return true if there is still a question available for that category
+          if(AniQA.key.find(ele => ele ==0) ==0 || MusQA.key.find(ele=>ele==0)==0 || SupQA.key.find(ele=>ele==0)==0 || HisQA.key.find(ele=>ele==0)==0){
+            break;
+          }
+        }
         if(unlocks.key.includes(unlockedString)){
           this.generalSwitch(hng, index);
           valid=true;
@@ -125,5 +132,23 @@ export class CustomizeComponent {
   }
   toCatSelect(): void {
     this.router.navigateByUrl("/gameMenu");
+  }
+  /** For removing the current customization */
+  takeOffGeneral(hng: string){
+    switch (hng) {
+      case "h":
+        avatar.hatIndex=6;
+        this.hatIndex=6;
+        break;
+      case "n":
+        avatar.noseIndex=6;
+        this.noseIndex=6;
+        break;
+      case "g":
+        avatar.glassesIndex=6;
+        this.glassesIndex=6;
+        break;
+    }
+    this.ngOnInit();
   }
 }

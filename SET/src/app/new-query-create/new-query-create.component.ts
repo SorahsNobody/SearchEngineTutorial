@@ -35,7 +35,7 @@ export class NewQueryCreateComponent implements OnInit {
 
   @HostListener('document:keydown',['$event'])
   handleKeyboardEvent(event: KeyboardEvent){
-    console.log(event.key);
+    //console.log(event.key);
     if(event.key=='Enter')
       this.submit();
   }
@@ -452,6 +452,8 @@ export class NewQueryCreateComponent implements OnInit {
    * @returns
    */
   submit(){
+    this.dbManage.postEvent(7,"query submitted", this.inputText).subscribe((data)=>{
+    });
     this.tempScore=500;
     (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="";
     if(this.inputText.length<=0){
