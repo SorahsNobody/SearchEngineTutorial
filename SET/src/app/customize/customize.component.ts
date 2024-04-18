@@ -58,7 +58,7 @@ export class CustomizeComponent {
         //trying to unlock the crown
         if(index==7){
           //find will return true if there is still a question available for that category
-          if(AniQA.key.find(ele => ele ==0) ==0 || MusQA.key.find(ele=>ele==0)==0 || SupQA.key.find(ele=>ele==0)==0 || HisQA.key.find(ele=>ele==0)==0){
+          if(player.numDone<5){
             break;
           }
         }
