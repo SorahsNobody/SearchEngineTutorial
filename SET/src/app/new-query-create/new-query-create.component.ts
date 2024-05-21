@@ -1,10 +1,11 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { AniKeys, AniQA, AniQues, DONE, HisKeys, HisQA, HisQues, MusKeys, MusQA, MusQues, SciKeys, SciQA, SciQues, SpoKeys, SpoQA, SpoQues, SupKeys, SupQA, SupQues, avatar, currQuestion, environment, questionNumber, tutorialParts } from 'src/environments/environment';
+import { AniAnswers, AniKeys, AniQA, AniQues, DONE, HisAnswers, HisKeys, HisQA, HisQues, MusAnswers, MusKeys, MusQA, MusQues, SciAnswers, SciKeys, SciQA, SciQues, SpoAnswers, SpoKeys, SpoQA, SpoQues, SupAnswers, SupKeys, SupQA, SupQues, avatar, currQuestion, environment, questionNumber, tutorialParts } from 'src/environments/environment';
 import { SearchResultsService } from '../search-results.service';
 import { misspelledWords, stopWordsUsed, player, Hints } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DbadapterService } from '../dbadapter.service';
+import { NltkServiceService } from '../nltk-service.service';
 
 const regex = /[  .,\/#!?$%\^&\*;:{}=\-_`~()]/;
 
@@ -23,7 +24,7 @@ export class NewQueryCreateComponent implements OnInit {
   @Input() word: string="";
   @Input() position: number=0;
 
-  constructor(private srs: SearchResultsService, private router: Router, private snackBar: MatSnackBar, private dbManage: DbadapterService) { }
+  constructor(private srs: SearchResultsService, private router: Router, private snackBar: MatSnackBar, private dbManage: DbadapterService, private nltk: NltkServiceService) { }
   image: any = avatar.key;
   splitWords: Array<string> = [];
   dictionary: any;
@@ -32,6 +33,8 @@ export class NewQueryCreateComponent implements OnInit {
   tempScore: number = 0;
   elements : HTMLElement[] = [];
   intervalIDS: ReturnType<typeof setInterval>[] = [];
+  currQIndex: number =0;
+  currQCat: string ="";
 
   @HostListener('document:keydown',['$event'])
   handleKeyboardEvent(event: KeyboardEvent){
@@ -355,6 +358,8 @@ export class NewQueryCreateComponent implements OnInit {
       }
       if(found){
         this.setQuestion(questionNumber.key, cat);
+        this.currQIndex=questionNumber.key;
+        this.currQCat=cat;
       }
       else
         this.initQuestion();
@@ -454,6 +459,10 @@ export class NewQueryCreateComponent implements OnInit {
   submit(){
     this.dbManage.postEvent(7,"query submitted", this.inputText).subscribe((data)=>{
     });
+    if(this.nonsenseCheck()){
+      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Your query doesn't seem to be related to the given question, please try again.";
+      return;
+    }
     this.tempScore=500;
     (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="";
     if(this.inputText.length<=0){
@@ -529,18 +538,94 @@ export class NewQueryCreateComponent implements OnInit {
       }
       sessionStorage.setItem("exp", player.exp.toString());
       sessionStorage.setItem("lvl", player.level.toString());
-      //Clear the screen and load another question if there are any left
+      //Clear the screen
       this.clear();
+      //update player data then load another question if there are any left
       this.dbManage.putPlayer().subscribe((data)=>{
         console.log(data);
         if(this.qLeft())
           this.initQuestion();
         else
+          //ELSE there are no questions left so send player back to the game menu
           this.router.navigateByUrl('/gameMenu');
       })
     }
     //TODO: Provide feedback, suggestions, synonyms
   }
+
+  /**
+   * Will be called when the player submits a query.
+   * Meant to check if there is an acceptable amount of similarity to the answer of the question
+   * 
+   * @returns true if the submitted query is nonsense, false otherwise
+   */
+  nonsenseCheck(): boolean{
+    var threshold = .17;
+    switch (this.currQCat) {
+      //Strategy: take the average similarity of the submitted query and as long as it's > .25 similarity then it's good
+      case "Animal":
+        this.nltk.getPSimilarityBEST(this.inputText,AniKeys[this.currQIndex]).subscribe((data)=>{
+          //console.log("average similarity between query and answers: "+data.score);
+          if(Number(data.score)<threshold)
+            return true;
+          else
+            return false;
+        });
+        break;
+      case "Superhero":
+        this.nltk.getPSimilarityBEST(this.inputText,SupKeys[this.currQIndex]).subscribe((data)=>{
+          //console.log("average similarity between query and answers: "+data.score)
+          if(Number(data.score)<threshold)
+            return true;
+          else
+            return false;
+        });
+        break;
+      case "Music":
+        this.nltk.getPSimilarityBEST(this.inputText,MusKeys[this.currQIndex]).subscribe((data)=>{
+          //console.log("average similarity between query and answers: "+data.score)
+          if(Number(data.score)<threshold)
+            return true;
+          else
+            return false;
+        });
+        break;
+      case "History":
+        this.nltk.getPSimilarityBEST(this.inputText,HisKeys[this.currQIndex]).subscribe((data)=>{
+          //console.log("average similarity between query and answers: "+data.score)
+          if(Number(data.score)<threshold)
+            return true;
+          else
+            return false;
+        });
+        break;
+      case "Sports":
+        this.nltk.getPSimilarityBEST(this.inputText,SpoKeys[this.currQIndex]).subscribe((data)=>{
+          //console.log("average similarity between query and answers: "+data.score)
+          if(Number(data.score)<threshold)
+            return true;
+          else
+            return false;
+        });
+        break;
+      //default to science
+      default:
+        this.nltk.getPSimilarityBEST(this.inputText,SciKeys[this.currQIndex]).subscribe((data)=>{
+          //console.log("average similarity between query and answers: "+data.score)
+          if(Number(data.score)<threshold)
+            return true;
+          else
+            return false;
+        });
+        break;
+    }
+    return false;
+  }
+
+  /**
+   * Checks if there are any questions left
+   * @returns
+   */
   qLeft(): boolean{
     var qArr = [];
     qArr.push(MusQA);

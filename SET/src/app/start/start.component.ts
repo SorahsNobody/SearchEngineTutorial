@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { playerName, avatar, AniQA, SpoQA, SciQA, SupQA, HisQA, MusQA, player} from 'src/environments/environment';
 import { DbadapterService } from '../dbadapter.service';
-import * as bcrypt from 'bcryptjs';
+import { NltkServiceService } from '../nltk-service.service';
+
 @Component({
   selector: 'app-start',
   templateUrl: './start.component.html',

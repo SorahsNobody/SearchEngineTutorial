@@ -20,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { QueryWordComponent } from './query-word/query-word.component';
 import { PlayerStatsComponent } from './player-stats/player-stats.component';
 import { PlayerAvatarComponent } from './player-avatar/player-avatar.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { PlayerAvatarComponent } from './player-avatar/player-avatar.component';
     SearchQuerySuggestionComponent,
     QueryWordComponent,
     PlayerStatsComponent,
-    PlayerAvatarComponent
+    PlayerAvatarComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

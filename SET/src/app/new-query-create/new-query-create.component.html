@@ -4,20 +4,21 @@
     <div class="speech">Can you help me find...</div>
     <div class="question" id="questionDiv"><p id="que">placeholder</p></div>
     <div id="queryBox">
-        <input
-        class="query-input"
-        id="input"
-        type="text"
-        placeholder="Enter Search Query Here"
-        autocapitalize="off"
-        autocomplete="on"
-        autocorrect="off"
-        autofocus="true"
-        #searchInput
-        (input)="onInput()"
-        >
-        <i class="submit-button" id="submit" class="fa-solid fa-magnifying-glass" (click)="submit()"></i>
-        <i class="clear-button" id="clear" class="fa-solid fa-square-xmark" (click)="clear()"></i>
+        <div id="input-clear-submit">
+          <input
+          class="query-input"
+          id="input"
+          type="text"
+          placeholder="Enter Search Query Here"
+          autocapitalize="off"
+          autocomplete="on"
+          autocorrect="off"
+          autofocus="true"
+          #searchInput
+          (input)="onInput()"
+          >
+          <i class="submit-button" id="submit" class="fa-solid fa-magnifying-glass" (click)="submit()"></i>
+          <i class="clear-button" id="clear" class="fa-solid fa-square-xmark" (click)="clear()"></i>
         <input type="button" class="hint" id="BackButton" (click)="hint()" value="Hint">
         <!--Spell Checker Overlay-->
         <div id="underneath-div" class="underneath-div">
@@ -30,8 +31,9 @@
           [currentSize]="splitWords.length"
           ></app-query-word>
         </div>
+        </div>
     </div>
     <div class="feedback-box" id="feedback"><p id="feedbackText"></p></div>
-    <button class="back" id="BackButton" (click)="back()">Back to Menu</button>
+    <!--<button class="back" id="BackButton" (click)="back()">Back to Menu</button>-->
   </div>
 </div>

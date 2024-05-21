@@ -77,8 +77,8 @@ export const unlocks = {
 export const AniAnswers: string [][] = [
   ['hummingbird'],
   ['shrimp', 'algea'],
-  ['imortal jellyfish'],
-  ['howler monkey'],
+  ['imortal','jellyfish'],
+  ['howler','monkey'],
   ['otters']
 ];
 
@@ -106,8 +106,8 @@ export const SupAnswers: string[][] = [
   ['green'],
   ['vibranium'],
   ['peter', 'parker'],
-  ['charles xavier', 'professor x'],
-  ['lasso', 'lasso of truth']
+  ['charles','xavier', 'professor','x'],
+  ['lasso', 'lasso','of','truth']
 ];
 
 export const SupQues: string[] =[//Superhero Questions
@@ -131,7 +131,7 @@ export const SpoAnswers: string[][] =[
   ['5','6','five','six'],
   ['9','nine'],
   ['golf'],
-  ['women\'s gymnastics', 'gymnastics']
+  ['women\'s', 'gymnastics']
 ];
 
 export const SpoQues: string[] =[ // Sports Questions
@@ -152,9 +152,9 @@ export const SpoKeys: string[][]=[
 
 export const SciAnswers: string[][] = [
   ['au'],
-  ['212', '100' , 'two-hundred and twelve', 'one-hundred'],
+  ['212', '100' , 'two-hundred', 'twelve', 'one-hundred'],
   ['rocks', 'runoff', 'mineral'],
-  ['bill nye', 'bill'],
+  ['nye', 'bill'],
   ['8', 'eight', '9', 'nine']
 ];
 
@@ -192,12 +192,12 @@ export const HisKeys: string[][] = [
 ];
 
 export const HisAnswers: string[][] = [
-  ['george washington','washington'],
-  ['alexander graham bell','graham bell'],
-  ['j.k. rowling','rowling'],
+  ['george','washington'],
+  ['alexander','graham-bell'],
+  ['j.k.','rowling'],
   ['asia'],
-  ['neil armstrong','armstrong'],
-  ['augustus ceaser','augustus']
+  ['neil','armstrong'],
+  ['ceaser','augustus']
 ];
 
 export const MusQues: string[] = [
@@ -219,11 +219,11 @@ export const MusKeys: string[][] = [
 ];
 
 export const MusAnswers: string[][]=[
-  ['michael jackson','jackson'],
+  ['michael','jackson'],
   ['pinkfong'],
   ['piano','keyboard'],
-  ['RM','Rap Monster','Namjoon','Kin Nam-joon'],
-  ['Grammys','grammy','The Grammy Awards'],
+  ['RM','Rap', 'Monster','Namjoon','Kin'],
+  ['Grammys','grammy','Awards'],
   ['Gorillaz']
 ];
 

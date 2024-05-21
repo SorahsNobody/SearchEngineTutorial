@@ -83,33 +83,37 @@ h1 {
     box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
   }
 
-  #input{
-    display: block;
+  #input-clear-submit{
     margin: 2.5%;
     border: none;
     border-radius: 5px;
+    width:90%;
+    display: inline-block;
+  }
+
+  #input{
+    width: 100%;
+    display: block;
+    color: transparent;
     font-family: 'Comic Sans MS', cursive;
     font-size: 25px;
-    background-color: #e6f2f2; /* turquoise */
-    width:90%;
+    background-color: #e6f2f2; 
     outline: 0;
     z-index: 1;
-    color: transparent;
     caret-color: #212529;
     border: none;
   }
   #underneath-div{
-    margin: 2.5%;
     border: none;
     padding-top: 1%;
     padding-left: .5%;
     border-radius: 5px;
-    width: 90%;
+    width: 100%;
     height: 100%;
     text-align: left;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 20%;
+    /*left: 0;*/
     font-family: 'Comic Sans MS', cursive;
     font-size: 25px;
     z-index: 2;
@@ -195,8 +199,8 @@ h1 {
     color: #f77f00;
     transform: scale(3);
     position: absolute;
-    top:26%;
-    right:8%;
+    top:29%;
+    right:6%;
   }
   #clear:hover{
     opacity: .8;
@@ -207,6 +211,10 @@ h1 {
     color: #f77f00;
     transform: scale(2);
     position: absolute;
-    top:-10%;
-    right: 12%;
+    top:-14.5%;
+    right: 10%;
+  }
+
+  #submit:hover{
+    opacity: .8;
   }
