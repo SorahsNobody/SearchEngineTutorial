@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { playerName } from 'src/environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
+  @Input('pName') pName = playerName.key; //Declares that this component has a variable named pName that can be called in the html with playerName
 
   ngOnInit(): void {
   }
 
+
+  playClick(){
+    this.router.navigateByUrl('/queryCraft');
+  }
+
+  menuClick(){
+    this.router.navigateByUrl('/gameMenu');
+  }
+
+  storeClick(){
+    this.router.navigateByUrl('/customize');
+  }
 }

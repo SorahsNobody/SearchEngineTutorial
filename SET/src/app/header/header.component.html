@@ -1,1 +1,21 @@
-<div class="header" id="header"></div>
+<div class="header" id="header">
+    <div class="pname-text">
+        <div id="playerName">
+            <p>Hi {{pName}}!</p>
+        </div>
+    </div>
+    <div class="avatar-header">
+        <app-player-avatar></app-player-avatar>
+    </div>
+    <div class="buttons">
+        <!-- <div class="button-inner">
+            <button class="menu-button button" (click)="menuClick()">Menu</button>
+        </div> -->
+        <div class="button-inner">
+            <button class="play-button button" (click)="playClick()">Play</button>
+        </div>
+        <div class="button-inner">
+            <button class="store-button button" (click)="storeClick()">Store</button>
+        </div>
+    </div>
+</div>
