@@ -35,7 +35,7 @@ export class CustomizeComponent {
     document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
     if(tutorialParts.currPart>=9){
       tutorialParts.currPart=-1;
-      var audio = new Audio("assets/audio/10.m4a");
+      var audio = new Audio("assets/audio/Recording_13.m4a");
       audio.play();
     }
     this.hatIndex=avatar.hatIndex;
