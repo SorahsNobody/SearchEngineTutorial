@@ -111,3 +111,33 @@ input {
 #password{
   visibility: hidden;
 }
+
+        /* Creating a box with a text
+           and some stylings  */
+           .speech {
+            top: 15%;
+            height: 40%;
+            width: 30%;
+            background: #f77f00;
+            padding: 30px;
+            text-align: center;
+            font-size: 30px;
+            border-radius: 35px;
+            color: white;
+            /* margin-left:20%; */
+            position: relative;
+        }
+
+        /* Creates triangular tip on the
+           end, for our speech bubble
+           with some styling */
+  .speech:before {
+            content: "";
+            position: absolute;
+            border-left: 20px solid #f77f00;
+            border-right: 20px solid transparent;
+            border-top: 20px solid #f77f00;
+            border-bottom: 20px solid transparent;
+            right: -20px;
+            top: 50%;
+        }
