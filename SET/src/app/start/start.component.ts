@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { playerName, avatar, AniQA, SpoQA, SciQA, SupQA, HisQA, MusQA, player} from 'src/environments/environment';
+import { playerName, avatar, AniQA, SpoQA, SciQA, SupQA, HisQA, MusQA, player, environment} from 'src/environments/environment';
 import { DbadapterService } from '../dbadapter.service';
 import { NltkServiceService } from '../nltk-service.service';
 
@@ -27,16 +27,21 @@ export class StartComponent implements OnInit{
   }
   toCatSelect(): void {
     var pName = (<HTMLInputElement>document.getElementById('name')).value
+    console.log(pName);
     //IF the player has given some kind of name
     if(pName){
       sessionStorage.setItem("playerName", pName);
       playerName.key = pName;
-      this.dbmanage.postPlayer().subscribe((data)=>{
-        console.log(data);
-        //Might need to update the player name depending on if there are multiple entries in the database with the same name
-        player.name=data['name']
+      if(environment.dbAccess){
+        this.dbmanage.postPlayer().subscribe((data)=>{
+          console.log(data);
+          //Might need to update the player name depending on if there are multiple entries in the database with the same name
+          player.name=data['name']
+          this.router.navigateByUrl("/queryCraft");
+        });
+      }
+      else
         this.router.navigateByUrl("/queryCraft");
-      });
     }
   }
 

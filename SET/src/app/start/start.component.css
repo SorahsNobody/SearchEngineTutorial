@@ -10,6 +10,7 @@ h1 {
 .title {
   font-size: 60pt;
   margin-bottom: 2%;
+  margin-top: 2%;
 }
 
 .sub-title {
@@ -50,7 +51,7 @@ input {
   padding: 10px 20px;
   border: solid;
   border-radius: 5px;
-  font-size: 30px;
+  font-size: 60pt;
   font-family: 'Comic Sans MS', cursive;
   font-weight: bold;
   color: #fff;
@@ -99,7 +100,7 @@ input {
 .question-mark {
   display: flex;
   justify-content: center;
-  margin-top: 5px;
+  /* margin-top: 5px; */
 }
 
 .question-mark img {

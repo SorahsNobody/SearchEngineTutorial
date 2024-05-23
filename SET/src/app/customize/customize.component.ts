@@ -1,6 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
-import {AniQA, MusQA, SupQA, HisQA, avatar, unlocks, player, tutorialParts} from 'src/environments/environment';
+import {AniQA, MusQA, SupQA, HisQA, avatar, unlocks, player, tutorialParts, environment} from 'src/environments/environment';
 import { DbadapterService } from '../dbadapter.service';
 
 @Component({
@@ -26,7 +26,9 @@ export class CustomizeComponent {
   }
 
   logItemUnlock(item: string): void {
-    this.dbmanage.postEvent(6,"unlocked item", item);
+    if(environment.dbAccess)
+      this.dbmanage.postEvent(6,"unlocked item", item).subscribe((data)=>{
+    });
   }
 
   ngOnInit(): void {

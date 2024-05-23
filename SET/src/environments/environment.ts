@@ -11,6 +11,7 @@ export const environment = {
   spellCheck: true,
   expansions: true,
   tutorial: true,
+  dbAccess: false,
 };
 
 export const tutorialParts = {

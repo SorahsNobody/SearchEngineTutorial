@@ -72,7 +72,7 @@ export class NewQueryCreateComponent implements OnInit {
       var feedback = document.getElementById("feedback");
       var search = document.getElementById("submit");
       var clear = document.getElementById("clear");
-      var back = document.getElementsByClassName("back")[0];
+      //var back = document.getElementsByClassName("back")[0];
       var input = document.getElementById("input");
 
       this.elements.push(<HTMLElement>frogbert); //0
@@ -83,8 +83,8 @@ export class NewQueryCreateComponent implements OnInit {
       this.elements.push(<HTMLElement>feedback); //5
       this.elements.push(<HTMLElement>search); //6
       this.elements.push(<HTMLElement>clear); //7
-      this.elements.push(<HTMLElement>back); //8
-      this.elements.push(<HTMLElement>input); //9
+      //this.elements.push(<HTMLElement>back); //8
+      this.elements.push(<HTMLElement>input); //8
       //Set up example query create
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Using HINTS are free!";
       (<HTMLButtonElement>document.getElementsByClassName('hint').item(0)).style.visibility="visible";
@@ -181,6 +181,8 @@ export class NewQueryCreateComponent implements OnInit {
    * Method to help with the flow of the tutorial
    */
   async continueTutorial(){
+    console.log("Current part: " + tutorialParts.currPart);
+    console.log(this.elements)
     switch (tutorialParts.currPart) {
       //Just starting the tutorial - "Frogbert needs help"
       case 0:
@@ -194,7 +196,7 @@ export class NewQueryCreateComponent implements OnInit {
       case 1:
         this.resetOpacity();
         for(var i=0;i<this.elements.length;i++){
-          if(i!=2 && i!=3 && i!=6 && i!=7 && i!=9)
+          if(i!=2 && i!=3 && i!=6 && i!=7 && i!=8)
             this.elements[i].style.opacity=".2";
         }
         await this.playAudio('assets/audio/2.m4a');
@@ -203,10 +205,10 @@ export class NewQueryCreateComponent implements OnInit {
       case 2:
         this.resetOpacity();
         for(var i=0;i<this.elements.length;i++){
-          if(i!=2 && i!=3 && i!=6 && i!=7 && i!=9)
+          if(i!=2 && i!=3 && i!=6 && i!=7 && i!=8)
             this.elements[i].style.opacity=".2";
         }
-        this.borderFlash(this.elements[9]);
+        this.borderFlash(this.elements[8]);
         await this.playAudio('assets/audio/3.m4a');
         break;
       //"Circled word is misspelled"
@@ -232,7 +234,7 @@ export class NewQueryCreateComponent implements OnInit {
       case 7:
         this.resetOpacity();
         for(var i=0;i<this.elements.length;i++){
-          if(i!=2 && i!=3 && i!=4 && i!=6 && i!=7 && i!=9)
+          if(i!=2 && i!=3 && i!=4 && i!=6 && i!=7 && i!=8)
             this.elements[i].style.opacity=".2";
         }
         this.borderFlash(this.elements[4]);
@@ -260,7 +262,7 @@ export class NewQueryCreateComponent implements OnInit {
     }
     this.stopFlash();
     tutorialParts.currPart++;
-    if(tutorialParts.currPart<=9)
+    if(tutorialParts.currPart<=8)
       this.continueTutorial();
     else{
       environment.tutorial=false;
@@ -457,8 +459,10 @@ export class NewQueryCreateComponent implements OnInit {
    * @returns
    */
   submit(){
-    this.dbManage.postEvent(7,"query submitted", this.inputText).subscribe((data)=>{
-    });
+    if(environment.dbAccess){
+      this.dbManage.postEvent(7,"query submitted", this.inputText).subscribe((data)=>{
+      });
+    }
     if(this.nonsenseCheck()){
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Your query doesn't seem to be related to the given question, please try again.";
       return;
@@ -541,14 +545,16 @@ export class NewQueryCreateComponent implements OnInit {
       //Clear the screen
       this.clear();
       //update player data then load another question if there are any left
-      this.dbManage.putPlayer().subscribe((data)=>{
-        console.log(data);
-        if(this.qLeft())
-          this.initQuestion();
-        else
-          //ELSE there are no questions left so send player back to the game menu
-          this.router.navigateByUrl('/gameMenu');
-      })
+      if(environment.dbAccess){
+        this.dbManage.putPlayer().subscribe((data)=>{
+          console.log(data);
+          if(this.qLeft())
+            this.initQuestion();
+          else
+            //ELSE there are no questions left so send player back to the game menu
+            this.router.navigateByUrl('/gameMenu');
+        })
+      }
     }
     //TODO: Provide feedback, suggestions, synonyms
   }
@@ -556,7 +562,7 @@ export class NewQueryCreateComponent implements OnInit {
   /**
    * Will be called when the player submits a query.
    * Meant to check if there is an acceptable amount of similarity to the answer of the question
-   * 
+   *
    * @returns true if the submitted query is nonsense, false otherwise
    */
   nonsenseCheck(): boolean{
