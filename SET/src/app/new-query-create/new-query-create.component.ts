@@ -35,6 +35,7 @@ export class NewQueryCreateComponent implements OnInit {
   intervalIDS: ReturnType<typeof setInterval>[] = [];
   currQIndex: number =0;
   currQCat: string ="";
+  tutorial = environment.tutorial;
 
   @HostListener('document:keydown',['$event'])
   handleKeyboardEvent(event: KeyboardEvent){

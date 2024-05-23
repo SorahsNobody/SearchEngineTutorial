@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { player, playerName } from 'src/environments/environment';
+import { HeaderChangeService } from '../header-change.service';
 
 @Component({
   selector: 'app-header',
@@ -9,9 +10,8 @@ import { player, playerName } from 'src/environments/environment';
 })
 export class HeaderComponent implements OnInit{
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private headerChange: HeaderChangeService) { }
   @Input('pName') pName = playerName.key; //Declares that this component has a variable named pName that can be called in the html with playerName
-
   //@HostListener('document:keydown',['$event'])
   // handleKeyboardEvent(event: KeyboardEvent){
   //   console.log(event.key);
@@ -24,6 +24,11 @@ export class HeaderComponent implements OnInit{
 
   ngOnInit(): void {
     this.loadStats();
+    this.headerChange.change.subscribe(data => {
+      console.log("Signal to reload header")
+      if(data)
+        this.loadStats();
+    })
   }
 
   // ngOnChanges(changes: SimpleChanges): void {

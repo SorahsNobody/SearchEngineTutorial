@@ -1,7 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output} from '@angular/core';
 import { Router } from '@angular/router';
 import {AniQA, MusQA, SupQA, HisQA, avatar, unlocks, player, tutorialParts, environment} from 'src/environments/environment';
 import { DbadapterService } from '../dbadapter.service';
+import { HeaderChangeService } from '../header-change.service';
 
 @Component({
   selector: 'app-customize',
@@ -9,7 +10,7 @@ import { DbadapterService } from '../dbadapter.service';
   styleUrls: ['./customize.component.css']
 })
 export class CustomizeComponent {
-  constructor(private router: Router, private dbmanage: DbadapterService) { }
+  constructor(private router: Router, private dbmanage: DbadapterService, private headerChange: HeaderChangeService) { }
   // @HostListener('document:keydown',['$event'])
   // handleKeyboardEvent(event: KeyboardEvent){
   //   console.log(event.key);
@@ -32,6 +33,7 @@ export class CustomizeComponent {
   }
 
   ngOnInit(): void {
+    this.headerChange.signalChange(true);
     document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
     if(tutorialParts.currPart>=9){
       tutorialParts.currPart=-1;

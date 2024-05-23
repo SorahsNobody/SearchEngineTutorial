@@ -80,7 +80,7 @@ export class AppComponent implements OnInit {
         player.level=Number.parseInt(<string>sessionStorage.getItem("lvl"));
       if(sessionStorage.getItem("exp")!==null)
         player.exp=Number.parseInt(<string>sessionStorage.getItem("exp"));
-      this.router.navigateByUrl("/gameMenu");
+      this.router.navigateByUrl("/queryCraft");
     }
   }
   title = 'SET';

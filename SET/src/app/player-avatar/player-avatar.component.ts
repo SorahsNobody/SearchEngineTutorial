@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { avatar } from 'src/environments/environment';
+import { HeaderChangeService } from '../header-change.service';
 
 @Component({
   selector: 'app-player-avatar',
@@ -8,7 +9,7 @@ import { avatar } from 'src/environments/environment';
 })
 export class PlayerAvatarComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  constructor(private change: HeaderChangeService) { }
   ngOnChanges(changes: SimpleChanges): void {
       console.log(changes);
       if(this.hat!=-1){
@@ -25,24 +26,33 @@ export class PlayerAvatarComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-      if(this.hat!=-1){
-        this.changeHat(this.hat);
-      }
-      else
-        document.getElementById("avatar-hat")!.style.visibility="hidden";
-      if(this.nose!=-1){
-        this.noseImage=avatar.noses[this.nose];
-        document.getElementById("avatar-nose")!.style.visibility="visible";
-      }
-      else
-        document.getElementById("avatar-nose")!.style.visibility="hidden";
-      if(this.glasses!=-1){
-        this.glassesImage=avatar.glasses[this.glasses];
-        document.getElementById("avatar-glasses")!.style.visibility="visible";
-      }
-      else
-        document.getElementById("avatar-glasses")!.style.visibility="hidden";
+      this.change.change.subscribe(data=>{
+        if(data)
+          this.refreshAvatar();
+      });
+      this.refreshAvatar();
   }
+
+  refreshAvatar(){
+    if(this.hat!=-1){
+      this.changeHat(this.hat);
+    }
+    else
+      document.getElementById("avatar-hat")!.style.visibility="hidden";
+    if(this.nose!=-1){
+      this.noseImage=avatar.noses[this.nose];
+      document.getElementById("avatar-nose")!.style.visibility="visible";
+    }
+    else
+      document.getElementById("avatar-nose")!.style.visibility="hidden";
+    if(this.glasses!=-1){
+      this.glassesImage=avatar.glasses[this.glasses];
+      document.getElementById("avatar-glasses")!.style.visibility="visible";
+    }
+    else
+      document.getElementById("avatar-glasses")!.style.visibility="hidden";
+  }
+
   @Input() hat: number = avatar.hatIndex;
   @Input() nose: number = avatar.noseIndex;
   @Input() glasses: number = avatar.glassesIndex;
