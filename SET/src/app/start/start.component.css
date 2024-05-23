@@ -1,4 +1,4 @@
-h1, h3 {
+h1, h2, h3 {
   text-align: center;
   color: #f77f00; /* orange */
   font-family: 'Comic Sans MS', cursive;
@@ -6,6 +6,14 @@ h1, h3 {
 h1 {
   font-size: 50px;
   margin-bottom: 10px;
+}
+.title {
+  font-size: 60pt;
+  margin-bottom: 2%;
+}
+
+.sub-title {
+  font-size: 20pt;
 }
 main {
   width: 80%;
@@ -19,7 +27,12 @@ main {
   align-items: center;
   height: 100vh;
 }
+.name-field {
+  width: 18%;
+}
+
 input {
+  /* width: 18%; */
   display: block;
   margin: 0 auto;
   margin-bottom: 10px;
@@ -27,21 +40,25 @@ input {
   border: none;
   border-radius: 5px;
   font-family: 'Comic Sans MS', cursive;
-  font-size: 18px;
+  font-size: 30px;
   background-color: #e6f2f2; /* turquoise */
 }
 #go-button {
+  width: 100%;
   padding: 10px 20px;
-  border: none;
+  border: solid;
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 30px;
   font-family: 'Comic Sans MS', cursive;
   font-weight: bold;
   color: #fff;
   background-color: #f77f00; /* orange */
   cursor: pointer;
   box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
+}
 
+#go-button:hover{
+  box-shadow:none;
 }
 
 #login {
@@ -60,6 +77,8 @@ input {
 
 .buttons {
   display: flex;
+  width: 20%;
+  height: 15%;
 }
 #instructions-button {
   padding: 10px 20px;
@@ -82,8 +101,8 @@ input {
 }
 
 .question-mark img {
-  width: 100px;
-  height: 100px;
+  width: 250px;
+  height: 250px;
   animation: blink 1s infinite;
 }
 

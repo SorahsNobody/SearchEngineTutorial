@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { OverlayModule } from "@angular/cdk/overlay";
 import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
@@ -43,11 +45,13 @@ import { HeaderComponent } from './header/header.component';
   imports: [
     BrowserModule,
     MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FontAwesomeModule,
-    OverlayModule
+    OverlayModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

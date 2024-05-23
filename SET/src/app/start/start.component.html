@@ -1,13 +1,17 @@
-<app-header></app-header>
+<!-- <app-header></app-header> -->
 <div class="center">
-  <h1>SET</h1>
-  <div class="question-mark">
+  <h1 class="title">Ready, SET</h1>
+  <h2 class="sub-title">Search Engine Tutorial</h2>
+  <div class="question-mark avatar">
     <img [src]="image" alt="Question Mark">
   </div>
-  <h3>Can you help me in searching this query???</h3>
-  <input id="name" type="text" name="Name" placeholder="Enter Your Name" required="">
+  <h3 class="call-to-action">Please, come help me learn to search.</h3>
+  <mat-form-field class="name-field">
+    <input id="name" matInput placeholder="Enter Your Name" required>
+    <!-- <input id="name" type="text" name="Name" placeholder="Enter Your Name" required=""> -->
+  </mat-form-field>
   <div class="buttons">
-    <button id="go-button" class="start-button" type="submit" (click)="toCatSelect()">Go!!!</button>
+    <button id="go-button" class="start-button" type="submit" (click)="toCatSelect()">Start</button>
     <!-- <button id="login" (click)="loginClicked()">Login</button> -->
   </div>
   <!-- <input id="password" type="password" name="pword" placeholder="Enter Your Password"> -->
