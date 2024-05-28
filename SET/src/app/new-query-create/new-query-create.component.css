@@ -5,13 +5,17 @@ h1 {
   .header-two {
     position: absolute;
     top: 0%;
+    height: 100px;
   }
 
   #chooseCat {
+    position: relative;
     margin: 2.5%;
     width: 90%;
     height: 90%;
     text-align: center;
+    display: grid;
+    grid-auto-rows: minmax(0, auto);
   }
 
   #chooseCat p {
@@ -75,7 +79,7 @@ h1 {
     background-color: #08892f;
   }
 
-  #BackButton{
+  /* #BackButton{
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -83,17 +87,30 @@ h1 {
     font-family: 'Comic Sans MS', cursive;
     font-weight: bold;
     color: #fff;
-    background-color: #f77f00; /* orange */
+    background-color: #f77f00;
     cursor: pointer;
     box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
-  }
+  } */
 
   #input-clear-submit{
     margin: 2.5%;
     border: none;
     border-radius: 5px;
+    height: 50%;
     width:90%;
-    display: inline-block;
+    /* display: inline-block; */
+  }
+  .submit-clear {
+    position: absolute;
+    height: inherit;
+    width: 90%;
+    top: 10%;
+    left: 0%;
+    margin: 2.5%;
+    display: flex;
+    justify-content:flex-end;
+    align-items:top;
+    /* display: grid; */
   }
 
   #input{
@@ -144,15 +161,33 @@ h1 {
     margin-right: 20%;
   }
 
-  .hint{
-    margin-left: 5%;
+  button{
+    /* margin: 1%; */
+    margin-top: -1%;
+    width: 25%;
+    height: 100%;
+    padding: 10px 20px;
+    border: solid;
+    border-color: #fff;
+    border-radius: 5px;
+    font-size: 25pt;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    color: #fff;
+    background-color: #f77f00; /* orange */
+    cursor: pointer;
+    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
+  }
+  button:hover{
+    opacity: .8;
+    box-shadow:none;
   }
   .check{
     margin-left: 5%;
   }
-  .clear{
+  /* .clear{
     margin-left: 5%;
-  }
+  } */
 
   .misspelled{
     color: red;
@@ -161,14 +196,30 @@ h1 {
     font-family: 'Comic Sans MS', cursive;
     font-size: 25px;
   }
+  #questionDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .bubble{
+    background-color: #f77f00;
+    border-radius: 20px;
+    width: 50%;
+    padding: .25%;
+  }
   #que{
     font-family: 'Comic Sans MS', cursive;
-    color: #f77f00;
+    color: white;
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size:25px;
   }
         /* Creating a box with a text
            and some stylings  */
   .speech {
-            width: 250px;
+            font-family: 'Comic Sans MS', cursive;
+            width: 20%;
             background: #f77f00;
             padding: 30px;
             text-align: center;
@@ -194,32 +245,53 @@ h1 {
         }
 
   .playArea{
-    padding-top: 10%;
+    /* padding-top: 10%; */
+    grid-column: 1;
+    grid-row: 2;
+    /* margin-top: 5%; */
     width: auto;
-    height: 80%;
+    /* height: 80%; */
   }
 
-  #clear {
+  i {
+    object-fit: fill;
     z-index: 2;
     color: #f77f00;
+  }
+  /* #clear {
     transform: scale(3);
     position: absolute;
     top:29%;
     right:6%;
-  }
+  } */
   #clear:hover{
     opacity: .8;
   }
 
-  #submit{
-    z-index: 2;
-    color: #f77f00;
-    transform: scale(2);
-    position: absolute;
-    top:-14.5%;
-    right: 10%;
+  #sub{
+    /* transform: scale(2); */
+    margin-right: 1%;
+    /* position: absolute; */
+    /* top:-14.5%; */
+    /* right: 10%; */
   }
 
-  #submit:hover{
+  #sub:hover{
     opacity: .8;
   }
+
+.play-avatar {
+  height: 100%;
+  width: 100%;
+  padding-top: 7.5%;
+  display: flex;
+  justify-content: center;
+  /* background-color: #08892f; */
+}
+
+.play-avatar app-player-avatar {
+  /* background-color: red; */
+  align-self: flex-end;
+  height: 90%;
+  width: 15%;
+}

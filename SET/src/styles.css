@@ -6,6 +6,7 @@ footer {
 
 html, body { height: 100%; }
 /* body { margin: 2.5%;   font-family: 'Comic Sans MS', cursive;} */
+
 button {
   font-family: 'Comic Sans MS', cursive;
   cursor: pointer;
@@ -15,7 +16,7 @@ button {
   border-radius: 5px;
   font-size: 18px;
   color: #fff;
-  background-color: #f77f00; /* orange */
+  background-color: #f77f00;
 }
 
 .SET-snackbar{
@@ -23,22 +24,11 @@ button {
   color: #fff;
 }
 
-button:hover {
-  box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
-}
-
 button:active{
   color: #a0a0a0;
   background-color: #a75600; /* orange */
   box-shadow: none;
 }
-
-/* #avatar{
-  width: 100px;
-  height: 100px;
-  animation: blink 1s infinite;
-} */
-
 
 .card-container {
   display: flex;
@@ -97,5 +87,4 @@ button.over {
   background-color:lightsalmon;
 }
 
-/* html, body { height: 100%; } */
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
