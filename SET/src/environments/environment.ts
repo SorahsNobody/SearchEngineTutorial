@@ -12,6 +12,7 @@ export const environment = {
   expansions: true,
   tutorial: true,
   dbAccess: false,
+  customize: false,
 };
 
 export const tutorialParts = {

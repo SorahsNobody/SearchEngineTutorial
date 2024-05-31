@@ -10,7 +10,9 @@ import { HeaderChangeService } from '../header-change.service';
   styleUrls: ['./customize.component.css']
 })
 export class CustomizeComponent {
-  constructor(private router: Router, private dbmanage: DbadapterService, private headerChange: HeaderChangeService) { }
+  constructor(private router: Router, private dbmanage: DbadapterService, private headerChange: HeaderChangeService) {
+    environment.customize=true;
+   }
   @HostListener('document:keydown',['$event'])
   handleKeyboardEvent(event: KeyboardEvent){
     console.log(event.key);
@@ -141,6 +143,7 @@ export class CustomizeComponent {
   takeOffGeneral(hng: string){
     switch (hng) {
       case "h":
+        console.log("removing hat");
         avatar.hatIndex=6;
         this.hatIndex=6;
         break;

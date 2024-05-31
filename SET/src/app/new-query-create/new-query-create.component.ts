@@ -24,7 +24,9 @@ export class NewQueryCreateComponent implements OnInit {
   @Input() word: string="";
   @Input() position: number=0;
 
-  constructor(private srs: SearchResultsService, private router: Router, private snackBar: MatSnackBar, private dbManage: DbadapterService, private nltk: NltkServiceService) { }
+  constructor(private srs: SearchResultsService, private router: Router, private snackBar: MatSnackBar, private dbManage: DbadapterService, private nltk: NltkServiceService) {
+    environment.customize=false;
+   }
   image: any = avatar.key;
   splitWords: Array<string> = [];
   dictionary: any;

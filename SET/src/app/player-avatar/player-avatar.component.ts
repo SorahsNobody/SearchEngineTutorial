@@ -60,6 +60,7 @@ export class PlayerAvatarComponent implements OnInit, OnChanges {
 
   gI =avatar.glassesIndex;
   nI =avatar.noseIndex;
+  hI =avatar.hatIndex;
   numHats = avatar.hats.length;
   numGlasses = avatar.glasses.length;
   numNoses = avatar.noses.length;
@@ -69,11 +70,24 @@ export class PlayerAvatarComponent implements OnInit, OnChanges {
   bodyImage: any = avatar.key;
 
   changeHat(index:number){
-    avatar.hatIndex=index;
-    this.hatImage=avatar.hats[index];
     var hat = document.getElementById("avatar-hat");
-    if(hat!.style.visibility=="hidden")
+    if(index==-1)
+      this.hI++;
+    else
+      this.hI=index;
+    if(this.hI>this.numHats)
+      this.hI=0
+    if(this.hI==6)
+      hat!.style.visibility="hidden";
+    else{
+      this.hatImage=avatar.hats[this.hI];
       hat!.style.visibility="visible";
+    }
+    // avatar.hatIndex=index;
+    // this.hatImage=avatar.hats[index];
+    // var hat = document.getElementById("avatar-hat");
+    // if(hat!.style.visibility=="hidden")
+    //   hat!.style.visibility="visible";
     this.sessionStoreAvatar();
   }
   changeGlasses(index:number){
