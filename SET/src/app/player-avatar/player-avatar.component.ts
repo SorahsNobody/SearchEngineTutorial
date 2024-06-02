@@ -11,22 +11,23 @@ export class PlayerAvatarComponent implements OnInit, OnChanges {
 
   constructor(private change: HeaderChangeService) { }
   ngOnChanges(changes: SimpleChanges): void {
-      console.log(changes);
-      if(this.hat!=-1){
-        this.changeHat(this.hat);
+      //console.log("changes found!"+changes);
+      if(avatar.hatIndex!=-1){
+        this.changeHat(avatar.hatIndex);
       }
-      if(this.nose!=-1){
-        this.noseImage=avatar.noses[this.nose];
+      if(avatar.noseIndex!=-1){
+        this.noseImage=avatar.noses[avatar.noseIndex];
         document.getElementById("avatar-nose")!.style.visibility="visible";
       }
-      if(this.glasses!=-1){
-        this.glassesImage=avatar.glasses[this.glasses];
+      if(avatar.glassesIndex!=-1){
+        this.glassesImage=avatar.glasses[avatar.glassesIndex];
         document.getElementById("avatar-glasses")!.style.visibility="visible";
       }
   }
 
   ngOnInit(): void {
       this.change.change.subscribe(data=>{
+        // console.log("Change registered: " +data);
         if(data)
           this.refreshAvatar();
       });
@@ -34,28 +35,26 @@ export class PlayerAvatarComponent implements OnInit, OnChanges {
   }
 
   refreshAvatar(){
-    if(this.hat!=-1){
-      this.changeHat(this.hat);
+    if(avatar.hatIndex!=-1){
+      this.hatImage=avatar.hats[avatar.hatIndex];
+      document.getElementById("avatar-hat")!.style.visibility="visible";
     }
     else
       document.getElementById("avatar-hat")!.style.visibility="hidden";
-    if(this.nose!=-1){
-      this.noseImage=avatar.noses[this.nose];
+    if(avatar.noseIndex!=-1){
+      this.noseImage=avatar.noses[avatar.noseIndex];
       document.getElementById("avatar-nose")!.style.visibility="visible";
     }
     else
       document.getElementById("avatar-nose")!.style.visibility="hidden";
-    if(this.glasses!=-1){
-      this.glassesImage=avatar.glasses[this.glasses];
+    if(avatar.glassesIndex!=-1){
+      this.glassesImage=avatar.glasses[avatar.glassesIndex];
       document.getElementById("avatar-glasses")!.style.visibility="visible";
     }
     else
       document.getElementById("avatar-glasses")!.style.visibility="hidden";
   }
 
-  @Input() hat: number = avatar.hatIndex;
-  @Input() nose: number = avatar.noseIndex;
-  @Input() glasses: number = avatar.glassesIndex;
   @Input() parent: string = '';
 
   gI =avatar.glassesIndex;
@@ -83,11 +82,6 @@ export class PlayerAvatarComponent implements OnInit, OnChanges {
       this.hatImage=avatar.hats[this.hI];
       hat!.style.visibility="visible";
     }
-    // avatar.hatIndex=index;
-    // this.hatImage=avatar.hats[index];
-    // var hat = document.getElementById("avatar-hat");
-    // if(hat!.style.visibility=="hidden")
-    //   hat!.style.visibility="visible";
     this.sessionStoreAvatar();
   }
   changeGlasses(index:number){

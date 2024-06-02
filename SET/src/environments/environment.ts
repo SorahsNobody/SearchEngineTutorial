@@ -13,6 +13,7 @@ export const environment = {
   tutorial: true,
   dbAccess: false,
   customize: false,
+  page: 'default',
 };
 
 export const tutorialParts = {

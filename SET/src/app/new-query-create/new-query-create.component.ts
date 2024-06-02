@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DbadapterService } from '../dbadapter.service';
 import { NltkServiceService } from '../nltk-service.service';
+import { HeaderChangeService } from '../header-change.service';
 
 const regex = /[  .,\/#!?$%\^&\*;:{}=\-_`~()]/;
 
@@ -24,7 +25,9 @@ export class NewQueryCreateComponent implements OnInit {
   @Input() word: string="";
   @Input() position: number=0;
 
-  constructor(private srs: SearchResultsService, private router: Router, private snackBar: MatSnackBar, private dbManage: DbadapterService, private nltk: NltkServiceService) {
+  constructor(private srs: SearchResultsService, 
+    private router: Router, private snackBar: MatSnackBar, private dbManage: DbadapterService, 
+    private nltk: NltkServiceService, private change: HeaderChangeService) {
     environment.customize=false;
    }
   image: any = avatar.key;
@@ -48,6 +51,7 @@ export class NewQueryCreateComponent implements OnInit {
 
   /** Called once the component is loaded */
   ngOnInit(): void {
+    environment.page='play';
     this.initQuestion();
     //IF the player has already gone through the tutorial
     if(!environment.tutorial){
@@ -536,6 +540,7 @@ export class NewQueryCreateComponent implements OnInit {
         numLevel++;
       }
       if(levelUp){
+        this.change.signalChange(true);
         var luMessage = "You've leveled up"
         if(numLevel==1)
           luMessage+="! Congratulations!"

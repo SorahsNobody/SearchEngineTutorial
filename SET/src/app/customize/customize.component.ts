@@ -18,7 +18,8 @@ export class CustomizeComponent {
     console.log(event.key);
     if(event.key=='+')
       player.totalPoints+=500;
-    document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
+    this.headerChange.signalChange(true);
+    // document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
   }
   toResult(): void {
     this.router.navigateByUrl("/results");
@@ -35,8 +36,8 @@ export class CustomizeComponent {
   }
 
   ngOnInit(): void {
-    this.headerChange.signalChange(true);
-    document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
+    environment.page='store';
+    // document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
     if(tutorialParts.currPart>=9){
       tutorialParts.currPart=-1;
       var audio = new Audio("assets/audio/Recording_13.m4a");
@@ -46,6 +47,7 @@ export class CustomizeComponent {
     this.noseIndex=avatar.noseIndex;
     this.glassesIndex=avatar.glassesIndex;
     this.pointsStorage();
+    this.headerChange.signalChange(true);
   }
 
   image: any = avatar.key;
@@ -132,6 +134,7 @@ export class CustomizeComponent {
         this.glassesIndex=index;
         break;
     }
+    this.ngOnInit();
   }
   pointsStorage(){
     sessionStorage.setItem("points", player.totalPoints.toString());
@@ -143,7 +146,6 @@ export class CustomizeComponent {
   takeOffGeneral(hng: string){
     switch (hng) {
       case "h":
-        console.log("removing hat");
         avatar.hatIndex=6;
         this.hatIndex=6;
         break;
