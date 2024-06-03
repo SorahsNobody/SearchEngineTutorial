@@ -469,7 +469,11 @@ export class NewQueryCreateComponent implements OnInit {
       this.dbManage.postEvent(7,"query submitted", this.inputText).subscribe((data)=>{
       });
     }
-    if(this.nonsenseCheck()){
+    this.nonsenseCheck();
+  }
+
+  continueSubmit(tof:boolean){
+    if(tof){
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Your query doesn't seem to be related to the given question, please try again.";
       return;
     }
@@ -562,7 +566,6 @@ export class NewQueryCreateComponent implements OnInit {
         })
       }
     }
-    //TODO: Provide feedback, suggestions, synonyms
   }
 
   /**
@@ -571,7 +574,7 @@ export class NewQueryCreateComponent implements OnInit {
    *
    * @returns true if the submitted query is nonsense, false otherwise
    */
-  nonsenseCheck(): boolean{
+  nonsenseCheck(){
     var threshold = .17;
     switch (this.currQCat) {
       //Strategy: take the average similarity of the submitted query and as long as it's > .25 similarity then it's good
@@ -579,45 +582,45 @@ export class NewQueryCreateComponent implements OnInit {
         this.nltk.getPSimilarityBEST(this.inputText,AniKeys[this.currQIndex]).subscribe((data)=>{
           //console.log("average similarity between query and answers: "+data.score);
           if(Number(data.score)<threshold)
-            return true;
+            this.continueSubmit(true);
           else
-            return false;
+            this.continueSubmit(false);
         });
         break;
       case "Superhero":
         this.nltk.getPSimilarityBEST(this.inputText,SupKeys[this.currQIndex]).subscribe((data)=>{
           //console.log("average similarity between query and answers: "+data.score)
           if(Number(data.score)<threshold)
-            return true;
+            this.continueSubmit(true);
           else
-            return false;
+            this.continueSubmit(false);
         });
         break;
       case "Music":
         this.nltk.getPSimilarityBEST(this.inputText,MusKeys[this.currQIndex]).subscribe((data)=>{
           //console.log("average similarity between query and answers: "+data.score)
           if(Number(data.score)<threshold)
-            return true;
+            this.continueSubmit(true);
           else
-            return false;
+            this.continueSubmit(false);
         });
         break;
       case "History":
         this.nltk.getPSimilarityBEST(this.inputText,HisKeys[this.currQIndex]).subscribe((data)=>{
           //console.log("average similarity between query and answers: "+data.score)
           if(Number(data.score)<threshold)
-            return true;
+            this.continueSubmit(true);
           else
-            return false;
+            this.continueSubmit(false);
         });
         break;
       case "Sports":
         this.nltk.getPSimilarityBEST(this.inputText,SpoKeys[this.currQIndex]).subscribe((data)=>{
           //console.log("average similarity between query and answers: "+data.score)
           if(Number(data.score)<threshold)
-            return true;
+            this.continueSubmit(true);
           else
-            return false;
+            this.continueSubmit(false);
         });
         break;
       //default to science
@@ -625,9 +628,9 @@ export class NewQueryCreateComponent implements OnInit {
         this.nltk.getPSimilarityBEST(this.inputText,SciKeys[this.currQIndex]).subscribe((data)=>{
           //console.log("average similarity between query and answers: "+data.score)
           if(Number(data.score)<threshold)
-            return true;
+            this.continueSubmit(true);
           else
-            return false;
+            this.continueSubmit(false);
         });
         break;
     }
@@ -696,7 +699,6 @@ getSplitInput(inputString: string): string[] {
   if (word) {
       array.push(word);
   }
-  console.log(array);
   return array;
 }
 

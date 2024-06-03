@@ -61,15 +61,18 @@ export class NltkServiceService {
    * @returns a response containing the avg path_similarity score
    */
         getPSimilarityBEST(query: string, ans: string[]): Observable<any> {
-          var qArr = query.split(" ");
+          //var qArr = query.split(" ");
           httpOptions.params = {}
           httpOptions.params.action = 'wn-p_sim-BEST';
-          httpOptions.params.syn1 = [];
-          httpOptions.params.syn2 = []
-          for(let i=0; i<qArr.length; i++)
-            httpOptions.params.syn1[i]=qArr[i];
+          httpOptions.params.syn1 = query;//[];
+          httpOptions.params.syn2 = "";//[]
+          //for(let i=0; i<qArr.length; i++)
+          //  httpOptions.params.syn1[i]=qArr[i];
+          var ansTot = "";
           for(let j=0;j<ans.length;j++)
-            httpOptions.params.syn2[j] = ans[j];
+            ansTot=ansTot+ans[j]+ " ";
+          httpOptions.params.syn2=ansTot;
+            //httpOptions.params.syn2[j] = ans[j];
           return this.http.get('https://cast.boisestate.edu:8080/CASTnltk/CASTnltk/', httpOptions);
         }
 }

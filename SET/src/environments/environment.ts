@@ -10,8 +10,8 @@ export const environment = {
   showHints: true,
   spellCheck: true,
   expansions: true,
-  tutorial: true,
-  dbAccess: false,
+  tutorial: false,
+  dbAccess: true,
   customize: false,
   page: 'default',
 };
@@ -122,11 +122,11 @@ export const SupQues: string[] =[//Superhero Questions
 ];
 
 export const SupKeys: string[][] =[
-  ['superhero', 'trees', 'color', 'angry', 'comic book', 'scientist', 'marvel', 'Hulk', 'not happy'],
-  ['strong','shield','metal','substance','blue','Captain America','Avenger','made of','name','material','make'],
+  ['superhero', 'trees', 'color', 'angry', 'comic','book', 'scientist', 'marvel', 'Hulk', 'not','happy'],
+  ['strong','shield','metal','substance','blue','Captain','America','Avenger','made','of','name','material','make'],
   ['name', 'spider', 'own', 'real', 'spiderman', 'DC', 'Tony', 'Marvel'],
   ['leader', 'team', 'character', 'boss', 'X-Men', 'in charge','Ironman', 'Professor'],
-  ['Truth', 'Wonder Woman', 'Marvel','DC comics', 'Paradise', 'weapon', 'name', 'called']
+  ['Truth', 'Wonder','Woman', 'Marvel','DC','comics', 'Paradise', 'weapon', 'name', 'called']
 ];
 
 export const SpoAnswers: string[][] =[
@@ -150,7 +150,7 @@ export const SpoKeys: string[][]=[
   ['Olympic', 'Japan',  'find', 'binary', 'twenty', 'source', 'how', 'match', 'colors', 'program', 'in', 'different', 'ring'],
   ['Paint', 'play', 'what', 'playing', 'number', 'that', 'count', 'baseball', 'quick', 'friends', 'team', 'system', 'in'],
   ['plenty', 'sports', 'for', 'can', 'on', 'played', 'report', 'many', 'kind', 'single', 'moon', 'gravitation'],
-  ['name', 'in', 'game', 'how', 'gym',  'which', 'Bela', 'going', 'coach', 'woman', 'into',  'Bela Karolyi', 'famous', 'know']
+  ['name', 'in', 'game', 'how', 'gym',  'which', 'Bela', 'going', 'coach', 'woman', 'into',  'Bela','Karolyi', 'famous', 'know']
 ];
 
 export const SciAnswers: string[][] = [
@@ -186,9 +186,9 @@ export const HisQues: string[] = [ //History Questions
 ];
 
 export const HisKeys: string[][] = [
-  ['America', 'president', 'is','first', 'old','United States', 'US', 'leader', 'who', 'Britain','UK','colonies','wooden','teeth','for','where','why'],
+  ['America', 'president', 'is','first', 'old','United','States', 'US', 'leader', 'who', 'Britain','UK','colonies','wooden','teeth','for','where','why'],
   ['invention','telephone','is','where','what','phone','mobile','power','line','harry','person','who','careful','hear','invented'],
-  ['Harry','who','is','where','what','you\'re','a','wizard','potter','Voldemort','name','author','magic','red','herring','written by'],
+  ['Harry','who','is','where','what','youre','a','wizard','potter','Voldemort','name','author','magic','red','herring','written','by'],
   ['who','is','where','small','what','largest','globe','area','place','moon','earth','big','biggest','the','continent','ocean'],
   ['walk','who','where','why','is','phone','history','rocks','first','name','the','man','woman','person','walked','on','space','moon'],
   ['king','is','who','where','why','is','red','herring','all','roads','lead','to','Rome','leader','the','first','walked','was']
@@ -217,7 +217,7 @@ export const MusKeys: string[][] = [
   ['band','that','where','music','singer','name','song','baby','shark','who','what','is','the','group','artist','wrote','performed'],
   ['music','name','instrument','sounds','keys','black','and','white','horizontal','board','strings','what','the','is','Shrek'],
   ['girl','BTS','boy','artist','lead','the','who','leader','red','rap','Korean','popular','is','Shrek','Zorro','Romeo'],
-  ['biggest','music','King','instrument','sounds','the','red','leader','biggs','wedge','event','annual','every year','name', 'biggest','ceremony'],
+  ['biggest','music','King','instrument','sounds','the','red','leader','biggs','wedge','event','annual','every','year','name', 'biggest','ceremony'],
   ['name','music','pop','keys','the','who','where','band','animated','of','characters','animals','made','red','up','is','baby','shark','of']
 ];
 
