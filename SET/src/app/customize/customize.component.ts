@@ -36,6 +36,7 @@ export class CustomizeComponent {
   }
 
   ngOnInit(): void {
+    this.loadStore();
     environment.page='store';
     // document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
     if(tutorialParts.currPart>=9){
@@ -119,6 +120,61 @@ export class CustomizeComponent {
       this.logItemUnlock(unlockedString);
   }
 
+  loadStore(){
+    this.resetOpacity();
+    var items = document.getElementsByClassName('cell');
+    console.log(unlocks.key);
+    unlocks.key=unlocks.key.trim();
+    var unlock = unlocks.key;
+    while(unlock.length>2){
+      var next = unlock.substring(0,2);
+      unlock = unlock.substring(2);
+      for(var i=0; i<items.length;i++){
+        var item=(<HTMLButtonElement>items[i].firstChild);
+        var itemP = (<HTMLParagraphElement>items[i].lastChild);
+        console.log(next);
+        console.log(item.classList);
+        if(item.classList.contains(next)){
+          itemP.textContent="Unlocked!";
+          item.style.border='5px solid';
+          item.style.borderColor="#f77f00"
+          break;
+        }
+      }
+    }
+    for(var i=0; i<items.length;i++){
+      var item=(<HTMLButtonElement>items[i].firstChild);
+      var itemP = (<HTMLParagraphElement>items[i].lastChild);
+      if(item.classList.contains(unlock)){
+        itemP.textContent="Unlocked!";
+        item.style.border='5px solid';
+        item.style.borderColor="#f77f00"
+        break;
+      }
+    }
+    var currHat = "h"+avatar.hatIndex;
+    var currNose= "n"+avatar.noseIndex;
+    var currGlasses= "g"+avatar.glassesIndex;
+    if(avatar.hatIndex!=-1 && avatar.hatIndex!=6){
+      var hat = <HTMLButtonElement>document.getElementsByClassName(currHat)[0];
+      hat.style.opacity='.4';
+    }
+    if(avatar.noseIndex!=-1 && avatar.noseIndex!=6){
+      var nose = <HTMLButtonElement>document.getElementsByClassName(currNose)[0];
+      nose.style.opacity='.4';
+    }
+    if(avatar.glassesIndex!=-1 && avatar.glassesIndex!=6){
+      var glasses = <HTMLButtonElement>document.getElementsByClassName(currGlasses)[0];
+      glasses.style.opacity='.4';
+    }
+  }
+
+  resetOpacity(){
+    var cells = document.getElementsByClassName('cell');
+    for(var i = 0;i<cells.length;i++)
+      (<HTMLButtonElement>cells[i].firstChild).style.opacity='1';
+  }
+
   generalSwitch(hng: string, index: number){
     switch (hng) {
       case "h":
@@ -134,6 +190,9 @@ export class CustomizeComponent {
         this.glassesIndex=index;
         break;
     }
+    var unlock = hng+index;
+    var item = (<HTMLButtonElement>document.getElementsByClassName(unlock)[0]);
+    item.style.opacity='.4';
     this.ngOnInit();
   }
   pointsStorage(){

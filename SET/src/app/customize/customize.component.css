@@ -106,9 +106,10 @@ h1, h2,p{
     font-weight: bold; */
     color: #fff;
     background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     z-index: 3;
+    justify-self: center;
   }
 
   .avatar-container{
@@ -160,9 +161,29 @@ h1, h2,p{
 }
 table{
   border-spacing: 1px;
+  background-color: #f7c187;
+  border: 2px solid;
+  border-color: #fff;
 }
 
 .cell{
   display: grid;
   justify-content: center;
+}
+
+#cutom-button1:hover {
+  opacity: .8;
+}
+
+tr.section-end td {
+  border-bottom: 2px solid #f77f00;
+}
+
+.th {
+  background-color: #f77f00;
+}
+
+.bought {
+  border: solid;
+  border-color: #fff;
 }
