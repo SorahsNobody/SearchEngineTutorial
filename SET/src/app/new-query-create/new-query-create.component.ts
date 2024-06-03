@@ -220,19 +220,19 @@ export class NewQueryCreateComponent implements OnInit {
       //"Circled word is misspelled"
       case 3:
         (<HTMLInputElement>document.getElementById('input')).value="dooooooog";
-        this.onInput();
+        this.processInputString();
         await this.playAudio('assets/audio/4-1.m4a');
         break;
       //"Grey word may not be needed"
       case 4:
         (<HTMLInputElement>document.getElementById('input')).value="is are at be";
-        this.onInput();
+        this.processInputString();
         await this.playAudio('assets/audio/4-2.m4a');
         break;
       //"Click submit when ready"
       case 5:
         (<HTMLInputElement>document.getElementById('input')).value="what do froogs eat";
-        this.onInput();
+        this.processInputString();
         this.borderFlash(this.elements[6])
         await this.playAudio('assets/audio/5.m4a');
         break;
@@ -457,7 +457,7 @@ export class NewQueryCreateComponent implements OnInit {
    */
   clear(){
     (<HTMLInputElement>document.getElementById('input')).value="";
-    this.onInput();
+    this.processInputString();
   }
 
   /**
@@ -662,21 +662,21 @@ export class NewQueryCreateComponent implements OnInit {
     return true;
   }
 
-    /**
-     * Is called each time any kind of input is found in the
-     * search input
-     */
-    onInput() {
-      this.processInputString();
-      //document.getElementById("input")!.replaceWith(<HTMLElement>document.getElementById("underneath-div"));
+  /**
+  * Is called each time any kind of input is found in the
+  * search input
+  */
+  onInput(event: Event) {
+    // console.log((<InputEvent>event).data);
+    this.processInputString();
   }
   processInputString(showSuggestions: boolean=true) {
-    this.showSuggestions = showSuggestions;
-    this.inputText = (<HTMLInputElement>document.getElementById('input')).value;
-    this.splitWords = this.inputText ? this.getSplitInput(this.inputText) : [];
-    setTimeout(() => {
-        document.querySelector('.underneath-div')!.scrollLeft += 100;
-    });
+  this.showSuggestions = showSuggestions;
+  this.inputText = (<HTMLInputElement>document.getElementById('input')).value;
+  this.splitWords = this.inputText ? this.getSplitInput(this.inputText) : [];
+  setTimeout(() => {
+      document.querySelector('.underneath-div')!.scrollLeft += 100;
+  });
 }
 getSplitInput(inputString: string): string[] {
   let word: string = "";
@@ -696,6 +696,7 @@ getSplitInput(inputString: string): string[] {
   if (word) {
       array.push(word);
   }
+  console.log(array);
   return array;
 }
 

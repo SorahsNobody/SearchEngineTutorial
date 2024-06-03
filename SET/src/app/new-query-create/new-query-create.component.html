@@ -24,7 +24,7 @@
         autocorrect="off"
         autofocus="true"
         #searchInput
-        (input)="onInput()"
+        (input)="onInput($event)"
         >
         <div class="submit-clear">
           <i class="submit-button" id="sub" class="fa-solid fa-magnifying-glass fa-2xl" (click)="submit()"></i>
