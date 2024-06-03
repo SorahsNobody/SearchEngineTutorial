@@ -51,7 +51,6 @@ export class HeaderComponent implements OnInit{
   }
 
   loadStats() {
-    console.log('page: '+environment.page );
     this.toggleButtons(environment.page);
     document.getElementById('pLevel')!.innerText=player.level.toString();
     (<HTMLProgressElement>document.getElementById("plProgress")).value=((player.exp/1000)*100);

@@ -79,19 +79,6 @@ h1 {
     background-color: #08892f;
   }
 
-  /* #BackButton{
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    font-family: 'Comic Sans MS', cursive;
-    font-weight: bold;
-    color: #fff;
-    background-color: #f77f00;
-    cursor: pointer;
-    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
-  } */
-
   #input-clear-submit{
     margin: 2.5%;
     border: none;

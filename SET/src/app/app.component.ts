@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
     //For General Page Clicks
     @HostListener('document:click', ['$event'])
     documentClick(event: MouseEvent){
-      console.log("Clicked!");
       var ele = <HTMLElement>event.target;
       //checking whether to log selection or general click
       if(environment.dbAccess){
@@ -60,7 +59,6 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router, private dbManage: DbadapterService) { }
   ngOnInit(): void {
-    console.log(sessionStorage.getItem("playerName"));
     if(sessionStorage.getItem("playerName")===null)
       this.router.navigateByUrl("/start");
     else{

@@ -13,14 +13,14 @@ export class CustomizeComponent {
   constructor(private router: Router, private dbmanage: DbadapterService, private headerChange: HeaderChangeService) {
     environment.customize=true;
    }
-  @HostListener('document:keydown',['$event'])
-  handleKeyboardEvent(event: KeyboardEvent){
-    console.log(event.key);
-    if(event.key=='+')
-      player.totalPoints+=500;
-    this.headerChange.signalChange(true);
-    // document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
-  }
+  // @HostListener('document:keydown',['$event'])
+  // handleKeyboardEvent(event: KeyboardEvent){
+  //   console.log(event.key);
+  //   if(event.key=='+')
+  //     player.totalPoints+=500;
+  //   this.headerChange.signalChange(true);
+  //   // document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
+  // }
   toResult(): void {
     this.router.navigateByUrl("/results");
   }
@@ -123,7 +123,6 @@ export class CustomizeComponent {
   loadStore(){
     this.resetOpacity();
     var items = document.getElementsByClassName('cell');
-    console.log(unlocks.key);
     unlocks.key=unlocks.key.trim();
     var unlock = unlocks.key;
     while(unlock.length>2){
@@ -132,8 +131,6 @@ export class CustomizeComponent {
       for(var i=0; i<items.length;i++){
         var item=(<HTMLButtonElement>items[i].firstChild);
         var itemP = (<HTMLParagraphElement>items[i].lastChild);
-        console.log(next);
-        console.log(item.classList);
         if(item.classList.contains(next)){
           itemP.textContent="Unlocked!";
           item.style.border='5px solid';

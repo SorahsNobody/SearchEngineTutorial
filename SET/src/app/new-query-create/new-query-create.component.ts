@@ -170,7 +170,6 @@ export class NewQueryCreateComponent implements OnInit {
       var checkString = "\n\nTry one of these:\n";
       this.srs.getSpellSuggestionSentence(word, true).subscribe((e)=>{
         var jiq = this.srs.fixPHPResponse(e);
-        console.log(<Array<string>>jiq[word]);
         (<Array<string>>jiq[word]).forEach(sug => {
           checkString+=(sug+"\n");
         });
@@ -555,7 +554,6 @@ export class NewQueryCreateComponent implements OnInit {
       //update player data then load another question if there are any left
       if(environment.dbAccess){
         this.dbManage.putPlayer().subscribe((data)=>{
-          console.log(data);
           if(this.qLeft())
             this.initQuestion();
           else
@@ -657,7 +655,6 @@ export class NewQueryCreateComponent implements OnInit {
     DONE.key.forEach(e=>{
       player.numDone+=e;
     });
-    console.log("NumDone: "+player.numDone);
     if(player.numDone>=5){
       this.snackBar.open("You've attempted all of the questions! Great Job!", undefined, {duration:3000, panelClass:['SET-snackbar']});
       return false;
