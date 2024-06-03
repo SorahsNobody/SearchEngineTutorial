@@ -10,7 +10,7 @@ export const environment = {
   showHints: true,
   spellCheck: true,
   expansions: true,
-  tutorial: false,
+  tutorial: true,
   dbAccess: true,
   customize: false,
   page: 'default',
