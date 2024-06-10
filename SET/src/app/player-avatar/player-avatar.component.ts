@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { avatar } from 'src/environments/environment';
+import { HeaderChangeService } from '../header-change.service';
 
 @Component({
   selector: 'app-player-avatar',
@@ -8,48 +9,57 @@ import { avatar } from 'src/environments/environment';
 })
 export class PlayerAvatarComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  constructor(private change: HeaderChangeService) { }
   ngOnChanges(changes: SimpleChanges): void {
-      console.log(changes);
-      if(this.hat!=-1){
-        this.changeHat(this.hat);
+      //console.log("changes found!"+changes);
+      if(avatar.hatIndex!=-1){
+        this.changeHat(avatar.hatIndex);
       }
-      if(this.nose!=-1){
-        this.noseImage=avatar.noses[this.nose];
+      if(avatar.noseIndex!=-1){
+        this.noseImage=avatar.noses[avatar.noseIndex];
         document.getElementById("avatar-nose")!.style.visibility="visible";
       }
-      if(this.glasses!=-1){
-        this.glassesImage=avatar.glasses[this.glasses];
+      if(avatar.glassesIndex!=-1){
+        this.glassesImage=avatar.glasses[avatar.glassesIndex];
         document.getElementById("avatar-glasses")!.style.visibility="visible";
       }
   }
 
   ngOnInit(): void {
-      if(this.hat!=-1){
-        this.changeHat(this.hat);
-      }
-      else
-        document.getElementById("avatar-hat")!.style.visibility="hidden";
-      if(this.nose!=-1){
-        this.noseImage=avatar.noses[this.nose];
-        document.getElementById("avatar-nose")!.style.visibility="visible";
-      }
-      else
-        document.getElementById("avatar-nose")!.style.visibility="hidden";
-      if(this.glasses!=-1){
-        this.glassesImage=avatar.glasses[this.glasses];
-        document.getElementById("avatar-glasses")!.style.visibility="visible";
-      }
-      else
-        document.getElementById("avatar-glasses")!.style.visibility="hidden";
+      this.change.change.subscribe(data=>{
+        // console.log("Change registered: " +data);
+        if(data)
+          this.refreshAvatar();
+      });
+      this.refreshAvatar();
   }
-  @Input() hat: number = avatar.hatIndex;
-  @Input() nose: number = avatar.noseIndex;
-  @Input() glasses: number = avatar.glassesIndex;
+
+  refreshAvatar(){
+    if(avatar.hatIndex!=-1){
+      this.hatImage=avatar.hats[avatar.hatIndex];
+      document.getElementById("avatar-hat")!.style.visibility="visible";
+    }
+    else
+      document.getElementById("avatar-hat")!.style.visibility="hidden";
+    if(avatar.noseIndex!=-1){
+      this.noseImage=avatar.noses[avatar.noseIndex];
+      document.getElementById("avatar-nose")!.style.visibility="visible";
+    }
+    else
+      document.getElementById("avatar-nose")!.style.visibility="hidden";
+    if(avatar.glassesIndex!=-1){
+      this.glassesImage=avatar.glasses[avatar.glassesIndex];
+      document.getElementById("avatar-glasses")!.style.visibility="visible";
+    }
+    else
+      document.getElementById("avatar-glasses")!.style.visibility="hidden";
+  }
+
   @Input() parent: string = '';
 
   gI =avatar.glassesIndex;
   nI =avatar.noseIndex;
+  hI =avatar.hatIndex;
   numHats = avatar.hats.length;
   numGlasses = avatar.glasses.length;
   numNoses = avatar.noses.length;
@@ -59,11 +69,19 @@ export class PlayerAvatarComponent implements OnInit, OnChanges {
   bodyImage: any = avatar.key;
 
   changeHat(index:number){
-    avatar.hatIndex=index;
-    this.hatImage=avatar.hats[index];
     var hat = document.getElementById("avatar-hat");
-    if(hat!.style.visibility=="hidden")
+    if(index==-1)
+      this.hI++;
+    else
+      this.hI=index;
+    if(this.hI>this.numHats)
+      this.hI=0
+    if(this.hI==6)
+      hat!.style.visibility="hidden";
+    else{
+      this.hatImage=avatar.hats[this.hI];
       hat!.style.visibility="visible";
+    }
     this.sessionStoreAvatar();
   }
   changeGlasses(index:number){

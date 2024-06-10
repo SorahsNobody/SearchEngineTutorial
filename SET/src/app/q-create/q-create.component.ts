@@ -239,7 +239,6 @@ export class QCreateComponent implements OnInit {
         query+=" ";
       });
       searchQuery.key = query;
-      console.log(searchQuery.key);
       await this.exampleGetResults(query);
       this.route.navigateByUrl("searchResults");
     }

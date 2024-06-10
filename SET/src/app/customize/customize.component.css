@@ -4,8 +4,9 @@ h1, h2,p{
     font-family: 'Comic Sans MS', cursive;
     font-size: 25px;
   }
-  p{
-    margin-bottom: 40px;
+  .th p{
+    padding-top: 20px;
+    margin-bottom: 20px;
   }
   html{
     height: 80%;
@@ -23,26 +24,44 @@ h1, h2,p{
   }
 
   .table {
-    width:800px!important;
-    margin-left: 22%;
+    /* width:800px!important; */
+    /* margin-left: 22%; */
     color: aliceblue;
     z-index: 2;
   }
 
-  .img {
-    height: 80px;
-    width: 150px;
+  .table-and-buttons{
+    height: 100%;
+    width: 100%;
+  }
+
+  .table-div {
+    width: 100%;
+  }
+
+  img {
+    object-fit: scale-down;
+    max-width: 100%;
+    max-height: 100%;
+    /* height: 80px;
+    width: 150px; */
+  }
+
+  .instructions.custom-main {
+    padding-top: 100px;
   }
 
   .instructions {
     width: 70%;
-    height: 95%;
+    height: 90%;
     margin: auto;
     padding: 20px;
     text-align: center;
     background-color: #f77f00;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
     border-radius: 5px;
+    display: flex;
+    overflow: auto;
   }
 
   .instructions ol {
@@ -64,41 +83,51 @@ h1, h2,p{
 
   #goback-button {
     padding: 10px 20px;
-    border: none;
+    /* border: none; */
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 30pt;
     font-family: 'Comic Sans MS', cursive;
     font-weight: bold;
     color: #fff;
     background-color: #f77f00;
     cursor: pointer;
-    position: absolute;
+    /* position: absolute;
     bottom: 100px;
-    right: 100px;
+    right: 100px; */
   }
 
   #cutom-button1 {
     height: 200px;
     width: 200px;
-    padding: 10px 20px;
+    /* padding: 10px 20px; */
     border: none;
     border-radius: 5px;
-    font-size: 18px;
+    /* font-size: 18px;
     font-family: 'Comic Sans MS', cursive;
-    font-weight: bold;
+    font-weight: bold; */
     color: #fff;
     background-color: #ffffff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     z-index: 3;
+    justify-self: center;
   }
 
   .avatar-container{
+    top: 15%;
     height: 100%;
-    width: 20%;
-    left: 2.5%;
-    position:absolute;
+    width: 40%;
+    /* left: 2.5%; */
+    position:sticky;
     z-index: 1;
+    display: grid;
+    /* justify-content: center; */
+  }
+  .avatar-container app-player-avatar {
+    width: 100%;
+
+    /* display: flex;
+    justify-content: center; */
   }
 
   #avatar{
@@ -112,16 +141,51 @@ h1, h2,p{
   }
 
 #to-buttons{
-  position:absolute;
-  display:block;
-  right: 10%;
-  top: 30%;
+  display:inline;
+  top: 0;
 }
 
 #takeoff{
-  margin-right: 10%;
-  margin-left: 10%;
-  margin-bottom: 47%;
+  font-size: 30pt;
+  width: 355px;
+  /* margin-right: 10%; */
+  /* margin-left: 10%; */
   border: solid;
-  position: relative;
+  box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
+}
+
+#takeoff:hover{
+  box-shadow: none;
+}
+
+.custom-table{
+  width: 100%;
+}
+table{
+  border-spacing: 1px;
+  background-color: #f7c187;
+  border: 2px solid;
+  border-color: #fff;
+}
+
+.cell{
+  display: grid;
+  justify-content: center;
+}
+
+#cutom-button1:hover {
+  opacity: .8;
+}
+
+tr.section-end td {
+  border-bottom: 2px solid #f77f00;
+}
+
+.th {
+  background-color: #f77f00;
+}
+
+.bought {
+  border: solid;
+  border-color: #fff;
 }

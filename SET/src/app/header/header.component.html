@@ -1,0 +1,30 @@
+<div 
+[class.play]="page=='play'"
+[class.store]="page=='store'"
+class="header" id="header">
+  <div class="avatar-header">
+    <app-player-avatar [parent]="'header'"></app-player-avatar>
+  </div>
+    <div class="pname-text">
+        <div id="playerName">
+            <p>Hi {{pName}}!</p>
+        </div>
+        <div class="button-inner">
+          <button [disabled]="page=='play'" class="play-button button" (click)="playClick()">Play</button>
+        </div>
+        <div class="level lp">
+          <p>Level:</p>
+          <p id="pLevel">{{playerLevel}}</p>
+        </div>
+        <div class="progress">
+          <progress id="plProgress" value={{progress}} min="0" max="100"></progress>
+        </div>
+        <div class="points lp">
+          <p>Points: </p>
+          <p id="tpPoints">{{points}}</p>
+        </div>
+        <div class="button-inner">
+          <button [disabled]="page=='store'" class="store-button button" (click)="storeClick()">Store</button>
+      </div>
+    </div>
+</div>

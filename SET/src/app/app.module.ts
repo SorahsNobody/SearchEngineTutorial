@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { OverlayModule } from "@angular/cdk/overlay";
 import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { MatFormFieldModule } from '@angular/material/form-field'
+import { MatInputModule } from '@angular/material/input'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoryComponent } from './category/category.component';
@@ -20,6 +22,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { QueryWordComponent } from './query-word/query-word.component';
 import { PlayerStatsComponent } from './player-stats/player-stats.component';
 import { PlayerAvatarComponent } from './player-avatar/player-avatar.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -36,16 +39,19 @@ import { PlayerAvatarComponent } from './player-avatar/player-avatar.component';
     SearchQuerySuggestionComponent,
     QueryWordComponent,
     PlayerStatsComponent,
-    PlayerAvatarComponent
+    PlayerAvatarComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     MatSnackBarModule,
+    MatFormFieldModule,
+    MatInputModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
     FontAwesomeModule,
-    OverlayModule
+    OverlayModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

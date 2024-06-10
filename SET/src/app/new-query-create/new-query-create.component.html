@@ -1,9 +1,19 @@
+<div class="header-two" *ngIf="tutorial===false">
+  <app-header [page]="'play'"></app-header>
+</div>
 <div id="chooseCat">
-  <app-player-avatar class="avatar" id="frogbert" [parent]="'play'"></app-player-avatar>
+  <div class="play-avatar">  
+    <app-player-avatar class="avatar" id="frogbert" [parent]="'play'"></app-player-avatar>
+  </div>
   <div class="playArea">
-    <div class="speech">Can you help me find...</div>
-    <div class="question" id="questionDiv"><p id="que">placeholder</p></div>
-    <div id="queryBox">
+  <div class="speech">Can you help me find...</div>
+  <div class="question" id="questionDiv">
+    <div class="bubble">
+      <p id="que">placeholder</p>
+    </div>
+  </div>
+  <div id="queryBox">
+      <div id="input-clear-submit">
         <input
         class="query-input"
         id="input"
@@ -14,24 +24,31 @@
         autocorrect="off"
         autofocus="true"
         #searchInput
-        (input)="onInput()"
+        (input)="onInput($event)"
         >
-        <i class="submit-button" id="submit" class="fa-solid fa-magnifying-glass" (click)="submit()"></i>
-        <i class="clear-button" id="clear" class="fa-solid fa-square-xmark" (click)="clear()"></i>
-        <input type="button" class="hint" id="BackButton" (click)="hint()" value="Hint">
-        <!--Spell Checker Overlay-->
-        <div id="underneath-div" class="underneath-div">
-          <app-query-word
-          *ngFor="let word of splitWords; let i=index;"
-          [word]="word"
-          [dictionary]="dictionary"
-          [showSuggestions]="showSuggestions"
-          [position]="i"
-          [currentSize]="splitWords.length"
-          ></app-query-word>
+        <div class="submit-clear">
+          <i class="submit-button" id="sub" class="fa-solid fa-magnifying-glass fa-2xl" (click)="submit()"></i>
+          <i class="clear-button" id="clear" class="fa-solid fa-square-xmark fa-2xl" (click)="clear()"></i>
         </div>
+      <!--Spell Checker Overlay-->
+      <div id="underneath-div" class="underneath-div">
+        <app-query-word
+        *ngFor="let word of splitWords; let i=index;"
+        [word]="word"
+        [dictionary]="dictionary"
+        [showSuggestions]="showSuggestions"
+        [position]="i"
+        [currentSize]="splitWords.length"
+        ></app-query-word>
+      </div>
+      </div>
+      <button class="hint" id="BackButton" (click)="hint()">Hint</button>
+  </div>
+    <div class="feedback-box" id="feedback">
+      <div class="text-space">
+        <p id="feedbackText"></p>
+      </div>
     </div>
-    <div class="feedback-box" id="feedback"><p id="feedbackText"></p></div>
-    <button class="back" id="BackButton" (click)="back()">Back to Menu</button>
+    <!--<button class="back" id="BackButton" (click)="back()">Back to Menu</button>-->
   </div>
 </div>

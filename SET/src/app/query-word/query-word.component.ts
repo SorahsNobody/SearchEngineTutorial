@@ -115,8 +115,8 @@ export class QueryWordComponent implements OnInit, OnChanges, AfterViewInit {
           if (stopWords.includes(second.toLowerCase()) && !AcceptableSWs.key.includes(second.toLocaleLowerCase())) {
               //console.log('STOPWORD!!!')
               this.classes = ['stopWord'];
-          } else if (this.word === '') {
-              this.classes = ['stopWord'];
+          } else if (this.word === ' ') {
+              // this.classes = ['stopWord'];
               this.innerText = '&nbsp';
           }
       }

@@ -1,10 +1,12 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { AniKeys, AniQA, AniQues, DONE, HisKeys, HisQA, HisQues, MusKeys, MusQA, MusQues, SciKeys, SciQA, SciQues, SpoKeys, SpoQA, SpoQues, SupKeys, SupQA, SupQues, avatar, currQuestion, environment, questionNumber, tutorialParts } from 'src/environments/environment';
+import { allQsandKeys, AniKeys, AniQA, AniQues, DONE, HisAnswers, HisKeys, HisQA, HisQues, MusAnswers, MusKeys, MusQA, MusQues, SciAnswers, SciKeys, SciQA, SciQues, SpoAnswers, SpoKeys, SpoQA, SpoQues, SupAnswers, SupKeys, SupQA, SupQues, avatar, currQuestion, environment, questionNumber, tutorialParts } from 'src/environments/environment';
 import { SearchResultsService } from '../search-results.service';
 import { misspelledWords, stopWordsUsed, player, Hints } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { DbadapterService } from '../dbadapter.service';
+import { NltkServiceService } from '../nltk-service.service';
+import { HeaderChangeService } from '../header-change.service';
 
 const regex = /[  .,\/#!?$%\^&\*;:{}=\-_`~()]/;
 
@@ -23,7 +25,11 @@ export class NewQueryCreateComponent implements OnInit {
   @Input() word: string="";
   @Input() position: number=0;
 
-  constructor(private srs: SearchResultsService, private router: Router, private snackBar: MatSnackBar, private dbManage: DbadapterService) { }
+  constructor(private srs: SearchResultsService, 
+    private router: Router, private snackBar: MatSnackBar, private dbManage: DbadapterService, 
+    private nltk: NltkServiceService, private change: HeaderChangeService) {
+    environment.customize=false;
+   }
   image: any = avatar.key;
   splitWords: Array<string> = [];
   dictionary: any;
@@ -32,6 +38,9 @@ export class NewQueryCreateComponent implements OnInit {
   tempScore: number = 0;
   elements : HTMLElement[] = [];
   intervalIDS: ReturnType<typeof setInterval>[] = [];
+  currQIndex: number =0;
+  currQCat: string ="";
+  tutorial = environment.tutorial;
 
   @HostListener('document:keydown',['$event'])
   handleKeyboardEvent(event: KeyboardEvent){
@@ -42,7 +51,8 @@ export class NewQueryCreateComponent implements OnInit {
 
   /** Called once the component is loaded */
   ngOnInit(): void {
-    this.initQuestion();
+    environment.page='play';
+    this.newInitQuestion();
     //IF the player has already gone through the tutorial
     if(!environment.tutorial){
       this.tempScore=500; //initialize score for current query
@@ -67,9 +77,9 @@ export class NewQueryCreateComponent implements OnInit {
       var hintButton = document.getElementsByClassName("hint")[0];
       //var feedbackText = document.getElementById("feedbackText");
       var feedback = document.getElementById("feedback");
-      var search = document.getElementById("submit");
+      var search = document.getElementById("sub");
       var clear = document.getElementById("clear");
-      var back = document.getElementsByClassName("back")[0];
+      //var back = document.getElementsByClassName("back")[0];
       var input = document.getElementById("input");
 
       this.elements.push(<HTMLElement>frogbert); //0
@@ -80,8 +90,8 @@ export class NewQueryCreateComponent implements OnInit {
       this.elements.push(<HTMLElement>feedback); //5
       this.elements.push(<HTMLElement>search); //6
       this.elements.push(<HTMLElement>clear); //7
-      this.elements.push(<HTMLElement>back); //8
-      this.elements.push(<HTMLElement>input); //9
+      //this.elements.push(<HTMLElement>back); //8
+      this.elements.push(<HTMLElement>input); //8
       //Set up example query create
       (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Using HINTS are free!";
       (<HTMLButtonElement>document.getElementsByClassName('hint').item(0)).style.visibility="visible";
@@ -160,7 +170,6 @@ export class NewQueryCreateComponent implements OnInit {
       var checkString = "\n\nTry one of these:\n";
       this.srs.getSpellSuggestionSentence(word, true).subscribe((e)=>{
         var jiq = this.srs.fixPHPResponse(e);
-        console.log(<Array<string>>jiq[word]);
         (<Array<string>>jiq[word]).forEach(sug => {
           checkString+=(sug+"\n");
         });
@@ -178,6 +187,8 @@ export class NewQueryCreateComponent implements OnInit {
    * Method to help with the flow of the tutorial
    */
   async continueTutorial(){
+    console.log("Current part: " + tutorialParts.currPart);
+    console.log(this.elements)
     switch (tutorialParts.currPart) {
       //Just starting the tutorial - "Frogbert needs help"
       case 0:
@@ -191,7 +202,7 @@ export class NewQueryCreateComponent implements OnInit {
       case 1:
         this.resetOpacity();
         for(var i=0;i<this.elements.length;i++){
-          if(i!=2 && i!=3 && i!=6 && i!=7 && i!=9)
+          if(i!=2 && i!=3 && i!=6 && i!=7 && i!=8)
             this.elements[i].style.opacity=".2";
         }
         await this.playAudio('assets/audio/2.m4a');
@@ -200,28 +211,29 @@ export class NewQueryCreateComponent implements OnInit {
       case 2:
         this.resetOpacity();
         for(var i=0;i<this.elements.length;i++){
-          if(i!=2 && i!=3 && i!=6 && i!=7 && i!=9)
+          if(i!=2 && i!=3 && i!=6 && i!=7 && i!=8)
             this.elements[i].style.opacity=".2";
         }
-        this.borderFlash(this.elements[9]);
+        this.borderFlash(this.elements[8]);
         await this.playAudio('assets/audio/3.m4a');
         break;
       //"Circled word is misspelled"
       case 3:
         (<HTMLInputElement>document.getElementById('input')).value="dooooooog";
-        this.onInput();
+        this.processInputString();
         await this.playAudio('assets/audio/4-1.m4a');
         break;
       //"Grey word may not be needed"
       case 4:
         (<HTMLInputElement>document.getElementById('input')).value="is are at be";
-        this.onInput();
+        this.processInputString();
         await this.playAudio('assets/audio/4-2.m4a');
         break;
       //"Click submit when ready"
       case 5:
         (<HTMLInputElement>document.getElementById('input')).value="what do froogs eat";
-        this.onInput();
+        this.processInputString();
+        //var test = window.getComputedStyle(<HTMLElement>document.querySelector('sub'),':before');
         this.borderFlash(this.elements[6])
         await this.playAudio('assets/audio/5.m4a');
         break;
@@ -229,7 +241,7 @@ export class NewQueryCreateComponent implements OnInit {
       case 7:
         this.resetOpacity();
         for(var i=0;i<this.elements.length;i++){
-          if(i!=2 && i!=3 && i!=4 && i!=6 && i!=7 && i!=9)
+          if(i!=2 && i!=3 && i!=4 && i!=6 && i!=7 && i!=8)
             this.elements[i].style.opacity=".2";
         }
         this.borderFlash(this.elements[4]);
@@ -257,7 +269,7 @@ export class NewQueryCreateComponent implements OnInit {
     }
     this.stopFlash();
     tutorialParts.currPart++;
-    if(tutorialParts.currPart<=9)
+    if(tutorialParts.currPart<=8)
       this.continueTutorial();
     else{
       environment.tutorial=false;
@@ -311,6 +323,27 @@ export class NewQueryCreateComponent implements OnInit {
         //this.elements[i].style.borderWidth="0px";
     }
   }
+
+  newInitQuestion(tutorial=environment.tutorial){
+    if(!tutorial){
+      var found = false;
+      while(!found && allQsandKeys.done.indexOf(0)!=-1){
+        var randQ = Math.floor(Math.random()*34);
+        if(allQsandKeys.done[randQ]==0){
+          found=true;
+          this.currQIndex = randQ;
+          var q = document.getElementById("que");
+          q!.innerText=allQsandKeys.qs[randQ];
+          currQuestion.key=allQsandKeys.qs[randQ];
+        }
+      }
+    }
+    else{
+      var q = document.getElementById("que");
+      q!.innerText="What is a frogs diet?";
+    }
+  }
+
   /**
    * Method to initialize a new question
    * @param tutorial -> Whether the player is going through the tutorial or not
@@ -355,6 +388,8 @@ export class NewQueryCreateComponent implements OnInit {
       }
       if(found){
         this.setQuestion(questionNumber.key, cat);
+        this.currQIndex=questionNumber.key;
+        this.currQCat=cat;
       }
       else
         this.initQuestion();
@@ -444,7 +479,7 @@ export class NewQueryCreateComponent implements OnInit {
    */
   clear(){
     (<HTMLInputElement>document.getElementById('input')).value="";
-    this.onInput();
+    this.processInputString();
   }
 
   /**
@@ -452,8 +487,18 @@ export class NewQueryCreateComponent implements OnInit {
    * @returns
    */
   submit(){
-    this.dbManage.postEvent(7,"query submitted", this.inputText).subscribe((data)=>{
-    });
+    if(environment.dbAccess){
+      this.dbManage.postEvent(7,"query submitted", this.inputText).subscribe((data)=>{
+      });
+    }
+    this.nonsenseCheck();
+  }
+
+  continueSubmit(tof:boolean){
+    if(tof){
+      (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="Your query doesn't seem to be related to the given question, please try again.";
+      return;
+    }
     this.tempScore=500;
     (<HTMLParagraphElement>document.getElementById("feedbackText")).innerText="";
     if(this.inputText.length<=0){
@@ -520,6 +565,7 @@ export class NewQueryCreateComponent implements OnInit {
         numLevel++;
       }
       if(levelUp){
+        this.change.signalChange(true);
         var luMessage = "You've leveled up"
         if(numLevel==1)
           luMessage+="! Congratulations!"
@@ -529,18 +575,97 @@ export class NewQueryCreateComponent implements OnInit {
       }
       sessionStorage.setItem("exp", player.exp.toString());
       sessionStorage.setItem("lvl", player.level.toString());
-      //Clear the screen and load another question if there are any left
+      allQsandKeys.done[this.currQIndex]=1;
+      //Clear the screen
       this.clear();
-      this.dbManage.putPlayer().subscribe((data)=>{
-        console.log(data);
-        if(this.qLeft())
-          this.initQuestion();
-        else
-          this.router.navigateByUrl('/gameMenu');
-      })
+      //update player data then load another question if there are any left
+      if(environment.dbAccess){
+        this.dbManage.putPlayer().subscribe((data)=>{
+          if(allQsandKeys.done.indexOf(0)!=-1)
+            this.newInitQuestion();//this.initQuestion();
+          else{
+            allQsandKeys.allDone=true;
+            //ELSE there are no questions left so send player back to the game menu
+            this.router.navigateByUrl('/customize');
+          }
+        })
+      }
     }
-    //TODO: Provide feedback, suggestions, synonyms
   }
+
+  /**
+   * Will be called when the player submits a query.
+   * Meant to check if there is an acceptable amount of similarity to the answer of the question
+   *
+   * @returns true if the submitted query is nonsense, false otherwise
+   */
+  nonsenseCheck(){
+    var threshold = .17;
+    switch (this.currQCat) {
+      //Strategy: take the average similarity of the submitted query and as long as it's > .25 similarity then it's good
+      case "Animal":
+        this.nltk.getPSimilarityBEST(this.inputText,allQsandKeys.keys[this.currQIndex]).subscribe((data)=>{
+          //console.log("average similarity between query and answers: "+data.score);
+          if(Number(data.score)<threshold)
+            this.continueSubmit(true);
+          else
+            this.continueSubmit(false);
+        });
+        break;
+      case "Superhero":
+        this.nltk.getPSimilarityBEST(this.inputText,allQsandKeys.keys[this.currQIndex]).subscribe((data)=>{
+          //console.log("average similarity between query and answers: "+data.score)
+          if(Number(data.score)<threshold)
+            this.continueSubmit(true);
+          else
+            this.continueSubmit(false);
+        });
+        break;
+      case "Music":
+        this.nltk.getPSimilarityBEST(this.inputText,allQsandKeys.keys[this.currQIndex]).subscribe((data)=>{
+          //console.log("average similarity between query and answers: "+data.score)
+          if(Number(data.score)<threshold)
+            this.continueSubmit(true);
+          else
+            this.continueSubmit(false);
+        });
+        break;
+      case "History":
+        this.nltk.getPSimilarityBEST(this.inputText,allQsandKeys.keys[this.currQIndex]).subscribe((data)=>{
+          //console.log("average similarity between query and answers: "+data.score)
+          if(Number(data.score)<threshold)
+            this.continueSubmit(true);
+          else
+            this.continueSubmit(false);
+        });
+        break;
+      case "Sports":
+        this.nltk.getPSimilarityBEST(this.inputText,allQsandKeys.keys[this.currQIndex]).subscribe((data)=>{
+          //console.log("average similarity between query and answers: "+data.score)
+          if(Number(data.score)<threshold)
+            this.continueSubmit(true);
+          else
+            this.continueSubmit(false);
+        });
+        break;
+      //default to science
+      default:
+        this.nltk.getPSimilarityBEST(this.inputText,allQsandKeys.keys[this.currQIndex]).subscribe((data)=>{
+          //console.log("average similarity between query and answers: "+data.score)
+          if(Number(data.score)<threshold)
+            this.continueSubmit(true);
+          else
+            this.continueSubmit(false);
+        });
+        break;
+    }
+    return false;
+  }
+
+  /**
+   * Checks if there are any questions left
+   * @returns
+   */
   qLeft(): boolean{
     var qArr = [];
     qArr.push(MusQA);
@@ -558,7 +683,6 @@ export class NewQueryCreateComponent implements OnInit {
     DONE.key.forEach(e=>{
       player.numDone+=e;
     });
-    console.log("NumDone: "+player.numDone);
     if(player.numDone>=5){
       this.snackBar.open("You've attempted all of the questions! Great Job!", undefined, {duration:3000, panelClass:['SET-snackbar']});
       return false;
@@ -566,21 +690,21 @@ export class NewQueryCreateComponent implements OnInit {
     return true;
   }
 
-    /**
-     * Is called each time any kind of input is found in the
-     * search input
-     */
-    onInput() {
-      this.processInputString();
-      //document.getElementById("input")!.replaceWith(<HTMLElement>document.getElementById("underneath-div"));
+  /**
+  * Is called each time any kind of input is found in the
+  * search input
+  */
+  onInput(event: Event) {
+    // console.log((<InputEvent>event).data);
+    this.processInputString();
   }
   processInputString(showSuggestions: boolean=true) {
-    this.showSuggestions = showSuggestions;
-    this.inputText = (<HTMLInputElement>document.getElementById('input')).value;
-    this.splitWords = this.inputText ? this.getSplitInput(this.inputText) : [];
-    setTimeout(() => {
-        document.querySelector('.underneath-div')!.scrollLeft += 100;
-    });
+  this.showSuggestions = showSuggestions;
+  this.inputText = (<HTMLInputElement>document.getElementById('input')).value;
+  this.splitWords = this.inputText ? this.getSplitInput(this.inputText) : [];
+  setTimeout(() => {
+      document.querySelector('.underneath-div')!.scrollLeft += 100;
+  });
 }
 getSplitInput(inputString: string): string[] {
   let word: string = "";
