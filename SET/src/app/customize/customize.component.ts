@@ -1,6 +1,6 @@
 import { Component, EventEmitter, HostListener, Output} from '@angular/core';
 import { Router } from '@angular/router';
-import {AniQA, MusQA, SupQA, HisQA, avatar, unlocks, player, tutorialParts, environment} from 'src/environments/environment';
+import {allQsandKeys, avatar, unlocks, player, tutorialParts, environment} from 'src/environments/environment';
 import { DbadapterService } from '../dbadapter.service';
 import { HeaderChangeService } from '../header-change.service';
 
@@ -13,14 +13,14 @@ export class CustomizeComponent {
   constructor(private router: Router, private dbmanage: DbadapterService, private headerChange: HeaderChangeService) {
     environment.customize=true;
    }
-  // @HostListener('document:keydown',['$event'])
-  // handleKeyboardEvent(event: KeyboardEvent){
-  //   console.log(event.key);
-  //   if(event.key=='+')
-  //     player.totalPoints+=500;
-  //   this.headerChange.signalChange(true);
-  //   // document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
-  // }
+  @HostListener('document:keydown',['$event'])
+  handleKeyboardEvent(event: KeyboardEvent){
+    console.log(event.key);
+    if(event.key=='+')
+      player.totalPoints+=500;
+    this.headerChange.signalChange(true);
+    // document.getElementById("point-count")!.innerText = "Score: " + player.totalPoints.toString();
+  }
   toResult(): void {
     this.router.navigateByUrl("/results");
   }
@@ -66,8 +66,8 @@ export class CustomizeComponent {
         unlockedString="h"+index;
         //trying to unlock the crown
         if(index==7){
-          //find will return true if there is still a question available for that category
-          if(player.numDone<5){
+          //if there are still questions left
+          if(!allQsandKeys.allDone){
             break;
           }
         }
@@ -122,6 +122,33 @@ export class CustomizeComponent {
 
   loadStore(){
     this.resetOpacity();
+    var toHat = (<HTMLButtonElement>document.getElementsByClassName('takeoffHat')[0])
+    var toNose = (<HTMLButtonElement>document.getElementsByClassName('takeoffNose')[0])
+    var toGlass = (<HTMLButtonElement>document.getElementsByClassName('takeoffGlasses')[0])
+    if(this.hatIndex==-1 || this.hatIndex==6){
+      toHat.style.boxShadow='none';
+      toHat.style.borderColor='#f7c187';
+    }
+    else{
+      toHat.style.borderColor='#fff';
+      toHat.style.boxShadow='4px 4px 7px rgba(0, 0, 0, 0.2)';
+    }
+    if(this.noseIndex==-1 || this.noseIndex==6){
+      toNose.style.boxShadow='none';
+      toNose.style.borderColor='#f7c187';
+    }
+    else{
+      toNose.style.borderColor='#fff';
+      toNose.style.boxShadow='4px 4px 7px rgba(0, 0, 0, 0.2)';
+    }
+    if(this.glassesIndex==-1 || this.glassesIndex==6){
+      toGlass.style.boxShadow='none';
+      toGlass.style.borderColor='#f7c187';
+    }
+    else{
+      toGlass.style.borderColor='#fff';
+      toGlass.style.boxShadow='4px 4px 7px rgba(0, 0, 0, 0.2)';
+    }
     var items = document.getElementsByClassName('cell');
     unlocks.key=unlocks.key.trim();
     var unlock = unlocks.key;

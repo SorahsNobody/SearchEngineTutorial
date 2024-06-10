@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
-import { AniAnswers, AniKeys, AniQA, AniQues, DONE, HisAnswers, HisKeys, HisQA, HisQues, MusAnswers, MusKeys, MusQA, MusQues, SciAnswers, SciKeys, SciQA, SciQues, SpoAnswers, SpoKeys, SpoQA, SpoQues, SupAnswers, SupKeys, SupQA, SupQues, avatar, currQuestion, environment, questionNumber, tutorialParts } from 'src/environments/environment';
+import { allQsandKeys, AniKeys, AniQA, AniQues, DONE, HisAnswers, HisKeys, HisQA, HisQues, MusAnswers, MusKeys, MusQA, MusQues, SciAnswers, SciKeys, SciQA, SciQues, SpoAnswers, SpoKeys, SpoQA, SpoQues, SupAnswers, SupKeys, SupQA, SupQues, avatar, currQuestion, environment, questionNumber, tutorialParts } from 'src/environments/environment';
 import { SearchResultsService } from '../search-results.service';
 import { misspelledWords, stopWordsUsed, player, Hints } from 'src/environments/environment';
 import { Router } from '@angular/router';
@@ -52,7 +52,7 @@ export class NewQueryCreateComponent implements OnInit {
   /** Called once the component is loaded */
   ngOnInit(): void {
     environment.page='play';
-    this.initQuestion();
+    this.newInitQuestion();
     //IF the player has already gone through the tutorial
     if(!environment.tutorial){
       this.tempScore=500; //initialize score for current query
@@ -77,7 +77,7 @@ export class NewQueryCreateComponent implements OnInit {
       var hintButton = document.getElementsByClassName("hint")[0];
       //var feedbackText = document.getElementById("feedbackText");
       var feedback = document.getElementById("feedback");
-      var search = document.getElementById("submit");
+      var search = document.getElementById("sub");
       var clear = document.getElementById("clear");
       //var back = document.getElementsByClassName("back")[0];
       var input = document.getElementById("input");
@@ -233,6 +233,7 @@ export class NewQueryCreateComponent implements OnInit {
       case 5:
         (<HTMLInputElement>document.getElementById('input')).value="what do froogs eat";
         this.processInputString();
+        //var test = window.getComputedStyle(<HTMLElement>document.querySelector('sub'),':before');
         this.borderFlash(this.elements[6])
         await this.playAudio('assets/audio/5.m4a');
         break;
@@ -322,6 +323,27 @@ export class NewQueryCreateComponent implements OnInit {
         //this.elements[i].style.borderWidth="0px";
     }
   }
+
+  newInitQuestion(tutorial=environment.tutorial){
+    if(!tutorial){
+      var found = false;
+      while(!found && allQsandKeys.done.indexOf(0)!=-1){
+        var randQ = Math.floor(Math.random()*34);
+        if(allQsandKeys.done[randQ]==0){
+          found=true;
+          this.currQIndex = randQ;
+          var q = document.getElementById("que");
+          q!.innerText=allQsandKeys.qs[randQ];
+          currQuestion.key=allQsandKeys.qs[randQ];
+        }
+      }
+    }
+    else{
+      var q = document.getElementById("que");
+      q!.innerText="What is a frogs diet?";
+    }
+  }
+
   /**
    * Method to initialize a new question
    * @param tutorial -> Whether the player is going through the tutorial or not
@@ -553,16 +575,19 @@ export class NewQueryCreateComponent implements OnInit {
       }
       sessionStorage.setItem("exp", player.exp.toString());
       sessionStorage.setItem("lvl", player.level.toString());
+      allQsandKeys.done[this.currQIndex]=1;
       //Clear the screen
       this.clear();
       //update player data then load another question if there are any left
       if(environment.dbAccess){
         this.dbManage.putPlayer().subscribe((data)=>{
-          if(this.qLeft())
-            this.initQuestion();
-          else
+          if(allQsandKeys.done.indexOf(0)!=-1)
+            this.newInitQuestion();//this.initQuestion();
+          else{
+            allQsandKeys.allDone=true;
             //ELSE there are no questions left so send player back to the game menu
-            this.router.navigateByUrl('/gameMenu');
+            this.router.navigateByUrl('/customize');
+          }
         })
       }
     }
@@ -579,7 +604,7 @@ export class NewQueryCreateComponent implements OnInit {
     switch (this.currQCat) {
       //Strategy: take the average similarity of the submitted query and as long as it's > .25 similarity then it's good
       case "Animal":
-        this.nltk.getPSimilarityBEST(this.inputText,AniKeys[this.currQIndex]).subscribe((data)=>{
+        this.nltk.getPSimilarityBEST(this.inputText,allQsandKeys.keys[this.currQIndex]).subscribe((data)=>{
           //console.log("average similarity between query and answers: "+data.score);
           if(Number(data.score)<threshold)
             this.continueSubmit(true);
@@ -588,7 +613,7 @@ export class NewQueryCreateComponent implements OnInit {
         });
         break;
       case "Superhero":
-        this.nltk.getPSimilarityBEST(this.inputText,SupKeys[this.currQIndex]).subscribe((data)=>{
+        this.nltk.getPSimilarityBEST(this.inputText,allQsandKeys.keys[this.currQIndex]).subscribe((data)=>{
           //console.log("average similarity between query and answers: "+data.score)
           if(Number(data.score)<threshold)
             this.continueSubmit(true);
@@ -597,7 +622,7 @@ export class NewQueryCreateComponent implements OnInit {
         });
         break;
       case "Music":
-        this.nltk.getPSimilarityBEST(this.inputText,MusKeys[this.currQIndex]).subscribe((data)=>{
+        this.nltk.getPSimilarityBEST(this.inputText,allQsandKeys.keys[this.currQIndex]).subscribe((data)=>{
           //console.log("average similarity between query and answers: "+data.score)
           if(Number(data.score)<threshold)
             this.continueSubmit(true);
@@ -606,7 +631,7 @@ export class NewQueryCreateComponent implements OnInit {
         });
         break;
       case "History":
-        this.nltk.getPSimilarityBEST(this.inputText,HisKeys[this.currQIndex]).subscribe((data)=>{
+        this.nltk.getPSimilarityBEST(this.inputText,allQsandKeys.keys[this.currQIndex]).subscribe((data)=>{
           //console.log("average similarity between query and answers: "+data.score)
           if(Number(data.score)<threshold)
             this.continueSubmit(true);
@@ -615,7 +640,7 @@ export class NewQueryCreateComponent implements OnInit {
         });
         break;
       case "Sports":
-        this.nltk.getPSimilarityBEST(this.inputText,SpoKeys[this.currQIndex]).subscribe((data)=>{
+        this.nltk.getPSimilarityBEST(this.inputText,allQsandKeys.keys[this.currQIndex]).subscribe((data)=>{
           //console.log("average similarity between query and answers: "+data.score)
           if(Number(data.score)<threshold)
             this.continueSubmit(true);
@@ -625,7 +650,7 @@ export class NewQueryCreateComponent implements OnInit {
         break;
       //default to science
       default:
-        this.nltk.getPSimilarityBEST(this.inputText,SciKeys[this.currQIndex]).subscribe((data)=>{
+        this.nltk.getPSimilarityBEST(this.inputText,allQsandKeys.keys[this.currQIndex]).subscribe((data)=>{
           //console.log("average similarity between query and answers: "+data.score)
           if(Number(data.score)<threshold)
             this.continueSubmit(true);

@@ -4,8 +4,9 @@ h1, h2,p{
     font-family: 'Comic Sans MS', cursive;
     font-size: 25px;
   }
-  p{
-    margin-bottom: 40px;
+  .th p{
+    padding-top: 20px;
+    margin-bottom: 20px;
   }
   html{
     height: 80%;
@@ -146,6 +147,7 @@ h1, h2,p{
 
 #takeoff{
   font-size: 30pt;
+  width: 355px;
   /* margin-right: 10%; */
   /* margin-left: 10%; */
   border: solid;

@@ -78,6 +78,7 @@ progress {
 button {
     width: 100%;
     border: solid;
+    border-color: #fff;
     font-size: 30pt;
     box-shadow: 4px 4px 7px rgba(0, 0, 0, 0.2);
     /* margin: 0%; */
@@ -89,8 +90,10 @@ button:hover{
 }
 
 button:disabled{
-  color: #a0a0a0;
-  background-color: #a75600; /* orange */
+  /* color: black; */
+  /* background-color: #fff; */
+  /* border: solid #f77f00; */
+  border-color: #f7c187;
   box-shadow: none;
 }
 

@@ -102,7 +102,11 @@ export const AniKeys: string[][] =[
   ['birds', 'eat', 'pink', 'feathers', 'why', 'that', 'is', 'what', 'do', 'have', 'with'],
   ['animal', 'longest', 'lifespan', 'can', 'mammal', 'with', 'eat', 'organism', 'creature', 'thing'],
   ['noise', 'animal', 'makes', 'most', 'land', 'mammal', 'loud', 'that', 'is', ],
-  ['animals', 'hands', 'stay', 'together', 'mammals', 'latch', 'keep', 'hold']
+  ['animals', 'hands', 'stay', 'together', 'mammals', 'latch', 'keep', 'hold'],
+  ['frog','diet','eat','frogs'],
+  ['length','frog','tongue'],
+  ['color','frog','common'],
+  ['length','jump','frog']
 ];
 
 export const SupAnswers: string[][] = [
@@ -142,16 +146,16 @@ export const SpoQues: string[] =[ // Sports Questions
 'How many colors make up the Olympic rings?', // A: five
 'How many players are on a baseball team?', // A: 9
 'What is the only sport to be played on the moon?', // A: Golf
-'What sport is Bela Karolyi known for coaching?', // A: Women’s gymnastics
 ];
+//'What sport is Bela Karolyi known for coaching?', // A: Women’s gymnastics
 
 export const SpoKeys: string[][]=[
   ['Run', 'race', 'go', 'what', 'marathon', 'ring', 'fast', 'including', 'is', 'many', 'for',  'miles', '1000'],
   ['Olympic', 'Japan',  'find', 'binary', 'twenty', 'source', 'how', 'match', 'colors', 'program', 'in', 'different', 'ring'],
   ['Paint', 'play', 'what', 'playing', 'number', 'that', 'count', 'baseball', 'quick', 'friends', 'team', 'system', 'in'],
   ['plenty', 'sports', 'for', 'can', 'on', 'played', 'report', 'many', 'kind', 'single', 'moon', 'gravitation'],
-  ['name', 'in', 'game', 'how', 'gym',  'which', 'Bela', 'going', 'coach', 'woman', 'into',  'Bela','Karolyi', 'famous', 'know']
 ];
+  //['name', 'in', 'game', 'how', 'gym',  'which', 'Bela', 'going', 'coach', 'woman', 'into',  'Bela','Karolyi', 'famous', 'know']
 
 export const SciAnswers: string[][] = [
   ['au'],
@@ -207,19 +211,20 @@ export const MusQues: string[] = [
   'Who is the \'King of Pop\'?',
   'What is the name of the group that sang \'Baby Shark\'?',
   'What is the name of the instrument that has black and white keys?',
-  'Who is the leader of the popular band BTS?',
   'What is the biggest music award ceremony that happens every year?',
   'What is the name of the popular band that is made up of animated characters?'
 ];
+  //'Who is the leader of the popular band BTS?',
 
 export const MusKeys: string[][] = [
   ['King','the','where','of','music','singer','name','popular','pop','artist','what','is','who','the','Shrek'],
   ['band','that','where','music','singer','name','song','baby','shark','who','what','is','the','group','artist','wrote','performed'],
   ['music','name','instrument','sounds','keys','black','and','white','horizontal','board','strings','what','the','is','Shrek'],
-  ['girl','BTS','boy','artist','lead','the','who','leader','red','rap','Korean','popular','is','Shrek','Zorro','Romeo'],
   ['biggest','music','King','instrument','sounds','the','red','leader','biggs','wedge','event','annual','every','year','name', 'biggest','ceremony'],
   ['name','music','pop','keys','the','who','where','band','animated','of','characters','animals','made','red','up','is','baby','shark','of']
 ];
+  //['girl','BTS','boy','artist','lead','the','who','leader','red','rap','Korean','popular','is','Shrek','Zorro','Romeo'],
+  
 
 export const MusAnswers: string[][]=[
   ['michael','jackson'],
@@ -238,14 +243,95 @@ export const Hints: string[] = [
   'Try not to copy the question word-for-word. Try to make it a better query instead!'
 ];
 
+export var allQsandKeys = {
+  qs: [  'What bird can fly backwards?', //Hummingbird
+  'Why are flamingos pink?', //shrimp, and algea they eat
+  'What is the longest living animal?', //imortal jellyfish
+  'What is the loudest land animal?', //howler monkey
+  'What animals hold each others hands?', //otters
+  'What do frogs eat?',
+  'How long can a frogs tongue be?',
+  'What is the most common color of frog?',
+  'How far can frogs jump?',
+  "What color is Hulk when he is angry?",
+  "What is Captain America's shield made of?",
+  "What is spiderman's real name?",
+  "Who is the leader of X-Men?",
+  "What is Wonder Woman's weapon called?",
+  'How long is a marathon?', // A: 26.2 miles
+  'How many colors make up the Olympic rings?', // A: five
+  'How many players are on a baseball team?', // A: 9
+  'What is the only sport to be played on the moon?', // A: Golf
+  'What is the chemical symbol for gold?', //Answer: Au
+  'What is the boiling point of water?', //Answer: 212 F or 100 C
+  'Why is the Ocean salty?', //Answer: rocks from land
+  'Who is the Science Guy?', //Answer: Bill Nye
+  'How many planets are there in our solar system?', //Answer: Eight
+  'Who was the first president of the United States?',
+  'Who invented the telephone?',
+  'Who wrote the Harry Potter books?',
+  'What is the largest continent in the world?',
+  'Who was the first person to walk on the moon?',
+  'Who was the first Emperor of Rome?',
+  'Who is the \'King of Pop\'?',
+  'What is the name of the group that sang \'Baby Shark\'?',
+  'What is the name of the instrument that has black and white keys?',
+  'What is the biggest music award ceremony that happens every year?',
+  'What is the name of the popular band that is made up of animated characters?'
+  ],
+  keys: [
+    ['backward', 'move', 'fly', 'animal', 'wings', 'mammal'],
+    ['birds', 'eat', 'pink', 'feathers', 'why', 'that', 'is', 'what', 'do', 'have', 'with'],
+    ['animal', 'longest', 'lifespan', 'can', 'mammal', 'with', 'eat', 'organism', 'creature', 'thing'],
+    ['noise', 'animal', 'makes', 'most', 'land', 'mammal', 'loud', 'that', 'is', ],
+    ['animals', 'hands', 'stay', 'together', 'mammals', 'latch', 'keep', 'hold'],
+    ['frog','diet','eat','frogs'],
+    ['length','frog','tongue'],
+    ['color','frog','common'],
+    ['length','jump','frog'],
+    ['superhero', 'trees', 'color', 'angry', 'comic','book', 'scientist', 'marvel', 'Hulk', 'not','happy'],
+    ['strong','shield','metal','substance','blue','Captain','America','Avenger','made','of','name','material','make'],
+    ['name', 'spider', 'own', 'real', 'spiderman', 'DC', 'Tony', 'Marvel'],
+    ['leader', 'team', 'character', 'boss', 'X-Men', 'in charge','Ironman', 'Professor'],
+    ['Truth', 'Wonder','Woman', 'Marvel','DC','comics', 'Paradise', 'weapon', 'name', 'called'],
+    ['Run', 'race', 'go', 'what', 'marathon', 'ring', 'fast', 'including', 'is', 'many', 'for',  'miles', '1000'],
+    ['Olympic', 'Japan',  'find', 'binary', 'twenty', 'source', 'how', 'match', 'colors', 'program', 'in', 'different', 'ring'],
+    ['Paint', 'play', 'what', 'playing', 'number', 'that', 'count', 'baseball', 'quick', 'friends', 'team', 'system', 'in'],
+    ['plenty', 'sports', 'for', 'can', 'on', 'played', 'report', 'many', 'kind', 'single', 'moon', 'gravitation'],
+    ['chemical','chemistry','gold','element', 'what','who','where','is','symbol','metal','gas','liquid','for'],
+    ['water', 'boiling', 'liquid', 'hot', 'cold', 'when', 'where', 'what', 'is', 'gas', 'duck', 'float'],
+    ['taste','who', 'salt','salty','when','water','is','ocean','beach', 'why','shark','moon'],
+    ['science', 'guy', 'rules', 'experiment', 'moon', 'cold', 'who', 'shark', 'float', 'is'],
+    ['planets', 'earth','solar','is','how','pluto','many','there','duck','water','sun','rocks'],
+    ['America', 'president', 'is','first', 'old','United','States', 'US', 'leader', 'who', 'Britain','UK','colonies','wooden','teeth','for','where','why'],
+    ['invention','telephone','is','where','what','phone','mobile','power','line','harry','person','who','careful','hear','invented'],
+    ['Harry','who','is','where','what','youre','a','wizard','potter','Voldemort','name','author','magic','red','herring','written','by'],
+    ['who','is','where','small','what','largest','globe','area','place','moon','earth','big','biggest','the','continent','ocean'],
+    ['walk','who','where','why','is','phone','history','rocks','first','name','the','man','woman','person','walked','on','space','moon'],
+    ['king','is','who','where','why','is','red','herring','all','roads','lead','to','Rome','leader','the','first','walked','was'],
+    ['King','the','where','of','music','singer','name','popular','pop','artist','what','is','who','the','Shrek'],
+    ['band','that','where','music','singer','name','song','baby','shark','who','what','is','the','group','artist','wrote','performed'],
+    ['music','name','instrument','sounds','keys','black','and','white','horizontal','board','strings','what','the','is','Shrek'],
+    ['biggest','music','King','instrument','sounds','the','red','leader','biggs','wedge','event','annual','every','year','name', 'biggest','ceremony'],
+    ['name','music','pop','keys','the','who','where','band','animated','of','characters','animals','made','red','up','is','baby','shark','of']
+  ],
+  done: [
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,0,
+    0,0,0,0
+  ],
+  allDone: false
+}
+
 export const MusQA = {
-  key: [0,0,0,0,0,0]
+  key: [0,0,0,0,0]
 }
 export const HisQA = {
   key: [0,0,0,0,0,0]
 }
 export const SpoQA = {
-  key: [0,0,0,0,0]
+  key: [0,0,0,0]
 }
 export const SciQA = {
   key: [0,0,0,0,0]
